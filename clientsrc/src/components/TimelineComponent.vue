@@ -1,11 +1,22 @@
 <template>
-  <div class="timeline-component col">
-    <h1>Today's timeline</h1>
-    <div class="card">
-      <img class="card-img-top" src="holder.js/100x180/" alt />
-      <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Text</p>
+  <div class="timeline-component col-12">
+    <h1 class="text-center">Today's timeline</h1>
+
+    <div class="bg-light shadow">
+      <h2>Todays lessons</h2>
+      <div class="bg-light shadow">
+        <p>8am</p>
+        <div>
+          <p class="bg-dark text-light">drop zone</p>
+        </div>
+        <p>8am</p>
+        <div>
+          <p class="bg-dark text-light">drop zone</p>
+        </div>
+        <p>8am</p>
+        <div>
+          <p class="bg-dark text-light">drop zone</p>
+        </div>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ import { BadRequest } from "../utils/Errors";
 
 class AssignmentService {
   async find(query = {}) {
-    return await dbContext.Assignments.find(query);
+    return await dbContext.Assignments.find(query).populate("student");
   }
   async getAll(userEmail) {
     return await dbContext.Assignments.find({

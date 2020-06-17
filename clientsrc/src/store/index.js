@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     students: [],
+    assignments: [],
   },
   mutations: {
     setUser(state, user) {

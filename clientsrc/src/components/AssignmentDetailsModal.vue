@@ -1,5 +1,5 @@
 <template>
-  <div class="assignment-details-modal"></div>
+  <div class="assignment-details-modal row"></div>
 </template>
 
 
