@@ -33,7 +33,7 @@
                 class="nav-link"
               >{{student.name}}</router-link>
             </span>
-            <a class="dropdown-item" href="#">Add Student</a>
+            <a class="dropdown-item pl-2" href="#">Add Student</a>
           </div>
         </li>
         <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
@@ -57,11 +57,10 @@ let _api = axios.create({
 });
 export default {
   name: "Navbar",
-  mounted() {
-    // TODO get students
-  },
   computed: {
-    // TODO students
+    students() {
+      return this.$store.state.students;
+    }
   },
   methods: {
     async login() {
