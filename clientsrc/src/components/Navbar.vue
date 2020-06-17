@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
     <router-link class="navbar-brand" :to="{ name: 'home' }">HomeScholar</router-link>
     <button
       class="navbar-toggler"
@@ -119,6 +119,9 @@ let _api = axios.create({
 });
 export default {
   name: "Navbar",
+  mounted() {
+    this.$store.dispatch("getStudents");
+  },
   data() {
     return {
       addStudent: {}
@@ -126,7 +129,7 @@ export default {
   },
   computed: {
     students() {
-      return this.$store.state.students;
+      return this.$store.state.StudentStore.students;
     }
   },
   methods: {

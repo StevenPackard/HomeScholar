@@ -11,14 +11,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {},
-    students: [],
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
-    },
-    setStudents(state, students) {
-      state.students = students;
     },
   },
   actions: {
