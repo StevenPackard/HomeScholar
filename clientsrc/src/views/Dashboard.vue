@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container">
+  <div class="dashboard container-fluid">
     <div class="row">
       <timeline />
     </div>
