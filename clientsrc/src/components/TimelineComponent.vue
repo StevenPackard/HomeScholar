@@ -1,9 +1,9 @@
 <template>
   <div class="timeline-component col-12">
-    <h1>Today's timeline</h1>
+    <h1 class="text-center">Today's timeline</h1>
 
     <div class="bg-light shadow">
-      <h2>Todays lesson</h2>
+      <h2>Todays lessons</h2>
       <div class="bg-light shadow">
         <p>8am</p>
         <div>

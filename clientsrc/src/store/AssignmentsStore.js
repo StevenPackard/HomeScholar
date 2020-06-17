@@ -5,7 +5,19 @@ import router from "../router/index";
 import { api } from "./AxiosStore";
 
 export const AssignmentsStore = {
-  state: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    setAssignments(state, assignments) {
+      state.assignments = assignments;
+    },
+  },
+  actions: {
+    async getAssignments({ commit, dispatch }, student) {
+      try {
+        let res = await api.get("students/" + student.id + "/assignments");
+        commit("setAssignments", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 };

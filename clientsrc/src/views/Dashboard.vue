@@ -1,11 +1,6 @@
 <template>
   <div class="dashboard container">
     <div class="row">
-      <div class="col">
-        <h2>Today's lesson plan</h2>
-      </div>
-    </div>
-    <div class="row">
       <timeline />
     </div>
     <div class="row">
