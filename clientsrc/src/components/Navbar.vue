@@ -1,8 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'home' }"
-      >Kanban</router-link
-    >
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <router-link class="navbar-brand" :to="{ name: 'home' }">HomeScholar</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -16,29 +14,34 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" :class="{ active: $route.name == 'home' }">
-          <router-link :to="{ name: 'home' }" class="nav-link"
-            >Home</router-link
-          >
+        <li class="nav-item" :class="{ active: $route.name == 'dashboard' }">
+          <router-link :to="{ name: 'dashboard' }" class="nav-link">Dashboard</router-link>
         </li>
-        <li
-          class="nav-item"
-          v-if="$auth.isAuthenticated"
-          :class="{ active: $route.name == 'boards' }"
-        >
-          <router-link class="nav-link" :to="{ name: 'boards' }"
-            >My-Dashboard</router-link
-          >
+        <li class="dropdown nav-item mt-2">
+          <a
+            class="dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Students</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <span v-for="student in students" :key="student.id">
+              <router-link
+                :to="{ path: `/student/${student.id}` }"
+                class="nav-link"
+              >{{student.name}}</router-link>
+            </span>
+            <a class="dropdown-item" href="#">Add Student</a>
+          </div>
         </li>
+        <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
+          <router-link :to="{ name: 'student-details' }" class="nav-link">Students</router-link>
+        </li>-->
       </ul>
       <span class="navbar-text">
-        <button
-          class="btn btn-success"
-          @click="login"
-          v-if="!$auth.isAuthenticated"
-        >
-          Login
-        </button>
+        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>
@@ -54,6 +57,12 @@ let _api = axios.create({
 });
 export default {
   name: "Navbar",
+  mounted() {
+    // TODO get students
+  },
+  computed: {
+    // TODO students
+  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
@@ -63,7 +72,7 @@ export default {
       console.log(this.$auth.user);
     },
     async logout() {
-      await this.$auth.logout({returnTo: window.location.origin});
+      await this.$auth.logout({ returnTo: window.location.origin });
     }
   }
 };
