@@ -23,4 +23,12 @@ export const AssignmentsStore = {
       }
     },
   },
+  async addAssignment({ commit, dispatch }, assignment) {
+    try {
+      let res = await api.post("assignments", assignment);
+      dispatch("getAssignments", assignment.student);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
