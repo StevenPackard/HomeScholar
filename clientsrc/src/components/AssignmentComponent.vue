@@ -1,5 +1,12 @@
 <template>
-  <div class="assignment-component">hey from assignment component</div>
+  <div class="assignment-component">
+    <div class="bg-light shadow mt-5">
+      <h3>assignments</h3>
+      <div>
+        <h2>studentname</h2>
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -9,7 +16,9 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    students() {}
+  },
   methods: {},
   components: {}
 };
