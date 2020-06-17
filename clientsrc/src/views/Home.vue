@@ -2,27 +2,37 @@
   <div class="home container-fluid">
     <div class="row bg-info pt-4">
       <div class="col-8">
-        <div class="jumbotron">
+        <div class="jumbotron shadow">
           <h1 class="display-4">Welcome to HomeScholar</h1>
           <p
             class="lead"
-          >Organize your education for your children at home. Better planning leads to better learning</p>
+          >Optimize the education of your children at home. Better planning leads to better learning</p>
           <hr class="my-4" />
           <p>HomeScholar offers a unique experience to optimize your childs learning. Take our tour to learn more about how it can change your life</p>
           <p class="lead">
-            <a class="btn btn-info btn-lg" href="#" role="button">Take a tour</a>
+            <a class="btn btn-info btn-lg shadow" href="#" role="button">Take a tour</a>
           </p>
         </div>
       </div>
     </div>
     <div class="row home-row-large bg-light justify-content-center">
-      <div class="col-4 text-right pt-5">
-        <h2>This is some really smart kids with their hot mom</h2>
+      <div class="col-4 pt-5">
+        <div class="row">
+          <div class="col-12">
+            <h3>
+              <i class="fas fa-book fa-lg"></i>
+              Make learning fun for everyone!
+            </h3>
+          </div>
+          <div class="col">
+            <h3>Take your childrens learning to the next level from home. HomeScholar allows you to to create lesson plans easily and stick to a schedule that works for you.</h3>
+          </div>
+        </div>
       </div>
       <div class="col-5 text-right">
         <img
           src="https://cf.ltkcdn.net/home-school/images/orig/261690-1600x1030-best-free-online-homeschool-programs.jpg"
-          class="image-large mt-5"
+          class="image-large mt-5 shadow"
           alt
         />
       </div>
@@ -30,7 +40,7 @@
     <!-- Reviews Row -->
     <div class="row home-row-large bg-primary justify-content-center align-items-center">
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card" style="width: 20rem;">
+        <div class="card shadow" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -46,7 +56,7 @@
         </div>
       </div>
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card" style="width: 20rem;">
+        <div class="card shadow" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -63,7 +73,7 @@
         </div>
       </div>
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card" style="width: 20rem;">
+        <div class="card shadow" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -82,8 +92,8 @@
     </div>
     <div class="row home-row-small bg-info justify-content-center">
       <div class="col-6 text-center text-box mt-4">
-        <h2>Take control of your childrens education.</h2>
-        <h2>Ditch the hassle and start using HomeScholar today!</h2>
+        <h2 class="text-dark">Take control of your childrens education.</h2>
+        <h2 class="text-dark">Ditch the hassle and start using HomeScholar today!</h2>
       </div>
 
       <div class="col-7 text-center">
