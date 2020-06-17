@@ -1,3 +1,3 @@
 export const domain = "steven-demo.auth0.com";
 export const audience = "https://steven-demo.com/";
-export const clientId = "dO6KzrwDGl2GG6jVdRcTC8vcY5XQP4y1";
+export const clientId = "KpeBxAKgmH4FgpWcZgW4PmLq6VE4i71d";
