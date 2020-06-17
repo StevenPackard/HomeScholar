@@ -1,8 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <router-link class="navbar-brand" :to="{ name: 'home' }"
-      >HomeScholar</router-link
-    >
+    <router-link class="navbar-brand" :to="{ name: 'home' }">HomeScholar</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -17,9 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'dashboard' }">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link"
-            >Dashboard</router-link
-          >
+          <router-link :to="{ name: 'dashboard' }" class="nav-link">Dashboard</router-link>
         </li>
         <li class="dropdown nav-item mt-2">
           <a
@@ -29,23 +25,20 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-            >Students</a
-          >
+          >Students</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
               <router-link
                 :to="{ path: `/student/${student.id}` }"
                 class="nav-link"
-                >{{ student.name }}</router-link
-              >
+              >{{ student.name }}</router-link>
             </span>
             <a
-              class="dropdown-item pl-2 "
+              class="dropdown-item pl-2"
               href="#"
               data-toggle="modal"
               data-target="#addStudentModal"
-              >Add Student</a
-            >
+            >Add Student</a>
           </div>
         </li>
         <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
@@ -53,13 +46,7 @@
         </li>-->
       </ul>
       <span class="navbar-text">
-        <button
-          class="btn btn-success"
-          @click="login"
-          v-if="!$auth.isAuthenticated"
-        >
-          Login
-        </button>
+        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>
@@ -75,32 +62,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label"
-                  >Student Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="studentName"
-                  v-model="addStudent.name"
-                />
+                <label for="studentName" class="col-form-label">Student Name</label>
+                <input type="text" class="form-control" id="studentName" v-model="addStudent.name" />
               </div>
               <div class="form-group">
-                <label for="studentDescription" class="col-form-label"
-                  >Description</label
-                >
+                <label for="studentDescription" class="col-form-label">Description</label>
                 <textarea
                   class="form-control"
                   id="studentDescription"
@@ -117,9 +90,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="studentSubjects" class="col-form-label"
-                  >Subjects (Optional)</label
-                >
+                <label for="studentSubjects" class="col-form-label">Subjects (Optional)</label>
                 <input
                   class="form-control"
                   id="studentSubjects"
@@ -130,20 +101,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="submitNewStudent"
-            >
-              Add Student
-            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
           </div>
         </div>
       </div>
@@ -156,19 +115,19 @@ import axios from "axios";
 
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true,
+  withCredentials: true
 });
 export default {
   name: "Navbar",
   data() {
     return {
-      addStudent: {},
+      addStudent: {}
     };
   },
   computed: {
     students() {
       return this.$store.state.students;
-    },
+    }
   },
   methods: {
     async login() {
@@ -185,8 +144,8 @@ export default {
       this.$store.dispatch("addStudent", { ...this.addStudent });
       this.addStudent = {};
       $("#addStudentModal").modal("hide");
-    },
-  },
+    }
+  }
 };
 </script>
 

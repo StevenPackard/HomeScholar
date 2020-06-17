@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     assignments() {
-      return this.$store.state.assignments;
+      return this.$store.state.AssignmentsStore.assignments;
     }
   },
   methods: {},

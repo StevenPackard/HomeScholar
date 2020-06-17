@@ -5,6 +5,9 @@ import router from "../router/index";
 import { api } from "./AxiosStore";
 
 export const AssignmentsStore = {
+  state: {
+    assignments: [],
+  },
   mutations: {
     setAssignments(state, assignments) {
       state.assignments = assignments;

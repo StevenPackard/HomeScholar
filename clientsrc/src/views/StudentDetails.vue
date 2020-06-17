@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="row">
-          <assignment />
+          <!-- <assignment /> -->
         </div>
       </div>
     </div>
@@ -28,7 +28,10 @@ export default {
   name: "student-details",
   mounted() {
     this.$store.dispatch("getStudentById", this.$route.params.id);
-    this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+    // this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+  },
+  beforeUpdate() {
+    this.$store.dispatch("getStudentById", this.$route.params.id);
   },
   data() {
     return {};
@@ -36,10 +39,10 @@ export default {
   computed: {
     student() {
       return this.$store.state.StudentStore.activeStudent;
-    },
+    }
   },
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 

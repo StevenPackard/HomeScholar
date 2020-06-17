@@ -3,12 +3,12 @@ import { BadRequest } from "../utils/Errors";
 
 class AssignmentService {
   async find(query = {}) {
-    return await dbContext.Assignments.find(query).populate("student");
+    return await dbContext.Assignments.find(query).populate("studentId");
   }
   async getAll(userEmail) {
     return await dbContext.Assignments.find({
       creatorEmail: userEmail,
-    }).populate("creator", "name picture");
+    }).populate("creatorEmail", "name picture");
   }
 
   async getById(id, userEmail) {
