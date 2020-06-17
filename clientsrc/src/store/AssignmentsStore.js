@@ -14,9 +14,17 @@ export const AssignmentsStore = {
     },
   },
   actions: {
-    async getAssignments({ commit, dispatch }, student) {
+    async getAllAssignments({ commit, dispatch }) {
       try {
-        let res = await api.get("students/" + student.id + "/assignments");
+        let res = await api.get("assignments");
+        commit("setAssignments", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getAssignments({ commit, dispatch }, id) {
+      try {
+        let res = await api.get("students/" + id + "/assignments");
         commit("setAssignments", res.data);
       } catch (error) {
         console.error(error);
@@ -25,6 +33,8 @@ export const AssignmentsStore = {
   },
   async addAssignment({ commit, dispatch }, assignment) {
     try {
+      console.log(assignment);
+
       let res = await api.post("assignments", assignment);
       dispatch("getAssignments", assignment.student);
     } catch (error) {

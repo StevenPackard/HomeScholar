@@ -66,7 +66,11 @@ export default {
   name: "assignment-modal",
   data() {
     return {
-      assignmentForm: {}
+      assignmentForm: {
+        student: {
+          id: ""
+        }
+      }
     };
   },
   computed: {
@@ -82,8 +86,10 @@ export default {
           studentId = this.students[i].id;
         }
       }
-      this.assignmentForm.student.id = studentId;
-      this.$store.dispatch("addAssignment", { ...this.assignmentForm });
+      this.assignmentForm.student = studentId;
+      this.$store.AssignmentsStore.dispatch("addAssignment", {
+        ...this.assignmentForm
+      });
       this.assignmentForm = {};
     }
   },

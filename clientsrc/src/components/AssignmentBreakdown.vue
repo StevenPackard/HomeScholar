@@ -1,6 +1,6 @@
 <template>
   <div class="assignment-breakdown">
-    <div class="row"></div>
+    <div class="row">{{assignments}}</div>
   </div>
 </template>
 
@@ -11,16 +11,19 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    this.$store.dispatch("getAssignments", student);
-  },
   props: ["student"],
   computed: {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
     }
   },
-  methods: {},
+  methods: {
+    getAssignments() {
+      return this.assignments.filter(a => {
+        a.studentId == this.student.id;
+      });
+    }
+  },
   components: {}
 };
 </script>

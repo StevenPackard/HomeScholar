@@ -35,6 +35,9 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.$store.dispatch("getAllAssignments");
+  },
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
