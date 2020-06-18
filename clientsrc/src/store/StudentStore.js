@@ -51,6 +51,15 @@ export const StudentStore = {
       }
     },
 
+    async deleteStudent({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("students/" + id);
+        router.push({ name: "dashboard" });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     //#endregion
   },
 };
