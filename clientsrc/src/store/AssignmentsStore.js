@@ -7,10 +7,16 @@ import { api } from "./AxiosStore";
 export const AssignmentsStore = {
   state: {
     assignments: [],
+    activeAssignments: [],
   },
   mutations: {
     setAssignments(state, assignments) {
       state.assignments = assignments;
+    },
+    setActiveAssignments(state, assignments) {
+      console.log(assignments);
+
+      state.activeAssignments = assignments;
     },
   },
   actions: {
@@ -22,23 +28,24 @@ export const AssignmentsStore = {
         console.error(error);
       }
     },
-    async getAssignments({ commit, dispatch }, id) {
+    async getAssignmentsByStudentId({ commit, dispatch }, id) {
       try {
         let res = await api.get("students/" + id + "/assignments");
-        commit("setAssignments", res.data);
+        console.log(res.data);
+
+        commit("setActiveAssignments", res.data);
       } catch (error) {
         console.error(error);
       }
     },
-  },
-  async addAssignment({ commit, dispatch }, assignment) {
-    try {
-      console.log(assignment);
-
-      let res = await api.post("assignments", assignment);
-      dispatch("getAssignments", assignment.student);
-    } catch (error) {
-      console.error(error);
-    }
+    async addAssignment({ commit, dispatch }, assignment) {
+      try {
+        let res = await api.post("assignments", assignment);
+        dispatch("getAssignmentsByStudentId", assignment.studentId);
+        commit("setActiveAssignments", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

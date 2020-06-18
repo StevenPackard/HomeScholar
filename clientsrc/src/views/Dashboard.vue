@@ -31,7 +31,15 @@
     </div>
     <!-- <div class="row justify-content-center mt-4">
       <div class="col-12 shadow">
-        <div class="row justify-content-center students-box bg-info"></div>
+
+        <div class="row justify-content-center students-box bg-info">
+          <student
+            v-for="student in students"
+            :key="student.id"
+            :student="student"
+          />
+        </div>
+
       </div>
     </div> -->
   </div>
@@ -72,6 +80,7 @@ export default {
     students() {
       return this.$store.state.StudentStore.students;
     },
+
     events() {
       return this.$store.state.events;
     },
@@ -81,6 +90,7 @@ export default {
       console.log(arg);
       this.$store.dispatch("addEvent", arg);
     },
+
   },
   components: {
     timeline,

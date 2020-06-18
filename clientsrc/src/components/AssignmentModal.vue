@@ -12,22 +12,41 @@
       <div class="modal-dialog modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addAssignmentModalLabel">
+              Add Assignment
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
-              <select v-model="assignmentForm.student" class="form-control form-control-sm">
-                <option v-for="student in students" :key="student.id">{{student.name}}</option>
+              <select
+                v-model="assignmentForm.name"
+                class="form-control form-control-sm"
+              >
+                <option v-for="student in students" :key="student.id">{{
+                  student.name
+                }}</option>
               </select>
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="title" v-model="assignmentForm.title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="assignmentForm.title"
+                />
               </div>
               <div class="form-group">
-                <label for="Description" class="col-form-label">Description</label>
+                <label for="Description" class="col-form-label"
+                  >Description</label
+                >
                 <textarea
                   class="form-control"
                   id="Description"
@@ -46,13 +65,21 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button
               type="button"
-              @click="addAssignment"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
-            >Add Assignment</button>
+            >
+              Add Assignment
+            </button>
           </div>
         </div>
       </div>
@@ -70,18 +97,32 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="studentName" v-model="addStudent.name" />
+                <label for="studentName" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  v-model="addStudent.name"
+                />
               </div>
               <div class="form-group">
-                <label for="studentDescription" class="col-form-label">Description</label>
+                <label for="studentDescription" class="col-form-label"
+                  >Description</label
+                >
                 <textarea
                   class="form-control"
                   id="studentDescription"
@@ -98,7 +139,9 @@
                 />
               </div>
               <div class="form-group">
-                <label for="studentSubjects" class="col-form-label">Subjects (Optional)</label>
+                <label for="studentSubjects" class="col-form-label"
+                  >Subjects (Optional)</label
+                >
                 <input
                   class="form-control"
                   id="studentSubjects"
@@ -109,8 +152,20 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Add Student
+            </button>
           </div>
         </div>
       </div>
@@ -118,24 +173,21 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: "assignment-modal",
   data() {
     return {
       assignmentForm: {
-        student: {
-          id: ""
-        }
+        studentId: "",
       },
-      addStudent: {}
+      addStudent: {},
     };
   },
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {
     submitNewStudent() {
@@ -143,29 +195,21 @@ export default {
       this.addStudent = {};
       $("#addStudentModal").modal("hide");
     },
-    addAssignment() {
-      let studentId = "";
-      for (let i = 0; i < this.students.length; i++) {
-        if (this.assignmentForm.student == this.students[i].name) {
-          studentId = this.students[i].id;
-        }
-      }
-      this.assignmentForm.student = studentId;
-      this.$store.AssignmentsStore.dispatch("addAssignment", {
-        ...this.assignmentForm
-      });
-      this.assignmentForm = {};
-    }
+    addNewAssignment() {
+      let foundStudent = this.$store.state.StudentStore.students.find(
+        (s) => s.name == this.assignmentForm.name
+      );
+      this.assignmentForm.studentId = foundStudent.id;
+      this.$store.dispatch("addAssignment", { ...this.assignmentForm });
+      this.assignmentForm = { studentId: "" };
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 
+<style scoped></style>
 
-<style scoped>
-</style>
-
-    // title: { type: String, required: true },
-    // description: { type: String, required: true },
-    // subject: { type: String, required: true },
-    // studentId: { type: ObjectId, ref: "Student", required: true },
+// title: { type: String, required: true }, // description: { type: String,
+required: true }, // subject: { type: String, required: true }, // studentId: {
+type: ObjectId, ref: "Student", required: true },
