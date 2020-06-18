@@ -77,7 +77,7 @@ export default {
   height: 30vh;
 }
 .assignment-box {
-  height: 20vh;
+  height: 24vh;
   overflow-y: auto;
 }
 </style>
