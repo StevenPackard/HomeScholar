@@ -53,18 +53,6 @@
         </div>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col text-center">
-        <button
-          data-toggle="modal"
-          data-target="#addAssignmentModal"
-          class="btn btn-info"
-        >
-          Add Assignment
-        </button>
-      </div>
-    </div>
-    <addAssignmentModal />
   </div>
 </template>
 
