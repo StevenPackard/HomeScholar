@@ -1,8 +1,8 @@
 <template>
-  <div class="student-mock-component col-5 mx-5 my-3 bg-warning shadow">
+  <div class="student-mock-component col-12 my-3 bg-warning shadow">
     <div class="row text-center">
       <div class="col-12 border">
-        <h3>{{student.name}}</h3>
+        <h3>{{ student.name }}</h3>
       </div>
     </div>
     <div class="row justify-content-center assignment-box">
@@ -59,13 +59,14 @@
           data-toggle="modal"
           data-target="#addAssignmentModal"
           class="btn btn-info"
-        >Add Assignment</button>
+        >
+          Add Assignment
+        </button>
       </div>
     </div>
     <addAssignmentModal />
   </div>
 </template>
-
 
 <script>
 import AddAssignmentModal from "../components/AssignmentModal";
@@ -77,12 +78,11 @@ export default {
   computed: {},
   methods: {},
   components: {
-    AddAssignmentModal
+    AddAssignmentModal,
   },
-  props: ["student"]
+  props: ["student"],
 };
 </script>
-
 
 <style scoped>
 .student-mock-component {

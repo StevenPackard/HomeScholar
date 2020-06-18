@@ -11,10 +11,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {},
+    events: [],
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    addToEvents(state, event) {
+      state.events.push(event);
     },
   },
   actions: {
@@ -31,6 +35,21 @@ export default new Vuex.Store({
         commit("setUser", res.data);
       } catch (err) {
         console.error(err);
+      }
+    },
+
+    async addEvent({ commit, dispatch }, arg) {
+      try {
+        let argObj = {
+          id: new Date().getTime(),
+          title: "something",
+          start: arg.start,
+          end: arg.end,
+          allDay: arg.allDay,
+        };
+        commit("addToEvents", argObj);
+      } catch (error) {
+        console.error(error);
       }
     },
   },
