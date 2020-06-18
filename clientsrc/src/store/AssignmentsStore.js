@@ -8,8 +8,27 @@ export const AssignmentsStore = {
   state: {
     assignments: [],
     activeAssignments: [],
+    activeAssignmentDetails: {},
   },
   mutations: {
+    setActiveAssignmentDetails(state, assignmentId) {
+      for (let i = 0; i < state.activeAssignments.length; i++) {
+        console.log(state.activeAssignments[i].id);
+        if (state.activeAssignments[i].id == assignmentId) {
+          console.log(state.activeAssignments[i]);
+          state.activeAssignmentDetails = state.activeAssignments[i];
+        }
+      }
+
+      // let activeAsignment = state.activeAssignments.find((a) =>
+      // {
+      //   console.log(a.id);
+      //   a.id == assignmentId;
+      // }
+      // );
+      // debugger;
+      // state.activeAssignmentDetails = activeAsignment;
+    },
     setAssignments(state, assignments) {
       state.assignments = assignments;
     },
