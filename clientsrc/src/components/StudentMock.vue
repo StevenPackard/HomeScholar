@@ -5,12 +5,12 @@
         <h3>{{ student.name }}</h3>
       </div>
     </div>
-    <div class="row justify-content-center assignment-box">
-      <div class="col-11 bg-dark mt-3 shadow">
-        <div class="row text-center bg-light my-3">
-          <AssignmentComponentMock />
-        </div>
-      </div>
+    <div class="row justify-content-center assignment-box bg-dark">
+      <AssignmentComponentMock
+        v-for="assignment in assignments"
+        :key="assignment.id"
+        :assignment="assignment"
+      />
     </div>
   </div>
 </template>
@@ -24,11 +24,13 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getAssignmentsByStudentId", this.student.id);
+    this.$store.dispatch("getAssignmentsForDashboard", this.student.id);
   },
   computed: {
     assignments() {
-      return this.$store.state.AssignmentsStore;
+      return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
+        this.student.id
+      ];
     }
   },
   methods: {},

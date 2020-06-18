@@ -1,18 +1,18 @@
 <template>
   <div
     @click="setActiveAssignmentDetails"
-    class="assignment-component-mock col-11 text-center bg-light my-3 action"
+    class="assignment-component-mock col-11 text-center bg-light my-3 action p-2"
   >
-    <div data-toggle="modal" data-target="#assignmentDetailsModal" class="">
+    <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
       <div class="row">
         <div class="col-4">
-          <h3>{{ assignment.subject }}</h3>
+          <h5>{{ assignment.subject }}</h5>
         </div>
         <div class="col-4">
-          <h3>{{ assignment.title }}</h3>
+          <h5>{{ assignment.title.slice(0,10) }}</h5>
         </div>
         <div class="col-4">
-          <h3>{{ assignment.passed }}</h3>
+          <h5>{{ assignment.passed }}</h5>
         </div>
       </div>
     </div>
@@ -31,11 +31,15 @@ export default {
       console.log("hi");
 
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
-    },
+    }
   },
   components: {},
-  props: ["assignment"],
+  props: ["assignment"]
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.assignment-component-mock {
+  max-height: 7vh;
+}
+</style>

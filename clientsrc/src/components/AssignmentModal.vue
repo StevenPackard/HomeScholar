@@ -30,14 +30,22 @@
                 v-model="assignmentForm.name"
                 class="form-control form-control-sm"
               >
-                <option v-for="student in students" :key="student.id">{{
-                  student.name
-                }}</option>
+                <option v-for="student in students" :key="student.id">
+                  {{ student.name }}
+                </option>
               </select>
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
+
                 <input
                   required
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="assignmentForm.title"
+                />
+
+                <input
                   type="text"
                   class="form-control"
                   id="title"
@@ -122,6 +130,16 @@
                   id="studentName"
                   v-model="addStudent.name"
                 />
+
+                <label for="studentName" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  v-model="addStudent.name"
+                />
               </div>
               <div class="form-group">
                 <label for="studentDescription" class="col-form-label"
@@ -179,7 +197,7 @@
     <!-- end student modal -->
     <!--  -->
     <div
-      class="modal fade "
+      class="modal fade"
       id="assignmentDetailsModal"
       tabindex="-1"
       role="dialog"
@@ -205,36 +223,36 @@
             <form>
               <div class="form-group">
                 <label for="studentName" class="col-form-label">
-                  <small>Title: </small></label
-                >
+                  <small>Title:</small>
+                </label>
                 <input
                   type="text"
                   class="form-control"
-                  id="studentName"
-                  placeholder=""
+                  id="assignmentTitle"
+                  placeholder
                   v-model="assignment.title"
                 />
               </div>
               <div class="form-group">
                 <label for="studentName" class="col-form-label">
-                  <small>Subject </small></label
-                >
+                  <small>Subject</small>
+                </label>
                 <input
                   type="text"
                   class="form-control"
-                  id="studentName"
-                  placeholder=""
+                  id="assignmentSubject"
+                  placeholder
                   v-model="assignment.subject"
                 />
               </div>
               <div class="form-group">
                 <label for="studentDescription" class="col-form-label">
-                  <small>Desctription: </small>
+                  <small>Desctription:</small>
                 </label>
                 <textarea
                   required
                   class="form-control"
-                  id="studentDescription"
+                  id="assignmentDescription"
                   v-model="assignment.description"
                 ></textarea>
               </div>
@@ -242,7 +260,7 @@
                 <label for="studentGrade" class="col-form-label">Score</label>
                 <input
                   class="form-control"
-                  id="studentGrade"
+                  id="assignmentScore"
                   type="number"
                   v-model="assignment.score"
                 />
@@ -264,12 +282,27 @@
             >
               Save
             </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary mx-3"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Save
+            </button>
           </div>
           <div class="form-group p-3">
             <label for="studentGrade" class="col-form-label">Note</label>
             <textarea
-              class="form-control "
-              id="studentGrade"
+              class="form-control"
+              id="assginmentNote"
               type="number"
               v-model="assignment.note"
             />
