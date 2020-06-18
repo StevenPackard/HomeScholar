@@ -32,11 +32,10 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal
-  }
+    AssignmentModal,
+  },
 };
 </script>
-
 
 <style lang="scss">
 @import "./assets/minty.scss";
@@ -69,5 +68,8 @@ export default {
 }
 .grow {
   flex-grow: 1;
+}
+.action {
+  cursor: pointer;
 }
 </style>

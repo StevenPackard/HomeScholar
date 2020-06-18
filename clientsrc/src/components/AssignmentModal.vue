@@ -170,6 +170,106 @@
         </div>
       </div>
     </div>
+    <!-- end student modal -->
+    <!--  -->
+    <div
+      class="modal fade "
+      id="assignmentDetailsModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addStudentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-center text-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addStudentModalLabel">
+              Assignment Details
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">
+                  <small>Title: </small></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  placeholder=""
+                  v-model="assignment.title"
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">
+                  <small>Subject </small></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  placeholder=""
+                  v-model="assignment.subject"
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentDescription" class="col-form-label">
+                  <small>Desctription: </small>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="studentDescription"
+                  v-model="assignment.description"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="studentGrade" class="col-form-label">Score</label>
+                <input
+                  class="form-control"
+                  id="studentGrade"
+                  type="number"
+                  v-model="assignment.score"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="d-flex justify-content-center p-4">
+            <button
+              type="button"
+              class="btn btn-secondary mx-3"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Save
+            </button>
+          </div>
+          <div class="form-group p-3">
+            <label for="studentGrade" class="col-form-label">Note</label>
+            <textarea
+              class="form-control "
+              id="studentGrade"
+              type="number"
+              v-model="assignment.note"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -185,6 +285,9 @@ export default {
     };
   },
   computed: {
+    assignment() {
+      return this.$store.state.AssignmentsStore.activeAssignmentDetails;
+    },
     students() {
       return this.$store.state.StudentStore.students;
     },
