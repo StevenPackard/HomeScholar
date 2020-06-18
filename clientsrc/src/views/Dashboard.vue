@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard container-fluid">
-    <div class="row ">
+    <div class="row">
       <!-- <timeline /> -->
       <div class="col-8 max-height">
         <Fullcalendar
@@ -9,23 +9,24 @@
           :plugins="calendarPlugins"
           :selectable="true"
           @select="handleSelect"
-          :events="events"
+          :events="assignments"
           :editable="true"
           :header="{
-            left: 'title',
-            center: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
+            center: 'title',
+            left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
             right: 'prev today next',
           }"
         />
       </div>
-      <div class="col-4 ">
+      <div class="col-4">
         <div class="row">
+          <button
+            data-toggle="modal"
+            data-target="#addAssignmentModal"
+            class="btn btn-success"
+          >add assignment</button>
           <!-- <assignment /> -->
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
+          <student v-for="student in students" :key="student.id" :student="student" />
         </div>
       </div>
     </div>
@@ -41,7 +42,7 @@
         </div>
 
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -64,7 +65,7 @@ import student from "../components/StudentMock";
 export default {
   name: "dashboard",
   mounted() {
-    this.$store.dispatch("getStudents");
+    this.$store.dispatch("getAllAssignments");
   },
   data() {
     return {
@@ -72,37 +73,40 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
-      ],
+        ListPlugin
+      ]
     };
   },
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
     },
+    assignments() {
+      return this.$store.state.AssignmentsStore.assignments;
+    },
 
     events() {
       return this.$store.state.events;
-    },
+    }
   },
   methods: {
     handleSelect(arg) {
-      console.log(arg);
-      this.$store.dispatch("addEvent", arg);
-    },
+      // $("#addAssignmentModal").modal("toggle");
+      // this.$store.dispatch("addEvent", arg);
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 
 <style scoped>
 .max-height {
-  height: 84vh;
+  height: 87vh;
 }
 
 .fc {

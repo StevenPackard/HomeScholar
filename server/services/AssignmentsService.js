@@ -8,7 +8,7 @@ class AssignmentService {
   async getAll(userEmail) {
     return await dbContext.Assignments.find({
       creatorEmail: userEmail,
-    }).populate("creatorEmail", "name picture");
+    }).populate("studentId");
   }
 
   async getById(id, userEmail) {
