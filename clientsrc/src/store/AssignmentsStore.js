@@ -9,6 +9,7 @@ export const AssignmentsStore = {
     assignments: [],
     activeAssignments: [],
     activeAssignmentDetails: {},
+    ActiveAssignmentsbyStudentId: [],
   },
   mutations: {
     setActiveAssignmentDetails(state, assignmentId) {
@@ -37,6 +38,13 @@ export const AssignmentsStore = {
 
       state.activeAssignments = assignments;
     },
+    setDashboardAssignments(state, assignments) {
+      Vue.set(
+        state.ActiveAssignmentsbyStudentId,
+        assignments.id,
+        assignments.data
+      );
+    },
   },
   actions: {
     async getAllAssignments({ commit, dispatch }) {
@@ -57,11 +65,21 @@ export const AssignmentsStore = {
         console.error(error);
       }
     },
+    async getAssignmentsForDashboard({ commit, dispatch }, id) {
+      try {
+        let res = await api.get("students/" + id + "/assignments");
+        let assignmentsObj = { id: id, data: res.data };
+
+        commit("setDashboardAssignments", assignmentsObj);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async addAssignment({ commit, dispatch }, assignment) {
       try {
         let res = await api.post("assignments", assignment);
-        dispatch("getAssignmentsByStudentId", assignment.studentId);
         commit("setActiveAssignments", res.data);
+        dispatch("getAssignmentsByStudentId", assignment.studentId);
       } catch (error) {
         console.error(error);
       }

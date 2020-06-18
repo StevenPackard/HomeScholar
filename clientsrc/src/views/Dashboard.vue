@@ -18,7 +18,7 @@
           }"
         />
       </div>
-      <div class="col-4">
+      <div class="col-4 max-height overflow-y">
         <div class="row">
           <button
             data-toggle="modal"
@@ -107,6 +107,9 @@ export default {
 <style scoped>
 .max-height {
   height: 87vh;
+}
+.overflow-y {
+  overflow-y: auto;
 }
 
 .fc {
