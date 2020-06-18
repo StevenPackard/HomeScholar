@@ -14,13 +14,16 @@
           </p>
         </div>
       </div>
+      <div class="col-4 text-center">
+        <img class="app-logo" src="@/assets/Logo.png" alt />
+      </div>
     </div>
-    <div class="row home-row-large bg-light justify-content-center">
+    <div class="row home-row-large justify-content-center">
       <div class="col-4 pt-5">
         <div class="row">
           <div class="col-12">
             <h3>
-              <i class="fas fa-book fa-lg"></i>
+              <i class="fas fa-school fa-lg"></i>
               Make learning fun for everyone!
             </h3>
           </div>
@@ -38,9 +41,9 @@
       </div>
     </div>
     <!-- Reviews Row -->
-    <div class="row home-row-large bg-primary justify-content-center align-items-center">
+    <div class="row home-row-large justify-content-center align-items-center">
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow" style="width: 20rem;">
+        <div class="card shadow bg-warning" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -56,7 +59,7 @@
         </div>
       </div>
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow" style="width: 20rem;">
+        <div class="card shadow bg-warning" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -73,7 +76,7 @@
         </div>
       </div>
       <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow" style="width: 20rem;">
+        <div class="card shadow bg-warning" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -136,5 +139,8 @@ export default {
 }
 .text-box {
   height: 10vh;
+}
+.app-logo {
+  height: 400px;
 }
 </style>
