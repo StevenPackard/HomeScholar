@@ -39,12 +39,10 @@
         </div>
       </div>
     </div>
-    <addAssignmentModal />
   </div>
 </template>
 
 <script>
-import AddAssignmentModal from "@/components/AssignmentModal";
 import AssignmentComponentMock from "@/components/AssignmentComponentMock";
 export default {
   name: "student-details",
@@ -72,7 +70,6 @@ export default {
     }
   },
   components: {
-    AddAssignmentModal,
     AssignmentComponentMock
   }
 };

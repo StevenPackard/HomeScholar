@@ -10,12 +10,14 @@
         <i class="fa fa-book fa-sm" aria-hidden="true"></i> Steven
       </h5>
     </footer>
+    <assignmentModal />
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar";
 import { onAuth } from "@bcwdev/auth0-vue";
+import AssignmentModal from "@/components/AssignmentModal";
 export default {
   name: "App",
   async beforeCreate() {
@@ -29,7 +31,8 @@ export default {
     }
   },
   components: {
-    Navbar
+    Navbar,
+    AssignmentModal
   }
 };
 </script>

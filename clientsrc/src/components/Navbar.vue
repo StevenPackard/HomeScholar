@@ -50,69 +50,11 @@
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>
-    <div
-      class="modal fade"
-      id="addStudentModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="addStudentModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-center" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="studentName" v-model="addStudent.name" />
-              </div>
-              <div class="form-group">
-                <label for="studentDescription" class="col-form-label">Description</label>
-                <textarea
-                  class="form-control"
-                  id="studentDescription"
-                  v-model="addStudent.description"
-                ></textarea>
-              </div>
-              <div class="form-group">
-                <label for="studentGrade" class="col-form-label">Grade</label>
-                <input
-                  class="form-control"
-                  id="studentGrade"
-                  type="number"
-                  v-model="addStudent.gradeLevel"
-                />
-              </div>
-              <div class="form-group">
-                <label for="studentSubjects" class="col-form-label">Subjects (Optional)</label>
-                <input
-                  class="form-control"
-                  id="studentSubjects"
-                  type="text"
-                  v-model="addStudent.subjects"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </nav>
 </template>
 
 <script>
 import axios from "axios";
-
 let _api = axios.create({
   baseURL: "https://localhost:3000",
   withCredentials: true
@@ -123,9 +65,7 @@ export default {
     this.$store.dispatch("getStudents");
   },
   data() {
-    return {
-      addStudent: {}
-    };
+    return {};
   },
   computed: {
     students() {
@@ -142,11 +82,6 @@ export default {
     },
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
-    },
-    submitNewStudent() {
-      this.$store.dispatch("addStudent", { ...this.addStudent });
-      this.addStudent = {};
-      $("#addStudentModal").modal("hide");
     }
   }
 };
