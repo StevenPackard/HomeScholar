@@ -8,48 +8,7 @@
     <div class="row justify-content-center assignment-box">
       <div class="col-11 bg-dark mt-3 shadow">
         <div class="row text-center bg-light my-3">
-          <div class="col-4">
-            <h4>Subject</h4>
-          </div>
-          <div class="col-4">
-            <h4>Assignment</h4>
-          </div>
-          <div class="col-4">
-            <h4 class="text-danger">Incomplete</h4>
-          </div>
-        </div>
-        <div class="row text-center bg-light my-3">
-          <div class="col-4">
-            <h4>Subject</h4>
-          </div>
-          <div class="col-4">
-            <h4>Assignment</h4>
-          </div>
-          <div class="col-4">
-            <h4 class="text-success">Complete</h4>
-          </div>
-        </div>
-        <div class="row text-center bg-light my-3">
-          <div class="col-4">
-            <h4>Subject</h4>
-          </div>
-          <div class="col-4">
-            <h4>Assignment</h4>
-          </div>
-          <div class="col-4">
-            <h4 class="text-danger">Incomplete</h4>
-          </div>
-        </div>
-        <div class="row text-center bg-light my-3">
-          <div class="col-4">
-            <h4>Subject</h4>
-          </div>
-          <div class="col-4">
-            <h4>Assignment</h4>
-          </div>
-          <div class="col-4">
-            <h4 class="text-danger">Incomplete</h4>
-          </div>
+          <AssignmentComponentMock />
         </div>
       </div>
     </div>
@@ -57,18 +16,27 @@
 </template>
 
 <script>
+import AssignmentComponentMock from "../components/AssignmentComponentMock";
 import AddAssignmentModal from "../components/AssignmentModal";
 export default {
   name: "student-mock",
   data() {
     return {};
   },
-  computed: {},
+  mounted() {
+    this.$store.dispatch("getAssignmentsByStudentId", this.student.id);
+  },
+  computed: {
+    assignments() {
+      return this.$store.state.AssignmentsStore;
+    }
+  },
   methods: {},
   components: {
     AddAssignmentModal,
+    AssignmentComponentMock
   },
-  props: ["student"],
+  props: ["student"]
 };
 </script>
 

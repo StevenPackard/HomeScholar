@@ -16,6 +16,11 @@ const Assignment = new Schema(
       enum: ["Passed", "Failed", "Ungraded"],
       default: "Ungraded",
     },
+    date: { type: Date },
+    start: { type: Date },
+    end: { type: Date },
+    allDay: { type: Boolean, default: false },
+    note: { type: String },
     creatorEmail: { type: String, required: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
