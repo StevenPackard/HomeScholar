@@ -11,6 +11,9 @@
           @select="handleSelect"
           :events="assignments"
           :editable="true"
+          @drop="handleDrop"
+          @eventDrop="handleDrop"
+          :droppable="true"
           :header="{
             center: 'title',
             left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
@@ -18,7 +21,7 @@
           }"
         />
       </div>
-      <div class="col-4 max-height overflow-y">
+      <div id="draggableContainer" class="col-4 max-height overflow-y">
         <div class="row">
           <button
             data-toggle="modal"
@@ -57,7 +60,7 @@ require("@fullcalendar/timegrid/main.min.css");
 import Fullcalendar from "@fullcalendar/vue";
 import DayGridPlugin from "@fullcalendar/daygrid";
 import TimeGridPlugin from "@fullcalendar/timegrid";
-import InteractionPlugin from "@fullcalendar/interaction";
+import InteractionPlugin, { Draggable } from "@fullcalendar/interaction";
 import ListPlugin from "@fullcalendar/list";
 
 import student from "../components/StudentMock";
@@ -66,7 +69,13 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
+    console.log(document.getElementsByClassName("drag-item"));
+    console.log(document.getElementById("draggableContainer"));
   },
+  // updated() {
+  //   let draggableElement = document.getElementById("draggableContainer");
+  //   new Draggable(draggableElement, { itemSelector: ".drag-item" });
+  // },
   data() {
     return {
       calendarPlugins: [
@@ -93,6 +102,9 @@ export default {
     handleSelect(arg) {
       // $("#addAssignmentModal").modal("toggle");
       // this.$store.dispatch("addEvent", arg);
+    },
+    handleDrop(arg) {
+      console.log(arg);
     }
   },
   components: {
