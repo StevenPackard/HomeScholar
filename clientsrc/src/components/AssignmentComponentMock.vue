@@ -2,26 +2,24 @@
   <div
     draggable="true"
     @click="setActiveAssignmentDetails"
-    class="assignment-component-mock col-11 text-center bg-light my-3 action p-2 drag-item"
+    class="assignment-component-mock col-12 text-center bg-dark my-2 action p-2 drag-item"
     data-event="{ 'title': 'my event', 'duration': '02:00' }"
   >
     <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
       <div class="row">
         <div class="col-4">
-          <h5>{{ assignment.subject }}</h5>
+          <h5 class="text-white">{{ assignment.subject }}</h5>
         </div>
         <div class="col-4">
-          <h5>{{ assignment.title.slice(0,10) }}</h5>
+          <h5 class="text-white">{{ assignment.title.slice(0, 10) }}</h5>
         </div>
         <div class="col-4">
-          <h5>{{ assignment.passed }}</h5>
+          <h5 class="text-white">{{ assignment.passed }}</h5>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
 
 <script>
 import interactionPlugin, { Draggabble } from "@fullcalendar/interaction";
@@ -44,18 +42,18 @@ export default {
       console.log("hi");
 
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
-    }
+    },
     // createDraggable() {
 
     // }
   },
   components: {},
-  props: ["assignment"]
+  props: ["assignment"],
 };
 </script>
 
 <style scoped>
 .assignment-component-mock {
-  max-height: 7vh;
+  height: 5vh;
 }
 </style>

@@ -5,7 +5,7 @@
         <h3>{{ student.name }}</h3>
       </div>
     </div>
-    <div class="row justify-content-center assignment-box bg-dark">
+    <div class="row assignment-box bg-info">
       <AssignmentComponentMock
         v-for="assignment in assignments"
         :key="assignment.id"
@@ -31,14 +31,14 @@ export default {
       return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
         this.student.id
       ];
-    }
+    },
   },
   methods: {},
   components: {
     AddAssignmentModal,
-    AssignmentComponentMock
+    AssignmentComponentMock,
   },
-  props: ["student"]
+  props: ["student"],
 };
 </script>
 
@@ -49,5 +49,6 @@ export default {
 .assignment-box {
   height: 24vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

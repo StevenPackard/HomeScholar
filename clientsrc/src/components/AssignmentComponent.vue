@@ -2,7 +2,7 @@
   <div class="assignment-component col">
     <div class="bg-light shadow mt-5">
       <h3>assignments</h3>
-      {{assignments}}
+      {{ assignments }}
       <div>
         <h2>studentname</h2>
       </div>
@@ -11,7 +11,7 @@
       <div class="col-4" v-for="student in students" :key="student.id">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title text-center">{{student.name}}</h4>
+            <h4 class="card-title text-center">{{ student.name }}</h4>
             <div class="row justify-content-between text-center">
               <div class="col-4 p-0">Subject Name</div>
               <div class="col-4 p-0">Assignment</div>
@@ -25,7 +25,6 @@
     <assignmentModal />
   </div>
 </template>
-
 
 <script>
 import assignmentBreakdown from "../components/AssignmentBreakdown";
@@ -41,16 +40,14 @@ export default {
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {},
   components: {
     assignmentModal,
-    assignmentBreakdown
-  }
+    assignmentBreakdown,
+  },
 };
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>

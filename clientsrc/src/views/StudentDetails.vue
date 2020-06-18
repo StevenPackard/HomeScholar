@@ -17,7 +17,7 @@
               <div class="col-5 text-center">
                 <h1>Assignments</h1>
               </div>
-              <div class="col-11 assignment-box bg-dark">
+              <div class="col-11 assignment-box bg-info">
                 <div class="row justify-content-center">
                   <assignmentComponentMock
                     v-for="assignment in assignments"
@@ -95,5 +95,6 @@ export default {
 .assignment-box {
   height: 43vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>
