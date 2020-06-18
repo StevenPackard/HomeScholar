@@ -19,78 +19,62 @@
               </div>
               <div class="col-11 assignment-box bg-dark">
                 <div class="row justify-content-center">
-                  <div class="col-11 text-center bg-light mt-3">
-                    <div class="row">
-                      <div class="col-4">
-                        <h3>Subject</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Assignment Name</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Grade</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-11 text-center bg-light mt-3">
-                    <div class="row">
-                      <div class="col-4">
-                        <h3>Subject</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Assignment Name</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Grade</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-11 text-center bg-light mt-3">
-                    <div class="row">
-                      <div class="col-4">
-                        <h3>Subject</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Assignment Name</h3>
-                      </div>
-                      <div class="col-4">
-                        <h3>Grade</h3>
-                      </div>
-                    </div>
-                  </div>
+                  <!-- <assignmentComponentMock
+                    v-for="assignment in assignments"
+                    :key="assignment.id"
+                    :assignment="assignment"
+                  />-->
                 </div>
               </div>
               <div class="col-4 text-center">
-                <button class="btn-lg btn-success text-dark mt-3 shadow">Add Assignment</button>
+                <button
+                  data-toggle="modal"
+                  data-target="#addAssignmentModal"
+                  class="btn-lg btn-success text-dark mt-3 shadow"
+                >Add Assignment</button>
+                <button @click="deleteStudent" class="btn-lg mx-2 btn-danger shadow">Delete Student</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <addAssignmentModal />
   </div>
 </template>
 
 <script>
+import AddAssignmentModal from "@/components/AssignmentModal";
+import AssignmentComponentMock from "@/components/AssignmentComponentMock";
 export default {
   name: "student-details",
   mounted() {
     this.$store.dispatch("getStudentById", this.$route.params.id);
-    // this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+    this.$store.dispatch("getAssignments", this.$route.params.id);
   },
-  beforeUpdate() {
-    this.$store.dispatch("getStudentById", this.$route.params.id);
-  },
+  // beforeUpdate() {
+  //   this.$store.dispatch("getStudentById", this.$route.params.id);
+  // },
   data() {
     return {};
   },
   computed: {
     student() {
       return this.$store.state.StudentStore.activeStudent;
+    },
+    assignments() {
+      return this.$store.state.AssignmentsStore.assignments;
     }
   },
-  methods: {},
-  components: {}
+  methods: {
+    deleteStudent() {
+      this.$store.dispatch("deleteStudent", this.$route.params.id);
+    }
+  },
+  components: {
+    AddAssignmentModal,
+    AssignmentComponentMock
+  }
 };
 </script>
 
