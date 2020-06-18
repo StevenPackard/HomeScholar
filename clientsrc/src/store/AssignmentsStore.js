@@ -39,6 +39,14 @@ export const AssignmentsStore = {
     },
   },
   actions: {
+    async updateAssignment({ commit, dispatch }, data) {
+      try {
+        let res = await api.put(`assignments/` + data.id, data);
+        dispatch("getAssignmentsByStudentId", data.studentId.id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getAllAssignments({ commit, dispatch }) {
       try {
         let res = await api.get("assignments");

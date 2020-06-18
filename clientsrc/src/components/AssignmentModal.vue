@@ -37,6 +37,7 @@
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="title"
@@ -48,6 +49,7 @@
                   >Description</label
                 >
                 <textarea
+                  required
                   class="form-control"
                   id="Description"
                   v-model="assignmentForm.description"
@@ -56,6 +58,7 @@
               <div class="form-group">
                 <label for="subject" class="col-form-label">Subject</label>
                 <input
+                  required
                   class="form-control"
                   id="subject"
                   type="text"
@@ -113,6 +116,7 @@
                   >Student Name</label
                 >
                 <input
+                  required
                   type="text"
                   class="form-control"
                   id="studentName"
@@ -124,6 +128,7 @@
                   >Description</label
                 >
                 <textarea
+                  required
                   class="form-control"
                   id="studentDescription"
                   v-model="addStudent.description"
@@ -132,6 +137,7 @@
               <div class="form-group">
                 <label for="studentGrade" class="col-form-label">Grade</label>
                 <input
+                  required
                   class="form-control"
                   id="studentGrade"
                   type="number"
@@ -226,6 +232,7 @@
                   <small>Desctription: </small>
                 </label>
                 <textarea
+                  required
                   class="form-control"
                   id="studentDescription"
                   v-model="assignment.description"
@@ -253,7 +260,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              @click="submitNewStudent"
+              @click="saveAssignment"
             >
               Save
             </button>
@@ -293,6 +300,10 @@ export default {
     },
   },
   methods: {
+    saveAssignment() {
+      this.$store.dispatch("updateAssignment", this.assignment);
+      $("#assignmentDetailsModal").modal("hide");
+    },
     submitNewStudent() {
       this.$store.dispatch("addStudent", { ...this.addStudent });
       this.addStudent = {};
