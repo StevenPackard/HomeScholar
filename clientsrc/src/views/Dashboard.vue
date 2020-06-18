@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard container-fluid">
-    <div class="row">
+    <div class="row ">
       <!-- <timeline /> -->
       <div class="col-8 max-height">
         <Fullcalendar
+          height="parent"
           defaultView="timeGridDay"
           :plugins="calendarPlugins"
-          :contentHeight="500"
           :selectable="true"
           @select="handleSelect"
           :events="events"
@@ -90,7 +90,6 @@ export default {
       console.log(arg);
       this.$store.dispatch("addEvent", arg);
     },
-
   },
   components: {
     timeline,
@@ -103,7 +102,7 @@ export default {
 
 <style scoped>
 .max-height {
-  max-height: 50vh;
+  height: 84vh;
 }
 
 .fc {
