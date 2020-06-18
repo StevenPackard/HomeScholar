@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     <navbar />
-    <router-view />
+    <router-view class="grow" />
+    <footer class="text-center bg-primary">
+      <h5>
+        Made with Love by Justin
+        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Troy
+        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Chris
+        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Steven
+      </h5>
+    </footer>
   </div>
 </template>
 
@@ -38,6 +46,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: auto;
 }
 
 #nav {
@@ -51,5 +63,8 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.grow {
+  flex-grow: 1;
 }
 </style>
