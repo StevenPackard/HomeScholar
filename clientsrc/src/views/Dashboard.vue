@@ -2,7 +2,7 @@
   <div class="dashboard container-fluid">
     <div class="row push-down">
       <!-- <timeline /> -->
-      <div class="col-8 max-height">
+      <div class="col-md-8 col-12 max-height">
         <Fullcalendar
           ref="Fullcalendar"
           height="parent"
@@ -25,21 +25,15 @@
           }"
         />
       </div>
-      <div id="draggableContainer" class="col-4 max-height overflow-y">
-        <div class="row mr-1">
+      <div id="draggableContainer" class="col-md-4 col-12 max-height overflow-y">
+        <div class="row mr-1 justify-content-center">
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
-            class="btn btn-success"
-          >
-            add assignment
-          </button>
+            class="btn btn-success sticky-top"
+          >add assignment</button>
           <!-- <assignment /> -->
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
+          <student v-for="student in students" :key="student.id" :student="student" />
         </div>
       </div>
     </div>
@@ -92,8 +86,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
-      ],
+        ListPlugin
+      ]
     };
   },
   computed: {
@@ -109,7 +103,7 @@ export default {
 
     events() {
       return this.$store.state.events;
-    },
+    }
   },
   methods: {
     handleSelect(arg) {
@@ -122,7 +116,7 @@ export default {
           allDay:
             "<p id='allday-element'> All Day: " +
             (arg.allDay ? "Yes" : "No") +
-            " </p>",
+            " </p>"
         };
         $("#addAssignmentForm").append(
           newElements.start,
@@ -143,7 +137,7 @@ export default {
         start: arg.date,
         end: endDate,
         allDay: arg.allDay,
-        assignmentId: arg.draggedEl.id,
+        assignmentId: arg.draggedEl.id
       };
 
       this.$store.dispatch("updateAssignment", newElements);
@@ -152,7 +146,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id,
+        assignmentId: arg.event.id
       };
       this.$store.dispatch("updateAssignment", newElements);
     },
@@ -163,14 +157,14 @@ export default {
     goToDate(arg) {
       this.$refs.Fullcalendar.getApi().changeView("timeGridDay", arg.date);
       console.log("from gotodate");
-    },
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 
