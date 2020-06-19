@@ -2,11 +2,13 @@
   <div class="student-mock-component col-12 my-3 bg-warning shadow">
     <div class="row text-center justify-content-center">
       <div class="col-12">
-        <h4>
-          {{ student.name }}
-          <i class="fas fa-school mx-4"></i>
-          Grade Level - {{student.gradeLevel}}
-        </h4>
+        <router-link :to="{ path: `/student/${student.id}` }">
+          <h4>
+            {{ student.name }}
+            <i class="fas fa-school mx-4"></i>
+            Grade Level - {{student.gradeLevel}}
+          </h4>
+        </router-link>
       </div>
       <div class="col-7 border-bottom border-dark">
         <h5>Assignments</h5>

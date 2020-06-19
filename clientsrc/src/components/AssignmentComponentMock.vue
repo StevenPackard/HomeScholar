@@ -15,7 +15,7 @@
           <h5 class>{{ assignment.title.slice(0, 10) }}</h5>
         </div>
         <div class="col-4">
-          <h5 class>{{ assignment.passed }}</h5>
+          <h5 class>{{ assignment.score || assignment.passed }}</h5>
         </div>
       </div>
     </div>
