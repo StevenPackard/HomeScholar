@@ -164,13 +164,6 @@ export default {
   overflow-y: auto;
 }
 
-.fc {
-  /* background-color: red; */
-}
-
-.fc-day {
-  /* background-color: hotpink; */
-}
 .push-down {
   margin-top: 5rem;
 }
