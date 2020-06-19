@@ -24,8 +24,7 @@ export default {
     try {
       await onAuth();
       this.$store.dispatch("setBearer", this.$auth.bearer);
-      await this.$store.dispatch("getProfile");
-      this.$store.dispatch("getStudents");
+      this.$store.dispatch("getProfile");
     } catch (err) {
       this.$router.push({ name: "home" });
     }
