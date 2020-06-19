@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid push-down">
+  <div class="home container-fluid push-down-less">
     <div class="row bg-info pt-4">
       <div class="col-8">
         <div class="jumbotron shadow">
@@ -15,9 +15,7 @@
             life
           </p>
           <p class="lead">
-            <a class="btn btn-info btn-lg shadow" href="#" role="button"
-              >Take a tour</a
-            >
+            <a class="btn btn-info btn-lg shadow" href="#" role="button">Take a tour</a>
           </p>
         </div>
       </div>
@@ -82,9 +80,7 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              Its the best thing ever!
-            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">Its the best thing ever!</h6>
             <p class="card-text">
               "HomeScholar really is the best thing for me as a parent. I really
               feel empowered in my childrens education now I can spend more time
@@ -116,15 +112,12 @@
       </div>
     </div>
     <div class="row home-row-small bg-info justify-content-center">
-      <div class="col-6 text-center text-box mt-4">
-        <h2 class="text-dark">Take control of your childrens education.</h2>
-        <h2 class="text-dark">
-          Ditch the hassle and start using HomeScholar today!
-        </h2>
+      <div class="col-6 text-center text-box mt-3">
+        <h3 class="text-dark">Take control of your childrens education.</h3>
+        <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
       </div>
-
       <div class="col-7 text-center">
-        <button class="btn-lg btn-success">Sign up</button>
+        <button class="btn-lg btn-success shadow">Sign up</button>
       </div>
     </div>
   </div>
@@ -138,7 +131,7 @@ export default {
   },
   computed: {},
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 
