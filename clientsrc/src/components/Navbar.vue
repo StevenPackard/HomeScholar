@@ -34,10 +34,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
-              <router-link
-                :to="{ path: `/student/${student.id}` }"
-                class="nav-link"
-              >{{ student.name }}</router-link>
+              <a @click="routeToStudent(student.id)" class="nav-link">{{ student.name }}</a>
             </span>
             <a
               class="dropdown-item pl-2"
@@ -86,6 +83,10 @@ export default {
     },
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
+    },
+    routeToStudent(id) {
+      this.$router.push("/student/" + id);
+      this.$store.dispatch("getStudentById", id);
     }
   }
 };
