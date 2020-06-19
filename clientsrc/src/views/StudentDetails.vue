@@ -64,7 +64,6 @@ export default {
     this.$store.dispatch("getStudentById", this.$route.params.id);
     this.$store.dispatch("getAllAssignments");
   },
-
   data() {
     return {};
   },
