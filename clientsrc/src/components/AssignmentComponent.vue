@@ -1,10 +1,11 @@
 <template>
+  <!-- FIXME  I DONT THINK IM BEING USED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   <div class="assignment-component col">
     <div class="bg-light shadow mt-5">
       <h3>assignments</h3>
       {{ assignments }}
       <div>
-        <h2>studentname</h2>
+        <h2>name</h2>
       </div>
     </div>
     <div class="row">
@@ -40,13 +41,13 @@ export default {
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    },
+    }
   },
   methods: {},
   components: {
     assignmentModal,
-    assignmentBreakdown,
-  },
+    assignmentBreakdown
+  }
 };
 </script>
 

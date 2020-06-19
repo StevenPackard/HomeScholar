@@ -37,10 +37,13 @@ export default {
   },
   computed: {
     assignments() {
-      return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
-        this.student.id
-      ];
+      return this.$store.state.AssignmentsStore.activeAssignments;
     }
+
+    //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
+    //     this.student.id
+    //   ];
+    // }
   },
   methods: {},
   components: {

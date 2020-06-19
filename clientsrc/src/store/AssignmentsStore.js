@@ -1,6 +1,4 @@
-import Axios from "axios";
 import Vue from "vue";
-import Vuex from "vuex";
 import router from "../router/index";
 import { api } from "./AxiosStore";
 
@@ -35,6 +33,25 @@ export const AssignmentsStore = {
     },
   },
   actions: {
+    async deleteAssignment({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("assignments/" + id);
+        console.log(res.data);
+        dispatch("getAllAssignments");
+      } catch (error) {}
+    },
+    async editAssignment({ commit, dispatch }, assignmentData) {
+      try {
+        let res = await api.put(
+          "assignments/" + assignmentData.id,
+          assignmentData
+        );
+
+        dispatch("getAllAssignments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getAllAssignments({ commit, dispatch }) {
       try {
         let res = await api.get("assignments");
