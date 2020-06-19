@@ -3,13 +3,21 @@
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 justify-content-center">
-          <div class="col-8 bg-warning shadow border-dark border">
-            <h4>
+          <div class="col-8 bg-warning shadow border-dark border justify-content-center">
+            <h4 class="d-inline">
               {{ student.name }}
               <i class="fas fa-school mx-4"></i>
               Grade Level - {{ student.gradeLevel }}
             </h4>
+            <i
+              type="button"
+              data-toggle="modal"
+              data-target="#editStudentModal"
+              class="fa fa-pencil pencil"
+              aria-hidden="true"
+            ></i>
           </div>
+
           <div class="col-8 text-left description-box bg-warning mt-1 shadow border-dark border">
             <h5>{{student.description}}</h5>
           </div>
@@ -112,5 +120,10 @@ export default {
 .overflow-y {
   overflow-y: auto;
   height: 54vh;
+}
+.pencil {
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
 </style>
