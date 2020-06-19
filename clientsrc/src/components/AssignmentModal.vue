@@ -237,7 +237,7 @@ export default {
   },
   methods: {
     deleteAssignment() {
-      this.$store.dispatch("deleteAssignment", this.assignment.id);
+      this.$store.dispatch("deleteAssignment", this.assignment);
     },
     editAssignment() {
       this.$store.dispatch("editAssignment", this.assignment);

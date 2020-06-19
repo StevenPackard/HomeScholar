@@ -31,11 +31,12 @@ export const AssignmentsStore = {
     },
   },
   actions: {
-    async deleteAssignment({ commit, dispatch }, id) {
+    async deleteAssignment({ commit, dispatch }, data) {
       try {
-        let res = await api.delete("assignments/" + id);
+        let res = await api.delete("assignments/" + data.id);
         console.log(res.data);
         dispatch("getAllAssignments");
+        dispatch("getAssignmentsByStudentId", data.studentId.id);
       } catch (error) {}
     },
     async editAssignment({ commit, dispatch }, assignmentData) {
