@@ -4,6 +4,7 @@
       <!-- <timeline /> -->
       <div class="col-8 max-height">
         <Fullcalendar
+          ref="Fullcalendar"
           height="parent"
           defaultView="timeGridDay"
           :plugins="calendarPlugins"
@@ -30,9 +31,15 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-success"
-          >add assignment</button>
+          >
+            add assignment
+          </button>
           <!-- <assignment /> -->
-          <student v-for="student in students" :key="student.id" :student="student" />
+          <student
+            v-for="student in students"
+            :key="student.id"
+            :student="student"
+          />
         </div>
       </div>
     </div>
@@ -85,8 +92,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin
-      ]
+        ListPlugin,
+      ],
     };
   },
   computed: {
@@ -102,27 +109,31 @@ export default {
 
     events() {
       return this.$store.state.events;
-    }
+    },
   },
   methods: {
     handleSelect(arg) {
-      let newElements = {
-        start: "<p id='start-element'> Start: " + arg.start + " </p>",
-        end: "<p id='end-element'> End: " + arg.end + " </p>",
-        allDay:
-          "<p id='allday-element'> All Day: " +
-          (arg.allDay ? "Yes" : "No") +
-          " </p>"
-      };
-      $("#addAssignmentForm").append(
-        newElements.start,
-        newElements.end,
-        newElements.allDay
-      );
-      $("#addAssignmentModal").attr("data-start", arg.start);
-      $("#addAssignmentModal").attr("data-end", arg.end);
-      $("#addAssignmentModal").attr("data-allDay", arg.allday);
-      $("#addAssignmentModal").modal("toggle");
+      console.log(arg);
+      console.log("this is the type", arg.view.type);
+      if (arg.view.type != "dayGridMonth") {
+        let newElements = {
+          start: "<p id='start-element'> Start: " + arg.start + " </p>",
+          end: "<p id='end-element'> End: " + arg.end + " </p>",
+          allDay:
+            "<p id='allday-element'> All Day: " +
+            (arg.allDay ? "Yes" : "No") +
+            " </p>",
+        };
+        $("#addAssignmentForm").append(
+          newElements.start,
+          newElements.end,
+          newElements.allDay
+        );
+        $("#addAssignmentModal").attr("data-start", arg.start);
+        $("#addAssignmentModal").attr("data-end", arg.end);
+        $("#addAssignmentModal").attr("data-allDay", arg.allday);
+        $("#addAssignmentModal").modal("toggle");
+      }
     },
     handleDrop(arg) {
       let endDate = new Date(arg.date);
@@ -132,7 +143,7 @@ export default {
         start: arg.date,
         end: endDate,
         allDay: arg.allDay,
-        assignmentId: arg.draggedEl.id
+        assignmentId: arg.draggedEl.id,
       };
 
       this.$store.dispatch("updateAssignment", newElements);
@@ -141,7 +152,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id
+        assignmentId: arg.event.id,
       };
       this.$store.dispatch("updateAssignment", newElements);
     },
@@ -150,15 +161,16 @@ export default {
       $("#assignmentDetailsModal").modal("toggle");
     },
     goToDate(arg) {
-      console.log(arg);
-    }
+      this.$refs.Fullcalendar.getApi().changeView("timeGridDay", arg.date);
+      console.log("from gotodate");
+    },
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student
-  }
+    student,
+  },
 };
 </script>
 
