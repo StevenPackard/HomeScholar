@@ -1,25 +1,25 @@
 <template>
-  <div
+  <li
     @click="setActiveAssignmentDetails"
     :id="assignment.id"
     draggable="true"
-    class="assignment-component-mock col-12 text-center bg-dark my-2 action p-2 drag-item"
+    class="assignment-component-mock p-0 col-12 text-center border border-dark my-1 action p-2 drag-item"
     :data-event="assignmentString"
   >
     <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
       <div class="row">
         <div class="col-4">
-          <h5 class="text-white">{{ assignment.subject }}</h5>
+          <h5 class>{{ assignment.subject }}</h5>
         </div>
         <div class="col-4">
-          <h5 class="text-white">{{ assignment.title.slice(0, 10) }}</h5>
+          <h5 class>{{ assignment.title.slice(0, 10) }}</h5>
         </div>
         <div class="col-4">
-          <h5 class="text-white">{{ assignment.passed }}</h5>
+          <h5 class>{{ assignment.passed }}</h5>
         </div>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -32,8 +32,8 @@ export default {
     return {
       assignmentString: JSON.stringify({
         title: this.assignment.title,
-        duration: "02:00",
-      }),
+        duration: "02:00"
+      })
     };
   },
   computed: {},
@@ -53,13 +53,13 @@ export default {
 
     dragging() {
       console.log("dragging");
-    },
+    }
     // createDraggable() {
 
     // }
   },
   components: {},
-  props: ["assignment"],
+  props: ["assignment"]
 };
 </script>
 

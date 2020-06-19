@@ -27,15 +27,9 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-success"
-          >
-            add assignment
-          </button>
+          >add assignment</button>
           <!-- <assignment /> -->
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
+          <student v-for="student in students" :key="student.id" :student="student" />
         </div>
       </div>
     </div>
@@ -88,8 +82,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
-      ],
+        ListPlugin
+      ]
     };
   },
   computed: {
@@ -102,7 +96,7 @@ export default {
 
     events() {
       return this.$store.state.events;
-    },
+    }
   },
   methods: {
     handleSelect(arg) {
@@ -113,7 +107,7 @@ export default {
         allDay:
           "<p id='allday-element'> All Day: " +
           (arg.allDay ? "Yes" : "No") +
-          " </p>",
+          " </p>"
       };
       $("#addAssignmentForm").append(
         newElements.start,
@@ -127,14 +121,14 @@ export default {
     },
     handleDrop(arg) {
       console.log(arg);
-    },
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 

@@ -32,8 +32,8 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal,
-  },
+    AssignmentModal
+  }
 };
 </script>
 
@@ -73,6 +73,9 @@ export default {
   cursor: pointer;
 }
 .push-down {
+  margin-top: 5rem;
+}
+.push-down-less {
   margin-top: 4rem;
 }
 </style>
