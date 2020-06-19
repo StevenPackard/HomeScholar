@@ -36,8 +36,8 @@ export default {
   }
 };
 </script>
-
 <style lang="scss">
+@import "./assets/anims.css";
 @import "./assets/minty.scss";
 @import "bootstrap";
 // @import "./assets/_overrides.scss";
@@ -72,6 +72,9 @@ export default {
 .action {
   cursor: pointer;
 }
+
+</style>
+
 .push-down {
   margin-top: 5rem;
 }
@@ -79,3 +82,4 @@ export default {
   margin-top: 4rem;
 }
 </style>
+
