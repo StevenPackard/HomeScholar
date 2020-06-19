@@ -32,12 +32,12 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal,
-  },
+    AssignmentModal
+  }
 };
 </script>
-
 <style lang="scss">
+@import "./assets/anims.css";
 @import "./assets/minty.scss";
 @import "bootstrap";
 // @import "./assets/_overrides.scss";
