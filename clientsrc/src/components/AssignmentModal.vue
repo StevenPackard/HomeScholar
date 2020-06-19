@@ -9,12 +9,12 @@
       aria-labelledby="addAssignmentModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-center" role="document">
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span @click="removeDatePars" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
@@ -48,12 +48,6 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-              @click="removeDatePars"
-            >Close</button>
-            <button
-              type="button"
               @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
@@ -71,7 +65,7 @@
       aria-labelledby="addStudentModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-center" role="document">
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
@@ -114,7 +108,6 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
           </div>
         </div>
@@ -130,7 +123,7 @@
       aria-labelledby="addStudentModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-center text-center" role="document">
+      <div class="modal-dialog modal-xl modal-dialog-center text-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addStudentModalLabel">Assignment Details</h5>
@@ -198,7 +191,6 @@
               data-dismiss="modal"
               @click="deleteAssignment"
             >Delete</button>
-            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
           </div>
           <div class="form-group p-3">
             <label for="studentGrade" class="col-form-label">Note</label>
