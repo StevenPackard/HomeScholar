@@ -15,6 +15,7 @@
           @eventDrop="handleUpdate"
           @eventResize="handleUpdate"
           @event-click="setActiveAssignmentDetails"
+          @dateClick="goToDate"
           :droppable="true"
           :header="{
             center: 'title',
@@ -29,9 +30,15 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-success"
-          >add assignment</button>
+          >
+            add assignment
+          </button>
           <!-- <assignment /> -->
-          <student v-for="student in students" :key="student.id" :student="student" />
+          <student
+            v-for="student in students"
+            :key="student.id"
+            :student="student"
+          />
         </div>
       </div>
     </div>
@@ -84,8 +91,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin
-      ]
+        ListPlugin,
+      ],
     };
   },
   computed: {
@@ -101,7 +108,7 @@ export default {
 
     events() {
       return this.$store.state.events;
-    }
+    },
   },
   methods: {
     handleSelect(arg) {
@@ -111,7 +118,7 @@ export default {
         allDay:
           "<p id='allday-element'> All Day: " +
           (arg.allDay ? "Yes" : "No") +
-          " </p>"
+          " </p>",
       };
       $("#addAssignmentForm").append(
         newElements.start,
@@ -131,7 +138,7 @@ export default {
         start: arg.date,
         end: endDate,
         allDay: arg.allDay,
-        assignmentId: arg.draggedEl.id
+        assignmentId: arg.draggedEl.id,
       };
 
       this.$store.dispatch("updateAssignment", newElements);
@@ -140,21 +147,24 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id
+        assignmentId: arg.event.id,
       };
       this.$store.dispatch("updateAssignment", newElements);
     },
     setActiveAssignmentDetails() {
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
       console.log();
-    }
+    },
+    goToDate(arg) {
+      console.log(arg);
+    },
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student
-  }
+    student,
+  },
 };
 </script>
 
