@@ -158,4 +158,7 @@ export default {
 .app-logo {
   height: 400px;
 }
+.push-down-less {
+  margin-top: 4rem;
+}
 </style>

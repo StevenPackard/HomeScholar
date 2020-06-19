@@ -149,6 +149,9 @@ export default {
 .fc-day {
   /* background-color: hotpink; */
 }
+.push-down {
+  margin-top: 5rem;
+}
 
 /* .timeline-box {
   height: 50vh;
