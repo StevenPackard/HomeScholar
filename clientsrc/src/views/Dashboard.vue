@@ -70,7 +70,6 @@ export default {
   mounted() {
     this.$store.dispatch("getAllAssignments");
     console.log(document.getElementsByClassName("drag-item"));
-    console.log(document.getElementById("draggableContainer"));
   },
   // updated() {
   //   let draggableElement = document.getElementById("draggableContainer");
@@ -92,6 +91,9 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
+    },
+    activeAssginemnts() {
+      return this.$store.state.AssignmentsStore.activeAssginemnts;
     },
 
     events() {

@@ -38,15 +38,13 @@ export default {
   },
   computed: {},
   mounted() {
-    console.log(this.assignment.id);
     let draggableElement = document.getElementById(this.assignment.id);
-    console.log(draggableElement);
     new Draggable(draggableElement);
     // this.createDraggable;
   },
   methods: {
     setActiveAssignmentDetails() {
-      console.log("hi");
+      console.log(this.assignment.id);
 
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
     },
