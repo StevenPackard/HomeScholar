@@ -22,7 +22,7 @@
         />
       </div>
       <div id="draggableContainer" class="col-4 max-height overflow-y">
-        <div class="row">
+        <div class="row mr-1">
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
