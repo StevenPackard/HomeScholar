@@ -82,7 +82,7 @@ export const AssignmentsStore = {
       try {
         let res = await api.post("assignments", assignment);
         commit("setActiveAssignments", res.data);
-        dispatch("getAssignmentsByStudentId", assignment.studentId);
+        dispatch("getAllAssignments");
       } catch (error) {
         console.error(error);
       }
