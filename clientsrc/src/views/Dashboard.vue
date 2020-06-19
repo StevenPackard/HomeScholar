@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard container-fluid">
-    <div class="row">
+    <div class="row push-down">
       <!-- <timeline /> -->
       <div class="col-8 max-height">
         <Fullcalendar
@@ -22,20 +22,14 @@
         />
       </div>
       <div id="draggableContainer" class="col-4 max-height overflow-y">
-        <div class="row">
+        <div class="row mr-1">
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-success"
-          >
-            add assignment
-          </button>
+          >add assignment</button>
           <!-- <assignment /> -->
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
+          <student v-for="student in students" :key="student.id" :student="student" />
         </div>
       </div>
     </div>
@@ -76,7 +70,6 @@ export default {
   mounted() {
     this.$store.dispatch("getAllAssignments");
     console.log(document.getElementsByClassName("drag-item"));
-    console.log(document.getElementById("draggableContainer"));
   },
   // updated() {
   //   let draggableElement = document.getElementById("draggableContainer");
@@ -88,8 +81,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
-      ],
+        ListPlugin
+      ]
     };
   },
   computed: {
@@ -99,10 +92,13 @@ export default {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
     },
+    activeAssginemnts() {
+      return this.$store.state.AssignmentsStore.activeAssginemnts;
+    },
 
     events() {
       return this.$store.state.events;
-    },
+    }
   },
   methods: {
     handleSelect(arg) {
@@ -113,7 +109,7 @@ export default {
         allDay:
           "<p id='allday-element'> All Day: " +
           (arg.allDay ? "Yes" : "No") +
-          " </p>",
+          " </p>"
       };
       $("#addAssignmentForm").append(
         newElements.start,
@@ -127,14 +123,14 @@ export default {
     },
     handleDrop(arg) {
       console.log(arg);
-    },
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 

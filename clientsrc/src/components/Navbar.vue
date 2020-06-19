@@ -1,6 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">HomeScholar</router-link>
+  <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+    <router-link class="navbar-brand" :to="{ name: 'home' }">
+      <b>HomeScholar</b>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -14,8 +16,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" :class="{ active: $route.name == 'dashboard' }">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link">Dashboard</router-link>
+        <li class="nav-item active">
+          <router-link :to="{ name: 'dashboard' }" class="nav-link">
+            <b>Dashboard</b>
+          </router-link>
         </li>
         <li class="dropdown nav-item mt-2">
           <a
@@ -25,7 +29,9 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >Students</a>
+          >
+            <b>Students</b>
+          </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
               <router-link

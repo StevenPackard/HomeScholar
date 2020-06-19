@@ -2,7 +2,7 @@
   <div id="app">
     <navbar />
     <router-view class="grow" />
-    <footer class="text-center bg-primary">
+    <footer class="text-center bg-info">
       <h5>
         Made with Love by Justin
         <i class="fa fa-book fa-sm" aria-hidden="true"></i> Troy
@@ -72,4 +72,14 @@ export default {
 .action {
   cursor: pointer;
 }
+
 </style>
+
+.push-down {
+  margin-top: 5rem;
+}
+.push-down-less {
+  margin-top: 4rem;
+}
+</style>
+
