@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid push-down-less">
     <div class="row bg-info pt-4">
-      <div class="col-8">
+      <div class="col-8 bounce-in-top">
         <div class="jumbotron shadow">
           <h1 class="display-4">Welcome to HomeScholar</h1>
           <p class="lead">
@@ -19,12 +19,12 @@
           </p>
         </div>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center bounce-in-right">
         <img class="app-logo" src="@/assets/Logo.png" alt />
       </div>
     </div>
     <div class="row home-row-large justify-content-center">
-      <div class="col-4 pt-5">
+      <div class="col-4 pt-5 bounce-in-left">
         <div class="row">
           <div class="col-12">
             <h3>
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="col-5 text-right">
+      <div class="col-5 text-right bounce-in-bottom">
         <img
           src="https://cf.ltkcdn.net/home-school/images/orig/261690-1600x1030-best-free-online-homeschool-programs.jpg"
           class="image-large mt-5 shadow"
