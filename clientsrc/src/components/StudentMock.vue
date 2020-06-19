@@ -37,7 +37,9 @@ export default {
   },
   computed: {
     assignments() {
-      return this.$store.state.AssignmentsStore.activeAssignments;
+      return this.$store.state.AssignmentsStore.assignments.filter(
+        a => a.studentId.id == this.student.id
+      );
     }
 
     //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[

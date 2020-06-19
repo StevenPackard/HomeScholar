@@ -44,8 +44,6 @@ export default {
   },
   methods: {
     setActiveAssignmentDetails() {
-      console.log(this.assignment.id);
-
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
     },
 

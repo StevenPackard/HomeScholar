@@ -27,7 +27,7 @@ export default new Router({
       path: "/student/:id",
       name: "student-details",
       component: StudentDetails,
-      // beforeEnter: authGuard,
+      beforeEnter: authGuard,
     },
     {
       path: "*",

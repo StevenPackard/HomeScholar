@@ -11,9 +11,7 @@ export const AssignmentsStore = {
   },
   mutations: {
     setActiveAssignmentDetails(state, assignmentId) {
-      let foundAssignment = state.activeAssignments.find(
-        (a) => a.id == assignmentId
-      );
+      let foundAssignment = state.assignments.find((a) => a.id == assignmentId);
       state.activeAssignmentDetails = foundAssignment;
     },
     setAssignments(state, assignments) {
