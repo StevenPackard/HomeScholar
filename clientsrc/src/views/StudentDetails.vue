@@ -14,6 +14,16 @@
             <h5>{{student.description}}</h5>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-4 text-center">
+            <button
+              data-toggle="modal"
+              data-target="#addAssignmentModal"
+              class="btn btn-success text-dark mt-3 shadow"
+            >Add Assignment</button>
+            <button @click="deleteStudent" class="btn btn-danger mt-3 ml-2 shadow">Delete Student</button>
+          </div>
+        </div>
         <div class="row bg-warning mt-2 justify-content-center">
           <div class="col-5 text-center border-bottom border-dark">
             <h3>Assignments</h3>
@@ -40,16 +50,6 @@
               :assignment="assignment"
             />
           </ol>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-4 text-center">
-            <button
-              data-toggle="modal"
-              data-target="#addAssignmentModal"
-              class="btn btn-success text-dark mt-3 shadow"
-            >Add Assignment</button>
-            <button @click="deleteStudent" class="btn btn-danger mt-3 ml-2 shadow">Delete Student</button>
-          </div>
         </div>
       </div>
     </div>
@@ -112,6 +112,6 @@ export default {
 }
 .overflow-y {
   overflow-y: auto;
-  height: 50vh;
+  height: 54vh;
 }
 </style>
