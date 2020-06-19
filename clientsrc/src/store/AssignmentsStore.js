@@ -72,5 +72,16 @@ export const AssignmentsStore = {
         console.error(error);
       }
     },
+    async updateAssignment({ commit, dispatch }, updateDetails) {
+      try {
+        let res = await api.put(
+          "assignments/" + updateDetails.assignmentId,
+          updateDetails
+        );
+        // dispatch("getAllAssignments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

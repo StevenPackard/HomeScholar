@@ -67,9 +67,7 @@ let _api = axios.create({
 });
 export default {
   name: "Navbar",
-  // mounted() {
-  //   this.$store.dispatch("getStudents");
-  // },
+
   data() {
     return {};
   },

@@ -92,7 +92,7 @@ export default {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
     },
-    activeAssginemnts() {
+    activeAssignments() {
       return this.$store.state.AssignmentsStore.activeAssginemnts;
     },
 
@@ -122,7 +122,19 @@ export default {
       $("#addAssignmentModal").modal("toggle");
     },
     handleDrop(arg) {
+      let endDate = new Date(arg.date);
+      endDate.setHours(endDate.getHours() + 2);
+      console.log(endDate, "this is the end date");
+
       console.log(arg);
+      let newElements = {
+        start: arg.date,
+        end: endDate,
+        allDay: arg.allDay,
+        assignmentId: arg.draggedEl.id
+      };
+      console.log(newElements);
+      this.$store.dispatch("updateAssignment", newElements);
     }
   },
   components: {
