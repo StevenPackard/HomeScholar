@@ -69,8 +69,9 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
-    console.log(document.getElementsByClassName("drag-item"));
+    console.log(document.getElementsByClassName("drag-item"), "from mounted");
   },
+
   // updated() {
   //   let draggableElement = document.getElementById("draggableContainer");
   //   new Draggable(draggableElement, { itemSelector: ".drag-item" });
@@ -102,7 +103,7 @@ export default {
   },
   methods: {
     handleSelect(arg) {
-      console.log(arg);
+      console.log(arg, "from select");
       let newElements = {
         start: "<p id='start-element'> Start: " + arg.start + " </p>",
         end: "<p id='end-element'> End: " + arg.end + " </p>",
@@ -133,15 +134,17 @@ export default {
         allDay: arg.allDay,
         assignmentId: arg.draggedEl.id
       };
-      console.log(newElements);
+      console.log(newElements, "dropped Elem");
       this.$store.dispatch("updateAssignment", newElements);
     },
     handleUpdate(arg) {
       console.log(arg, "this is the update arg");
       let newElements = {
         start: arg.event.start,
-        end: arg.event.end
+        end: arg.event.end,
+        assignmentId: arg.event.id
       };
+      this.$store.dispatch("updateAssignment", newElements);
     }
   },
   components: {

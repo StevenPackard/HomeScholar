@@ -32,7 +32,8 @@ export default {
     return {
       assignmentString: JSON.stringify({
         title: this.assignment.title,
-        duration: "02:00"
+        duration: "02:00",
+        id: this.assignment.id
       })
     };
   },
