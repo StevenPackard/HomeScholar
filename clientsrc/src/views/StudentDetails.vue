@@ -49,6 +49,7 @@
               :key="assignment.id"
               :assignment="assignment"
             />
+            {{assignments}}
           </ol>
         </div>
       </div>
@@ -64,9 +65,7 @@ export default {
     this.$store.dispatch("getStudentById", this.$route.params.id);
     this.$store.dispatch("getAllAssignments");
   },
-  // beforeUpdate() {
-  //   this.$store.dispatch("getStudentById", this.$route.params.id);
-  // },
+
   data() {
     return {};
   },
