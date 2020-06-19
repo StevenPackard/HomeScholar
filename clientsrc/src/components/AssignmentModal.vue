@@ -12,26 +12,41 @@
       <div class="modal-dialog modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addAssignmentModalLabel">
+              Add Assignment
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form>
-              <select v-model="assignmentForm.name" class="form-control form-control-sm">
+            <form id="addAssignmentForm">
+              <select
+                v-model="assignmentForm.name"
+                class="form-control form-control-sm"
+              >
                 <option v-for="student in students" :key="student.id">
-                  {{
-                  student.name
-                  }}
+                  {{ student.name }}
                 </option>
               </select>
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="title" v-model="assignmentForm.title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="assignmentForm.title"
+                />
               </div>
               <div class="form-group">
-                <label for="Description" class="col-form-label">Description</label>
+                <label for="Description" class="col-form-label"
+                  >Description</label
+                >
                 <textarea
                   class="form-control"
                   id="Description"
@@ -50,13 +65,22 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              @click="removeDatePars"
+            >
+              Close
+            </button>
             <button
               type="button"
               @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
-            >Add Assignment</button>
+            >
+              Add Assignment
+            </button>
           </div>
         </div>
       </div>
@@ -74,18 +98,32 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="studentName" v-model="addStudent.name" />
+                <label for="studentName" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  v-model="addStudent.name"
+                />
               </div>
               <div class="form-group">
-                <label for="studentDescription" class="col-form-label">Description</label>
+                <label for="studentDescription" class="col-form-label"
+                  >Description</label
+                >
                 <textarea
                   class="form-control"
                   id="studentDescription"
@@ -102,7 +140,9 @@
                 />
               </div>
               <div class="form-group">
-                <label for="studentSubjects" class="col-form-label">Subjects (Optional)</label>
+                <label for="studentSubjects" class="col-form-label"
+                  >Subjects (Optional)</label
+                >
                 <input
                   class="form-control"
                   id="studentSubjects"
@@ -113,8 +153,20 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Add Student
+            </button>
           </div>
         </div>
       </div>
@@ -132,8 +184,15 @@
       <div class="modal-dialog modal-dialog-center text-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addStudentModalLabel">Assignment Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addStudentModalLabel">
+              Assignment Details
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -185,8 +244,20 @@
             </form>
           </div>
           <div class="d-flex justify-content-center p-4">
-            <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitNewStudent">Save</button>
+            <button
+              type="button"
+              class="btn btn-secondary mx-3"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Save
+            </button>
           </div>
           <div class="form-group p-3">
             <label for="studentGrade" class="col-form-label">Note</label>
@@ -209,9 +280,9 @@ export default {
   data() {
     return {
       assignmentForm: {
-        studentId: ""
+        studentId: "",
       },
-      addStudent: {}
+      addStudent: {},
     };
   },
   computed: {
@@ -220,7 +291,7 @@ export default {
     },
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {
     submitNewStudent() {
@@ -228,16 +299,43 @@ export default {
       this.addStudent = {};
       $("#addStudentModal").modal("hide");
     },
+    removeDatePars() {
+      if (document.getElementById("start-element")) {
+        document.getElementById("start-element").remove();
+        document.getElementById("end-element").remove();
+        document.getElementById("allday-element").remove();
+      }
+    },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(
-        s => s.name == this.assignmentForm.name
+        (s) => s.name == this.assignmentForm.name
       );
       this.assignmentForm.studentId = foundStudent.id;
+
+      let addAssignmentData = document.getElementById("addAssignmentModal");
+
+      this.assignmentForm.start = addAssignmentData.dataset.start
+        ? addAssignmentData.dataset.start
+        : "";
+      this.assignmentForm.end = addAssignmentData.dataset.end
+        ? addAssignmentData.dataset.end
+        : "";
+      this.assignmentForm.allDay = addAssignmentData.dataset.allday
+        ? addAssignmentData.dataset.allday
+        : false;
+
+      console.log(this.assignmentForm);
+
       this.$store.dispatch("addAssignment", { ...this.assignmentForm });
       this.assignmentForm = { studentId: "" };
-    }
+      if (document.getElementById("start-element")) {
+        document.getElementById("start-element").remove();
+        document.getElementById("end-element").remove();
+        document.getElementById("allday-element").remove();
+      }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 

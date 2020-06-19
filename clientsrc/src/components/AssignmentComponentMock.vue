@@ -1,9 +1,10 @@
 <template>
   <div
-    draggable="true"
     @click="setActiveAssignmentDetails"
+    :id="assignment.id"
+    draggable="true"
     class="assignment-component-mock col-12 text-center bg-dark my-2 action p-2 drag-item"
-    data-event="{ 'title': 'my event', 'duration': '02:00' }"
+    :data-event="assignmentString"
   >
     <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
       <div class="row">
@@ -22,19 +23,25 @@
 </template>
 
 <script>
-import interactionPlugin, { Draggabble } from "@fullcalendar/interaction";
+import Fullcalendar from "@fullcalendar/vue";
+import InteractionPlugin, { Draggable } from "@fullcalendar/interaction";
 
 export default {
   name: "assignment-component-mock",
   data() {
-    return {};
+    return {
+      assignmentString: JSON.stringify({
+        title: this.assignment.title,
+        duration: "02:00",
+      }),
+    };
   },
   computed: {},
   mounted() {
-    // let draggabbleElement = document.getElementById(this.assignment.id);
-    // console.log(draggableElement);
-    // console.log(this.assignment.id);
-    // new Draggabble(draggabbleElement);
+    console.log(this.assignment.id);
+    let draggableElement = document.getElementById(this.assignment.id);
+    console.log(draggableElement);
+    new Draggable(draggableElement);
     // this.createDraggable;
   },
   methods: {
@@ -42,6 +49,10 @@ export default {
       console.log("hi");
 
       this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
+    },
+
+    dragging() {
+      console.log("dragging");
     },
     // createDraggable() {
 
