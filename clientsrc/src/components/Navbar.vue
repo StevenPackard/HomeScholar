@@ -1,6 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">HomeScholar</router-link>
+  <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+    <router-link class="navbar-brand" :to="{ name: 'home' }"
+      >HomeScholar</router-link
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -15,7 +17,9 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'dashboard' }">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link">Dashboard</router-link>
+          <router-link :to="{ name: 'dashboard' }" class="nav-link"
+            >Dashboard</router-link
+          >
         </li>
         <li class="dropdown nav-item mt-2">
           <a
@@ -25,20 +29,23 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >Students</a>
+            >Students</a
+          >
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
               <router-link
                 :to="{ path: `/student/${student.id}` }"
                 class="nav-link"
-              >{{ student.name }}</router-link>
+                >{{ student.name }}</router-link
+              >
             </span>
             <a
               class="dropdown-item pl-2"
               href="#"
               data-toggle="modal"
               data-target="#addStudentModal"
-            >Add Student</a>
+              >Add Student</a
+            >
           </div>
         </li>
         <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
@@ -46,7 +53,13 @@
         </li>-->
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button
+          class="btn btn-success"
+          @click="login"
+          v-if="!$auth.isAuthenticated"
+        >
+          Login
+        </button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>
@@ -57,7 +70,7 @@
 import axios from "axios";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true
+  withCredentials: true,
 });
 export default {
   name: "Navbar",
@@ -70,7 +83,7 @@ export default {
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {
     async login() {
@@ -82,8 +95,8 @@ export default {
     },
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
-    }
-  }
+    },
+  },
 };
 </script>
 

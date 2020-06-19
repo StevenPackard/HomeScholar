@@ -1,5 +1,5 @@
 <template>
-  <div class="student-details container-fluid">
+  <div class="student-details container-fluid push-down">
     <div class="row justify-content-center">
       <div class="col-12 student-section bg-info">
         <div class="row justify-content-center">
