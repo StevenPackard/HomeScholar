@@ -14,6 +14,7 @@
           @drop="handleDrop"
           @eventDrop="handleUpdate"
           @eventResize="handleUpdate"
+          @event-click="setActiveAssignmentDetails"
           :droppable="true"
           :header="{
             center: 'title',
@@ -28,15 +29,9 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-success"
-          >
-            add assignment
-          </button>
+          >add assignment</button>
           <!-- <assignment /> -->
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
+          <student v-for="student in students" :key="student.id" :student="student" />
         </div>
       </div>
     </div>
@@ -89,8 +84,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
-      ],
+        ListPlugin
+      ]
     };
   },
   computed: {
@@ -106,18 +101,17 @@ export default {
 
     events() {
       return this.$store.state.events;
-    },
+    }
   },
   methods: {
     handleSelect(arg) {
-      console.log(arg, "from select");
       let newElements = {
         start: "<p id='start-element'> Start: " + arg.start + " </p>",
         end: "<p id='end-element'> End: " + arg.end + " </p>",
         allDay:
           "<p id='allday-element'> All Day: " +
           (arg.allDay ? "Yes" : "No") +
-          " </p>",
+          " </p>"
       };
       $("#addAssignmentForm").append(
         newElements.start,
@@ -132,34 +126,35 @@ export default {
     handleDrop(arg) {
       let endDate = new Date(arg.date);
       endDate.setHours(endDate.getHours() + 2);
-      console.log(endDate, "this is the end date");
 
-      console.log(arg);
       let newElements = {
         start: arg.date,
         end: endDate,
         allDay: arg.allDay,
-        assignmentId: arg.draggedEl.id,
+        assignmentId: arg.draggedEl.id
       };
-      console.log(newElements, "dropped Elem");
+
       this.$store.dispatch("updateAssignment", newElements);
     },
     handleUpdate(arg) {
-      console.log(arg, "this is the update arg");
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id,
+        assignmentId: arg.event.id
       };
       this.$store.dispatch("updateAssignment", newElements);
     },
+    setActiveAssignmentDetails() {
+      this.$store.commit("setActiveAssignmentDetails", this.assignment.id);
+      console.log();
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 

@@ -49,7 +49,6 @@
               :key="assignment.id"
               :assignment="assignment"
             />
-            {{assignments}}
           </ol>
         </div>
       </div>
