@@ -12,7 +12,7 @@
           :events="assignments"
           :editable="true"
           @drop="handleDrop"
-          @eventDrop="handleDrop"
+          @eventDrop="handleUpdate"
           :droppable="true"
           :header="{
             center: 'title',
@@ -135,6 +135,13 @@ export default {
       };
       console.log(newElements);
       this.$store.dispatch("updateAssignment", newElements);
+    },
+    handleUpdate(arg) {
+      console.log(arg, "this is the update arg");
+      let newElements = {
+        start: arg.event.start,
+        end: arg.event.end
+      };
     }
   },
   components: {

@@ -62,7 +62,7 @@ export default {
   name: "student-details",
   mounted() {
     this.$store.dispatch("getStudentById", this.$route.params.id);
-    this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+    this.$store.dispatch("getAllAssignments");
   },
   // beforeUpdate() {
   //   this.$store.dispatch("getStudentById", this.$route.params.id);
@@ -75,7 +75,9 @@ export default {
       return this.$store.state.StudentStore.activeStudent;
     },
     assignments() {
-      return this.$store.state.AssignmentsStore.activeAssignments;
+      return this.$store.state.AssignmentsStore.assignments.filter(
+        a => a.studentId.id == this.student.id
+      );
     }
   },
   methods: {
