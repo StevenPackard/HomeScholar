@@ -50,6 +50,14 @@ export const StudentStore = {
         console.error(error);
       }
     },
+    async editStudent({ commit, dispatch }, studentData) {
+      try {
+        let res = await api.put("students/" + studentData.id, studentData);
+        dispatch("getStudents");
+      } catch (error) {
+        console.error(error);
+      }
+    },
 
     async deleteStudent({ commit, dispatch }, id) {
       try {

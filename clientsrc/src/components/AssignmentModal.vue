@@ -1,4 +1,5 @@
 <template>
+  <!-- //#region -->
   <div class="assignment-modal">
     <!-- Add Assignment Modal -->
     <div
@@ -56,7 +57,7 @@
         </div>
       </div>
     </div>
-    <!-- Add Student Modal  -->
+    <!-- # Add Student Modal  -->
     <div
       class="modal fade"
       id="addStudentModal"
@@ -114,7 +115,7 @@
       </div>
     </div>
     <!-- end student modal -->
-    <!--  -->
+    <!--Assignment Details Modal-->
     <div
       class="modal fade"
       id="assignmentDetailsModal"
@@ -204,6 +205,69 @@
         </div>
       </div>
     </div>
+    <!--End Assignment Details Modal-->
+    <!-- Edit Students Modal-->
+    <div
+      class="modal fade"
+      id="editStudentModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editStudentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editStudentModalLabel">Edit Student</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">Student Name</label>
+                <input type="text" class="form-control" id="editstudentName" v-model="student.name" />
+              </div>
+              <div class="form-group">
+                <label for="studentDescription" class="col-form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="editStudentDescription"
+                  v-model="student.description"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="studentGrade" class="col-form-label">Grade</label>
+                <input
+                  class="form-control"
+                  id="editStudentGrade"
+                  type="number"
+                  v-model="student.gradeLevel"
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentSubjects" class="col-form-label">Subjects (Optional)</label>
+                <input
+                  class="form-control"
+                  id="editStudentSubjects"
+                  type="text"
+                  v-model="student.subjects"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              @click="editStudent"
+            >edit Student</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -225,6 +289,9 @@ export default {
     },
     students() {
       return this.$store.state.StudentStore.students;
+    },
+    student() {
+      return this.$store.state.StudentStore.activeStudent;
     }
   },
   methods: {
@@ -273,6 +340,9 @@ export default {
         document.getElementById("end-element").remove();
         document.getElementById("allday-element").remove();
       }
+    },
+    editStudent() {
+      this.$store.dispatch("editStudent", this.student);
     }
   },
   components: {}
