@@ -29,10 +29,11 @@ export default new Vuex.Store({
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    async getProfile({ commit }) {
+    async getProfile({ commit, dispatch }) {
       try {
         let res = await api.get("/profile");
         commit("setUser", res.data);
+        dispatch("getStudents");
       } catch (err) {
         console.error(err);
       }
