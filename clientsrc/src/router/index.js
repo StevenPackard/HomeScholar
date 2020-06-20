@@ -6,6 +6,10 @@ import Home from "../views/Home.vue";
 import Dashboard from "../views/Dashboard.vue";
 // @ts-ignore
 import StudentDetails from "../views/StudentDetails.vue";
+// @ts-ignore
+import Posts from "../views/Posts.vue";
+// @ts-ignore
+import PostDetails from "../views/PostDetails.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(Router);
@@ -27,6 +31,18 @@ export default new Router({
       path: "/student/:id",
       name: "student-details",
       component: StudentDetails,
+      beforeEnter: authGuard,
+    },
+    {
+      path: "/posts",
+      name: "posts",
+      component: Posts,
+      beforeEnter: authGuard,
+    },
+    {
+      path: "/postDetails/:id",
+      name: "postDetails",
+      component: PostDetails,
       beforeEnter: authGuard,
     },
     {

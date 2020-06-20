@@ -21,6 +21,11 @@
             <b>Dashboard</b>
           </router-link>
         </li>
+        <li class="nav-item active">
+          <router-link :to="{ name: 'posts' }" class="nav-link">
+            <b>Posts</b>
+          </router-link>
+        </li>
         <li class="dropdown nav-item mt-2">
           <a
             class="dropdown-toggle"
