@@ -1,10 +1,9 @@
 <template>
   <div class="col-12">
-    <div class="bg-warning shadow text-dark rounded">
+    <div @click="routeToDetails" class="bg-warning shadow text-dark rounded action">
       <img class="profile-img" src="https://placehold.it/60" alt="img not avalable" />
       <h3>{{post.title}}</h3>
       <p>{{post.id}}</p>
-      <button @click="routeToDetails">Comments</button>
     </div>
   </div>
 </template>

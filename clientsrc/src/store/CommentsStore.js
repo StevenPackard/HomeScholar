@@ -11,7 +11,27 @@ export const CommentsStore = {
       state.comments = data;
     },
   },
+
   actions: {
+    async addComment({ commit, dispatch }, data) {
+      try {
+        let res = await api.post("comments/", data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getCommentsByPostId({ commit, dispatch }, postId) {
+      console.log("getting comments");
+      console.log(postId);
+
+      try {
+        let res = await api.get("posts/" + postId + "/comments");
+        commit("setComments", res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async deleteComment({ commit, dispatch }, data) {
       try {
         let res = await api.delete("Comments/" + data.id);

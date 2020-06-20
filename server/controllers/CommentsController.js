@@ -18,7 +18,7 @@ export class CommentsController extends BaseController {
     try {
       req.body.creatorEmail = req.userInfo.email;
       let data = await commentsService.create(req.body);
-      return res.status(201).send(data);
+      return res.send(data);
     } catch (error) {
       next(error);
     }

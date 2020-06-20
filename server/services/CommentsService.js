@@ -2,6 +2,13 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
 class CommentsService {
+  async getCommentsByPostId(id) {
+    let res = await dbContext.Comments.find({ postId: id }).populate(
+      "creator",
+      "name picture"
+    );
+    return res;
+  }
   async create(rawData) {
     let data = await dbContext.Comments.create(rawData);
     return data;

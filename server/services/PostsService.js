@@ -6,10 +6,9 @@ class PostsService {
     return await dbContext.Posts.find().populate("creator", "name picture");
   }
 
-  async getById(id, userEmail) {
+  async getById(id) {
     let data = await dbContext.Posts.findOne({
       _id: id,
-      creatorEmail: userEmail,
     });
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");

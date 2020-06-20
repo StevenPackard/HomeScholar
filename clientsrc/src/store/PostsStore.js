@@ -5,13 +5,26 @@ import { api } from "./AxiosStore";
 export const PostsStore = {
   state: {
     posts: [],
+    activePost: {},
   },
+
   mutations: {
+    setActivePost(state, post) {
+      state.activePost = post;
+    },
     setPosts(state, data) {
       state.posts = data;
     },
   },
   actions: {
+    async setActivePost({ commit, dispatch }, postId) {
+      try {
+        let res = await api.get("posts/" + postId);
+        commit("setActivePost", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async deletePost({ commit, dispatch }, data) {
       try {
         let res = await api.delete("Posts/" + data.id);

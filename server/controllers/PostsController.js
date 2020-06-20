@@ -2,7 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
 import { postsService } from "../services/PostsService";
-
+import { commentsService } from "../services/CommentsService";
 //PUBLIC
 export class PostsController extends BaseController {
   constructor() {
@@ -10,6 +10,7 @@ export class PostsController extends BaseController {
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .get("", this.getAll)
+      .get("/:id/comments", this.getCommentsByPostId)
       .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -27,7 +28,15 @@ export class PostsController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      let data = await postsService.getById(req.params.id, req.userInfo.email);
+      let data = await postsService.getById(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getCommentsByPostId(req, res, next) {
+    try {
+      let data = await commentsService.getCommentsByPostId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
