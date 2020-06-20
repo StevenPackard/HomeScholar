@@ -1,9 +1,9 @@
 <template>
   <div class="post my-2 py-4">
-    <div class="bg-warning shadow text-dark rounded action p-1">
+    <div class="bg-warning shadow text-dark rounded p-1">
       <div class="p-2 p-relative">
         <img class="profile-img" src="https://placehold.it/60" alt="img not avalable" />
-        <i v-if="this.$auth.isCreator" class="fa fa-pencil top-right"></i>
+        <i v-if="true" class="fa fa-pencil top-right action"></i>
       </div>
       <h4 class="p-3">{{post.creatorEmail}}</h4>
       <h5 class="text-center p-2">{{post.title}}</h5>
@@ -23,8 +23,6 @@ export default {
   props: ["post"],
   methods: {
     routeToDetails() {
-      console.log(this.$route.params.id != this.post._id);
-
       if (this.$route.params.id != this.post._id) {
         this.$router.push("postDetails/" + this.post._id);
       }

@@ -3,7 +3,7 @@
     <div class="p-1">
       <div class="p-relative p-2">
         <img class="profile-img" src="https://placehold.it/60" alt />
-        <i @click="editComment" class="fa fa-pencil top-right"></i>
+        <i data-toggle="modal" data-target="editComment" class="fa fa-pencil top-right action"></i>
       </div>
       <h5 class="p-2 mt-3">{{comment.creatorEmail}}</h5>
       <p class="p-2">{{comment.body}}</p>

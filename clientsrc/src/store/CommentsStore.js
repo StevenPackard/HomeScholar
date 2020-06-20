@@ -5,6 +5,7 @@ import { api } from "./AxiosStore";
 export const CommentsStore = {
   state: {
     comments: [],
+    activeComment: {},
   },
   mutations: {
     setComments(state, data) {
