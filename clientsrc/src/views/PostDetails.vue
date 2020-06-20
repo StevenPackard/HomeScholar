@@ -1,11 +1,26 @@
 <template>
-  <div class="p-5 m-5">
-    <post :post="activePost" />
-    <form @submit.prevent="addComment">
-      <input v-model="commentData.body" type="text" placeholder="add a comment" />
-      <button class="btn btn-success">+</button>
-    </form>
-    <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+  <div class="container-fluid">
+    <div class="row pt-4 bg-light">
+      <div class="col-12 pt-5">
+        <post :post="activePost" />
+        <form @submit.prevent="addComment">
+          <div class="text-center">
+            <input
+              class="w-80 p-2 my-2 rounded"
+              v-model="commentData.body"
+              type="text"
+              placeholder="add a comment"
+            />
+            <button class="btn btn-success my-2 m-1">
+              <small>Comment</small>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-12">
+        <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,5 +62,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
