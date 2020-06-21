@@ -117,11 +117,15 @@ export default {
   methods: {
     handleSelect(arg) {
       console.log(arg);
-      console.log("this is the type", arg.view.type);
+      // console.log("this is the type", arg.view.type);
+
       if (arg.view.type != "dayGridMonth") {
+        let startTimestamp = this.fixTimestamp(arg.startStr);
+        let endTimestamp = this.fixTimestamp(arg.endStr);
+
         let newElements = {
-          start: "<p id='start-element'> Start: " + arg.start + " </p>",
-          end: "<p id='end-element'> End: " + arg.end + " </p>",
+          start: "<p id='start-element'> Start: " + startTimestamp + " </p>",
+          end: "<p id='end-element'> End: " + endTimestamp + " </p>",
           allDay:
             "<p id='allday-element'> All Day: " +
             (arg.allDay ? "Yes" : "No") +
@@ -152,7 +156,9 @@ export default {
       let event = this.$refs.Fullcalendar.getApi().getEventById(
         arg.draggedEl.id
       );
-      event.remove();
+      if (event) {
+        event.remove();
+      }
       this.$store.dispatch("updateAssignment", newElements);
     },
     handleUpdate(arg) {
@@ -171,6 +177,14 @@ export default {
     goToDate(arg) {
       this.$refs.Fullcalendar.getApi().changeView("timeGridDay", arg.date);
       console.log("from gotodate");
+    },
+    fixTimestamp(timestamp) {
+      let timestampWithRemovedEnd = timestamp.substring(
+        0,
+        timestamp.length - 6
+      );
+      let dateTime = new Date(timestampWithRemovedEnd);
+      return dateTime.toLocaleString("en-US");
     },
   },
   components: {
