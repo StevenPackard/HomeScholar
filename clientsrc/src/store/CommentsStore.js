@@ -8,42 +8,43 @@ export const CommentsStore = {
     activeComment: {},
   },
   mutations: {
+    setActiveComment(state, data) {
+      state.activeComment = data;
+    },
     setComments(state, data) {
       state.comments = data;
     },
   },
 
   actions: {
+    async setActiveComment({ commit, dispatch }, comment) {
+      commit("setActiveComment", comment);
+    },
     async addComment({ commit, dispatch }, data) {
       try {
-        let res = await api.post("comments/", data);
+        await api.post("comments/", data);
       } catch (error) {
         console.error(error);
       }
     },
     async getCommentsByPostId({ commit, dispatch }, postId) {
-      console.log("getting comments");
-      console.log(postId);
-
       try {
         let res = await api.get("posts/" + postId + "/comments");
         commit("setComments", res.data);
-        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
     },
-    async deleteComment({ commit, dispatch }, data) {
+    async deleteComment({ commit, dispatch }, comment) {
       try {
-        let res = await api.delete("Comments/" + data.id);
-        console.log(res.data);
-        dispatch("getAllComments");
+        await api.delete("Comments/" + comment.id);
+        dispatch("getCommentsByPostId", comment.postId);
       } catch (error) {}
     },
     async editComment({ commit, dispatch }, CommentData) {
       try {
         await api.put("Comments/" + CommentData.id, CommentData);
-        dispatch("getAllComments");
+        dispatch("getCommentsByPostId", CommentData.postId);
       } catch (error) {
         console.error(error);
       }

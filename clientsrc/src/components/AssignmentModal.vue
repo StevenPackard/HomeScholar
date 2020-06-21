@@ -308,7 +308,7 @@
               class="btn btn-primary"
               data-dismiss="modal"
               @click="editPost"
-            >Edit Post</button>
+            >Save</button>
             <button
               type="button"
               class="btn btn-danger"
@@ -320,7 +320,45 @@
       </div>
     </div>
     <!-- !SECTION -->
-
+    <!-- SECTION ADD COMMENT MODAL -->
+    <!-- SECTION ADD POST MODAL -->
+    <div
+      class="modal fade"
+      id="addPost"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editPostLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPostLabel">New Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="postTitle" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="editPostTitle" v-model="postForm.title" />
+              </div>
+              <div class="form-group">
+                <label for="postBody" class="col-form-label">Body</label>
+                <textarea class="form-control" id="editpostBody" v-model="postForm.body"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="addPost">Post</button>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" @click="close">Cancel</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION  -->
+    <!-- !SECTION  -->
     <!-- SECTION EDIT COMMENT MODAL -->
     <div
       class="modal fade"
@@ -375,7 +413,8 @@ export default {
       assignmentForm: {
         studentId: ""
       },
-      addStudent: {}
+      addStudent: {},
+      postForm: {}
     };
   },
   computed: {
@@ -401,6 +440,14 @@ export default {
     },
     deletePost() {
       this.$store.dispatch("deletePost", this.post);
+      // if user is on post details it reroutes them to the main post page
+      if (this.$route.params.id) {
+        this.$router.push("/posts");
+        return;
+      }
+    },
+    addPost() {
+      this.$store.dispatch("addPost", this.postForm);
     },
     editComment() {
       this.$store.dispatch("editComment", this.comment);

@@ -7,7 +7,7 @@
           <button
             type="button"
             data-toggle="modal"
-            data-target="#editPost"
+            data-target="#addPost"
             class="btn text-dark btn-info"
           >Share an event or get advice</button>
         </div>

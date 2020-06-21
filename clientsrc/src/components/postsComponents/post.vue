@@ -3,7 +3,14 @@
     <div class="bg-warning shadow text-dark rounded p-1">
       <div class="p-2 p-relative">
         <img class="profile-img" src="https://placehold.it/60" alt="img not avalable" />
-        <i v-if="true" class="fa fa-pencil top-right action"></i>
+        <i
+          @click="setActivePost"
+          type="button"
+          data-toggle="modal"
+          data-target="#editPost"
+          v-if="true"
+          class="fa fa-pencil top-right action"
+        ></i>
       </div>
       <h4 class="p-3">{{post.creatorEmail}}</h4>
       <h5 class="text-center p-2">{{post.title}}</h5>
@@ -26,6 +33,10 @@ export default {
       if (this.$route.params.id != this.post._id) {
         this.$router.push("postDetails/" + this.post._id);
       }
+    },
+    setActivePost() {
+      console.log("setActivePosts");
+      this.$store.dispatch("setActivePost", this.post.id);
     }
   }
 };

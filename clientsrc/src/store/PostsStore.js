@@ -17,6 +17,15 @@ export const PostsStore = {
     },
   },
   actions: {
+    async addPost({ commit, dispatch }, data) {
+      try {
+        let res = await api.post("posts", data);
+        console.log(res.data);
+        dispatch("getAllPosts");
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async setActivePost({ commit, dispatch }, postId) {
       try {
         let res = await api.get("posts/" + postId);
@@ -35,6 +44,7 @@ export const PostsStore = {
     async editPost({ commit, dispatch }, PostData) {
       try {
         let res = await api.put("Posts/" + PostData.id, PostData);
+        console.log(res.data);
 
         dispatch("getAllPosts");
       } catch (error) {
