@@ -1,32 +1,21 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
-class BoardService {
-  async getAll(userEmail) {
-    return await dbContext.Boards.find({ creatorEmail: userEmail }).populate(
+class CommentsService {
+  async getCommentsByPostId(id) {
+    let res = await dbContext.Comments.find({ postId: id }).populate(
       "creator",
       "name picture"
     );
+    return res;
   }
-
-  async getById(id, userEmail) {
-    let data = await dbContext.Boards.findOne({
-      _id: id,
-      creatorEmail: userEmail,
-    });
-    if (!data) {
-      throw new BadRequest("Invalid ID or you do not own this board");
-    }
-    return data;
-  }
-
   async create(rawData) {
-    let data = await dbContext.Boards.create(rawData);
+    let data = await dbContext.Comments.create(rawData);
     return data;
   }
 
   async edit(id, userEmail, update) {
-    let data = await dbContext.Boards.findOneAndUpdate(
+    let data = await dbContext.Comments.findOneAndUpdate(
       { _id: id, creatorEmail: userEmail },
       update,
       { new: true }
@@ -38,7 +27,7 @@ class BoardService {
   }
 
   async delete(id, userEmail) {
-    let data = await dbContext.Boards.findOneAndRemove({
+    let data = await dbContext.Comments.findOneAndRemove({
       _id: id,
       creatorEmail: userEmail,
     });
@@ -48,4 +37,4 @@ class BoardService {
   }
 }
 
-export const boardService = new BoardService();
+export const commentsService = new CommentsService();

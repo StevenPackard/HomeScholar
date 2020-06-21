@@ -115,7 +115,8 @@
       </div>
     </div>
     <!-- end student modal -->
-    <!--Assignment Details Modal-->
+
+    <!--SECTION ASSIGNMENT DETAILS MODAL -->
     <div
       class="modal fade"
       id="assignmentDetailsModal"
@@ -205,8 +206,10 @@
         </div>
       </div>
     </div>
-    <!--End Assignment Details Modal-->
-    <!-- Edit Students Modal-->
+
+    <!--!SECTION -->
+
+    <!-- SECTION EDIT STUDENT MODAL -->
     <div
       class="modal fade"
       id="editStudentModal"
@@ -268,6 +271,137 @@
         </div>
       </div>
     </div>
+    <!-- !SECTION -->
+
+    <!-- SECTION EDIT POST MODAL -->
+    <div
+      class="modal fade"
+      id="editPost"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editPostLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPostLabel">Edit Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="postTitle" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="editPostTitle" v-model="post.title" />
+              </div>
+              <div class="form-group">
+                <label for="postBody" class="col-form-label">Body</label>
+                <textarea class="form-control" id="editpostBody" v-model="post.body"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              @click="editPost"
+            >Save</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              @click="deletePost"
+            >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION -->
+    <!-- SECTION ADD COMMENT MODAL -->
+    <!-- SECTION ADD POST MODAL -->
+    <div
+      class="modal fade"
+      id="addPost"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editPostLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editPostLabel">New Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="postTitle" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="editPostTitle" v-model="postForm.title" />
+              </div>
+              <div class="form-group">
+                <label for="postBody" class="col-form-label">Body</label>
+                <textarea class="form-control" id="editpostBody" v-model="postForm.body"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="addPost">Post</button>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" @click="close">Cancel</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION  -->
+    <!-- !SECTION  -->
+    <!-- SECTION EDIT COMMENT MODAL -->
+    <div
+      class="modal fade"
+      id="editComment"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editCommentLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editCommentLabel">Edit Comment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">Body</label>
+                <input type="text" class="form-control" id="editstudentName" v-model="comment.body" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              @click="editComment"
+            >Save</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              @click="deleteComment"
+            >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--!SECTION  -->
   </div>
 </template>
 
@@ -276,11 +410,11 @@ export default {
   name: "assignment-modal",
   data() {
     return {
-      // assignment: {},
       assignmentForm: {
         studentId: ""
       },
-      addStudent: {}
+      addStudent: {},
+      postForm: {}
     };
   },
   computed: {
@@ -292,9 +426,35 @@ export default {
     },
     student() {
       return this.$store.state.StudentStore.activeStudent;
+    },
+    comment() {
+      return this.$store.state.CommentsStore.activeComment;
+    },
+    post() {
+      return this.$store.state.PostsStore.activePost;
     }
   },
   methods: {
+    editPost() {
+      this.$store.dispatch("editPost", this.post);
+    },
+    deletePost() {
+      this.$store.dispatch("deletePost", this.post);
+      // if user is on post details it reroutes them to the main post page
+      if (this.$route.params.id) {
+        this.$router.push("/posts");
+        return;
+      }
+    },
+    addPost() {
+      this.$store.dispatch("addPost", this.postForm);
+    },
+    editComment() {
+      this.$store.dispatch("editComment", this.comment);
+    },
+    deleteComment() {
+      this.$store.dispatch("deleteComment", this.comment);
+    },
     deleteAssignment() {
       this.$store.dispatch("deleteAssignment", this.assignment);
     },
@@ -331,8 +491,6 @@ export default {
         ? addAssignmentData.dataset.allday
         : false;
 
-      console.log(this.assignmentForm);
-
       this.$store.dispatch("addAssignment", { ...this.assignmentForm });
       this.assignmentForm = { studentId: "" };
       if (document.getElementById("start-element")) {
@@ -349,8 +507,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
 
-// title: { type: String, required: true }, // description: { type: String,
-required: true }, // subject: { type: String, required: true }, // studentId: {
-type: ObjectId, ref: "Student", required: true },
+
+

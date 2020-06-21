@@ -5,7 +5,8 @@ import router from "../router/index";
 import { api } from "./AxiosStore";
 import { StudentStore } from "./StudentStore";
 import { AssignmentsStore } from "./AssignmentsStore";
-
+import { PostsStore } from "./PostsStore";
+import { CommentsStore } from "./CommentsStore";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -61,5 +62,7 @@ export default new Vuex.Store({
   modules: {
     StudentStore,
     AssignmentsStore,
+    PostsStore,
+    CommentsStore,
   },
 });
