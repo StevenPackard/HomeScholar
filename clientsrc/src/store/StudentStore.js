@@ -45,6 +45,7 @@ export const StudentStore = {
     async addStudent({ commit, dispatch }, studentData) {
       try {
         let res = await api.post("students", studentData);
+        console.log(res.data);
         dispatch("getStudents");
       } catch (error) {
         console.error(error);
