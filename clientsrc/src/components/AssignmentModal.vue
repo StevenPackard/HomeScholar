@@ -246,7 +246,7 @@
               type="button"
               class="btn btn-secondary mx-2"
               data-dismiss="modal"
-              @click="deleteAssignment"
+              @click="showDeleteAssignmentAlert"
             >
               Delete
             </button>
@@ -582,6 +582,22 @@ export default {
     },
     deleteComment() {
       this.$store.dispatch("deleteComment", this.comment);
+    },
+    showDeleteAssignmentAlert() {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this assignment!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          // swal("List deleted!", {
+          //   icon: "success",
+          // });
+          this.deleteAssignment();
+        }
+      });
     },
     deleteAssignment() {
       this.$store.dispatch("deleteAssignment", this.assignment);
