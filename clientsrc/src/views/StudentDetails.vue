@@ -29,7 +29,10 @@
               data-target="#addAssignmentModal"
               class="btn btn-success text-dark mt-3 shadow"
             >Add Assignment</button>
-            <button @click="deleteStudent" class="btn btn-danger mt-3 ml-2 shadow">Delete Student</button>
+            <button
+              @click="showDeleteStudentAlert"
+              class="btn btn-danger mt-3 ml-2 shadow"
+            >Delete Student</button>
           </div>
         </div>
         <div class="row bg-warning mt-2 justify-content-center">
@@ -86,6 +89,23 @@ export default {
     }
   },
   methods: {
+    showDeleteStudentAlert() {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Student!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          // swal("List deleted!", {
+          //   icon: "success",
+          // });
+          this.deleteStudent();
+        }
+      });
+    },
+
     deleteStudent() {
       this.$store.dispatch("deleteStudent", this.$route.params.id);
     }

@@ -39,14 +39,17 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
-              <a @click="routeToStudent(student.id)" class="nav-link">{{ student.name }}</a>
+              <a @click="routeToStudent(student.id)" class="nav-link">{{
+                student.name
+              }}</a>
             </span>
             <a
               class="dropdown-item pl-2"
               href="#"
               data-toggle="modal"
               data-target="#addStudentModal"
-            >Add Student</a>
+              >Add Student</a
+            >
           </div>
         </li>
         <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
@@ -54,8 +57,16 @@
         </li>-->
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button
+          class="btn btn-success"
+          @click="login"
+          v-if="!$auth.isAuthenticated"
+        >
+          Login
+        </button>
+        <button class="btn btn-danger" @click="showLogoutAlert" v-else>
+          logout
+        </button>
       </span>
     </div>
   </nav>
@@ -65,7 +76,7 @@
 import axios from "axios";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true
+  withCredentials: true,
 });
 export default {
   name: "Navbar",
@@ -76,7 +87,7 @@ export default {
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {
     async login() {
@@ -89,11 +100,24 @@ export default {
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
     },
+    showLogoutAlert() {
+      swal({
+        title: "Are you sure you want to log out?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willLogOut) => {
+        if (willLogOut) {
+          this.logout();
+        }
+      });
+    },
+
     routeToStudent(id) {
       this.$router.push("/student/" + id);
       this.$store.dispatch("getStudentById", id);
-    }
-  }
+    },
+  },
 };
 </script>
 
