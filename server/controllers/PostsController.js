@@ -4,7 +4,7 @@ import auth0provider from "@bcwdev/auth0provider";
 import { postsService } from "../services/PostsService";
 import { commentsService } from "../services/CommentsService";
 import socketService from "../services/SocketService";
-import socket from "../services/SocketService";
+
 //PUBLIC
 export class PostsController extends BaseController {
   constructor() {
