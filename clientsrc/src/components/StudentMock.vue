@@ -1,12 +1,15 @@
 <template>
-  <div class="student-mock-component col-12 my-3 bg-warning shadow">
+  <div
+    :style="background"
+    class="student-mock-component col-12 my-3 shadow color"
+  >
     <div class="row text-center justify-content-center">
       <div class="col-12">
         <router-link :to="{ path: `/student/${student.id}` }">
           <h4>
             {{ student.name }}
             <i class="fas fa-school mx-4"></i>
-            Grade Level - {{student.gradeLevel}}
+            Grade Level - {{ student.gradeLevel }}
           </h4>
         </router-link>
       </div>
@@ -32,7 +35,9 @@ import AddAssignmentModal from "../components/AssignmentModal";
 export default {
   name: "student-mock",
   data() {
-    return {};
+    return {
+      background: "background-color:" + this.student.backgroundColor + ";",
+    };
   },
   mounted() {
     this.$store.dispatch("getAssignmentsForDashboard", this.student.id);
@@ -40,9 +45,9 @@ export default {
   computed: {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments.filter(
-        a => a.studentId.id == this.student.id
+        (a) => a.studentId.id == this.student.id
       );
-    }
+    },
 
     //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
     //     this.student.id
@@ -52,9 +57,9 @@ export default {
   methods: {},
   components: {
     AddAssignmentModal,
-    AssignmentComponentMock
+    AssignmentComponentMock,
   },
-  props: ["student"]
+  props: ["student"],
 };
 </script>
 
@@ -66,5 +71,11 @@ export default {
   height: 25vh;
   overflow-y: auto;
   overflow-x: hidden;
+}
+:root {
+  --Bcolor: red;
+}
+.color {
+  background-color: var(--Bcolor);
 }
 </style>
