@@ -78,7 +78,7 @@ class SocketService {
 
   _addPost(data) {
     this.io.emit("addPost", data);
-    // stuff
+    // stuff stuff
   }
 
   _onDisconnect(socket) {
