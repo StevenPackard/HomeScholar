@@ -34,7 +34,7 @@ export default {
         title: this.assignment.title,
         duration: "02:00",
         id: this.assignment.id,
-        backgroundColor: "#e83e8c",
+        backgroundColor: this.assignment.backgroundColor,
       }),
     };
   },

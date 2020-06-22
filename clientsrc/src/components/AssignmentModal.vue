@@ -134,13 +134,13 @@
               </div>
               <div class="form-group">
                 <label for="studentSubjects" class="col-form-label"
-                  >Subjects (Optional)</label
+                  >Color</label
                 >
                 <input
-                  class="form-control"
-                  id="studentSubjects"
-                  type="text"
-                  v-model="addStudent.subjects"
+                  type="color"
+                  id="color"
+                  v-model="addStudent.backgroundColor"
+                  class=""
                 />
               </div>
             </form>
@@ -540,8 +540,11 @@ export default {
     return {
       assignmentForm: {
         studentId: "",
+        backgroundColor: "",
       },
-      addStudent: {},
+      addStudent: {
+        backgroundColor: "#f3969a",
+      },
       postForm: {},
     };
   },
@@ -606,12 +609,10 @@ export default {
       this.$store.dispatch("editAssignment", this.assignment);
     },
     submitNewStudent() {
-      let subjects = this.addStudent.subjects.split(", ");
-      if (subjects) {
-        this.addStudent.subjects = subjects;
-      }
       this.$store.dispatch("addStudent", { ...this.addStudent });
-      this.addStudent = {};
+      this.addStudent = {
+        backgroundColor: "#f3969a",
+      };
       $("#addStudentModal").modal("hide");
     },
     removeDatePars() {
@@ -626,6 +627,7 @@ export default {
         (s) => s.name == this.assignmentForm.name
       );
       this.assignmentForm.studentId = foundStudent.id;
+      this.assignmentForm.backgroundColor = foundStudent.backgroundColor;
 
       let addAssignmentData = document.getElementById("addAssignmentModal");
 
@@ -648,14 +650,29 @@ export default {
       }
     },
     editStudent() {
-      let subjects = this.student.subjects.split(",");
-      if (subjects) {
-        this.student.subjects = subjects;
-      }
-
       this.$store.dispatch("editStudent", this.student);
     },
   },
   components: {},
 };
 </script>
+<style>
+input[type="color"] {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+</style>

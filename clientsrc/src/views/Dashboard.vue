@@ -117,11 +117,9 @@ export default {
   },
   methods: {
     handleReceived(arg) {
-      let event = this.$refs.Fullcalendar.getApi().getEventById(
-        arg.draggedEl.id
-      );
-      if (event) {
-        event.remove();
+      let event = this.$refs.Fullcalendar.getApi().getEvents();
+      for (let i = 0; i < event.length; i++) {
+        event[i].remove();
       }
     },
     handleSelect(arg) {
