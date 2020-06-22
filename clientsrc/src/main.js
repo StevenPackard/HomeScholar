@@ -26,3 +26,4 @@ new Vue({
     return h(App);
   },
 }).$mount("#app");
+store.dispatch("initializeSocket");

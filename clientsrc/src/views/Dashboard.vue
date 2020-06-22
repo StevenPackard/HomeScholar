@@ -165,7 +165,7 @@ export default {
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
         arg.draggedEl.id
       );
-      console.log(event);
+      console.log(arg, "this is the drop");
 
       if (event) {
         event.remove();

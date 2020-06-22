@@ -9,6 +9,7 @@ const Assignment = new Schema(
     gradeLevel: { type: Number, min: 1, max: 12, required: true },
     subjects: [{ type: String }],
     creatorEmail: { type: String, required: true },
+    backgroundColor: { type: String, default: "#fd7e14" },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
