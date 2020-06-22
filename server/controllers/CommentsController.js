@@ -2,6 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
 import { commentsService } from "../services/CommentsService";
+import socketService from "../services/SocketService";
 
 //PUBLIC
 export class CommentsController extends BaseController {
@@ -18,6 +19,7 @@ export class CommentsController extends BaseController {
     try {
       req.body.creatorEmail = req.userInfo.email;
       let data = await commentsService.create(req.body);
+      socketService._addComment(req.body.postId);
       return res.send(data);
     } catch (error) {
       next(error);

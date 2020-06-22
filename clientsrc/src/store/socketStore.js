@@ -19,6 +19,10 @@ export default {
         dispatch("getAllPosts");
         // commit("addPost", data);
       });
+      socket.on("addComment", (postId) => {
+        dispatch("getCommentsById", postId);
+        console.log("comment was added");
+      });
     },
 
     addPost(data) {
@@ -26,9 +30,13 @@ export default {
       // commit('addPost', data)
     },
 
-    joinRoom({ commit, dispatch }, boardId) {
-      socket.emit("join", { boardId });
+    addComment(data) {
+      socket.emit("addComment", data);
     },
+
+    // joinRoom({ commit, dispatch }, boardId) {
+    //   socket.emit("join", { boardId });
+    // },
 
     leaveRoom({ commit, dispatch }, boardId) {
       socket.emit("leave", { boardId });
