@@ -2,7 +2,11 @@
   <div class="post my-2 py-4">
     <div class="bg-warning shadow text-dark rounded p-1">
       <div class="p-2 p-relative">
-        <img class="profile-img" src="https://placehold.it/60" alt="img not avalable" />
+        <img
+          class="profile-img"
+          src="https://placehold.it/60"
+          alt="img not avalable"
+        />
         <i
           @click="setActivePost"
           type="button"
@@ -12,9 +16,9 @@
           class="fa fa-pencil top-right action"
         ></i>
       </div>
-      <h4 class="p-3">{{post.creatorEmail}}</h4>
-      <h5 class="text-center p-2">{{post.title}}</h5>
-      <p class="p-2">{{post.body}}</p>
+      <h4 class="p-3">{{ post.creatorEmail }}</h4>
+      <h5 class="text-center p-2">{{ post.title }}</h5>
+      <p class="p-2">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
         <p @click="routeToDetails" class="btn btn-outline-dark">
           view comments
@@ -35,13 +39,11 @@ export default {
       }
     },
     setActivePost() {
-      console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    }
-  }
+    },
+  },
 };
 </script>
-
 
 <style>
 .top-right {

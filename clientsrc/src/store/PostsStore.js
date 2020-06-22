@@ -1,6 +1,7 @@
 import Vue from "vue";
 import router from "../router/index";
 import { api } from "./AxiosStore";
+import socketStore from "./socketStore";
 
 export const PostsStore = {
   state: {
@@ -9,6 +10,9 @@ export const PostsStore = {
   },
 
   mutations: {
+    addPost(state, data) {
+      state.posts.push(data);
+    },
     setActivePost(state, post) {
       state.activePost = post;
     },
@@ -19,9 +23,10 @@ export const PostsStore = {
   actions: {
     async addPost({ commit, dispatch }, data) {
       try {
+        debugger;
         let res = await api.post("posts", data);
-        console.log(res.data);
-        dispatch("getAllPosts");
+        commit("addPost", data);
+        // dispatch("getAllPosts");
       } catch (error) {
         console.error(error);
       }

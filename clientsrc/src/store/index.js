@@ -7,6 +7,7 @@ import { StudentStore } from "./StudentStore";
 import { AssignmentsStore } from "./AssignmentsStore";
 import { PostsStore } from "./PostsStore";
 import { CommentsStore } from "./CommentsStore";
+import socketStore from "./socketStore";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -64,5 +65,6 @@ export default new Vuex.Store({
     AssignmentsStore,
     PostsStore,
     CommentsStore,
+    socketStore,
   },
 });

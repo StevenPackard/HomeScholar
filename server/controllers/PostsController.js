@@ -3,6 +3,7 @@ import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
 import { postsService } from "../services/PostsService";
 import { commentsService } from "../services/CommentsService";
+import socket from "../services/SocketService";
 //PUBLIC
 export class PostsController extends BaseController {
   constructor() {
@@ -47,7 +48,8 @@ export class PostsController extends BaseController {
     try {
       req.body.creatorEmail = req.userInfo.email;
       let data = await postsService.create(req.body);
-      return res.status(201).send(data);
+      socket._addPost(data);
+      return res.send("added post");
     } catch (error) {
       next(error);
     }

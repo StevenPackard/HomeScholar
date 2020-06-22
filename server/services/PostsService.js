@@ -18,6 +18,7 @@ class PostsService {
 
   async create(rawData) {
     let data = await dbContext.Posts.create(rawData);
+
     return data;
   }
 

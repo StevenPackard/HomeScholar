@@ -54,7 +54,7 @@ class SocketService {
   messageUser(userId, eventName, payload) {
     try {
       this.io.to(userId).emit(eventName, payload);
-    } catch (e) { }
+    } catch (e) {}
   }
 
   messageRoom(room, eventName, payload) {
@@ -62,16 +62,17 @@ class SocketService {
   }
 
   _onConnect() {
-    return socket => {
+    return (socket) => {
       this._newConnection(socket);
-
+      console.log("connection");
       //STUB Register listeners
-
       socket.on("dispatch", this._onDispatch(socket));
       socket.on("disconnect", this._onDisconnect(socket));
     };
   }
-
+  _addPost(data) {
+    this.io.emit("addPost", data);
+  }
   _onDisconnect(socket) {
     return () => {
       try {
@@ -79,7 +80,7 @@ class SocketService {
           return;
         }
         this.io.emit("UserDisconnected", socket.user.id);
-      } catch (e) { }
+      } catch (e) {}
     };
   }
 
@@ -91,7 +92,7 @@ class SocketService {
           return socket.emit("error", "Unknown Action");
         }
         action.call(this, socket, payload.data);
-      } catch (e) { }
+      } catch (e) {}
     };
   }
 
@@ -99,7 +100,7 @@ class SocketService {
     //Handshake / Confirmation of Connection
     socket.emit("CONNECTED", {
       socket: socket.id,
-      message: "Successfully Connected"
+      message: "Successfully Connected",
     });
   }
 }
