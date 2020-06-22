@@ -72,6 +72,10 @@ class SocketService {
     };
   }
 
+  // _postsAdded(data) {
+  //   this.io.on()
+  // }
+
   _addPost(data) {
     this.io.emit("addPost", data);
   }
