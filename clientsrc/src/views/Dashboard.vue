@@ -171,7 +171,6 @@ export default {
         event.remove();
       }
       let cool = await this.$refs.Fullcalendar.getApi().getEvents();
-      console.log(cool);
 
       this.$store.dispatch("updateAssignment", newElements);
     },
@@ -210,7 +209,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .max-height {
   height: 87vh;
 }
@@ -228,5 +227,16 @@ export default {
 /* .students-box {
   height: 37vh;
   overflow-y: auto;
+} */
+
+.fc {
+  background-color: #20c997; /* most backgrounds */
+}
+.fc-today {
+  background-color: white !important;
+}
+/* .fc-event {
+  background-color: #f3969a;
+  border-color: #f3969a;
 } */
 </style>
