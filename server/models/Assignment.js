@@ -22,6 +22,7 @@ const Assignment = new Schema(
     allDay: { type: Boolean, default: false },
     note: { type: String },
     creatorEmail: { type: String, required: true },
+    backgroundColor: { type: String },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
