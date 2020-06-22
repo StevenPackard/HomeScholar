@@ -4,6 +4,7 @@
       <!-- <timeline /> -->
       <div class="col-md-8 col-12 max-height">
         <Fullcalendar
+          id="myCal"
           ref="Fullcalendar"
           height="parent"
           defaultView="timeGridDay"
@@ -12,12 +13,12 @@
           @select="handleSelect"
           :events="assignments"
           :editable="true"
+          @eventReceive="handleReceived"
           @drop="handleDrop"
           @eventDrop="handleUpdate"
           @eventResize="handleUpdate"
           @eventClick="setActiveAssignmentDetails"
           @dateClick="goToDate"
-          :droppable="true"
           :header="{
             center: 'title',
             left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
@@ -106,15 +107,23 @@ export default {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
     },
-    activeAssignments() {
-      return this.$store.state.AssignmentsStore.activeAssginemnts;
-    },
+    // activeAssignments() {
+    //   return this.$store.state.AssignmentsStore.activeAssignments;
+    // },
 
-    events() {
-      return this.$store.state.events;
-    },
+    // events() {
+    //   return this.$store.state.events;
+    // },
   },
   methods: {
+    handleReceived(arg) {
+      let event = this.$refs.Fullcalendar.getApi().getEventById(
+        arg.draggedEl.id
+      );
+      if (event) {
+        event.remove();
+      }
+    },
     handleSelect(arg) {
       console.log(arg);
       // console.log("this is the type", arg.view.type);
@@ -142,7 +151,7 @@ export default {
         $("#addAssignmentModal").modal("toggle");
       }
     },
-    handleDrop(arg) {
+    async handleDrop(arg) {
       let endDate = new Date(arg.date);
       endDate.setHours(endDate.getHours() + 2);
 
@@ -153,12 +162,17 @@ export default {
         assignmentId: arg.draggedEl.id,
       };
 
-      let event = this.$refs.Fullcalendar.getApi().getEventById(
+      let event = await this.$refs.Fullcalendar.getApi().getEventById(
         arg.draggedEl.id
       );
+      console.log(event);
+
       if (event) {
         event.remove();
       }
+      let cool = await this.$refs.Fullcalendar.getApi().getEvents();
+      console.log(cool);
+
       this.$store.dispatch("updateAssignment", newElements);
     },
     handleUpdate(arg) {

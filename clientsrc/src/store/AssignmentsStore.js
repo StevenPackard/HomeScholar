@@ -5,7 +5,7 @@ import { api } from "./AxiosStore";
 export const AssignmentsStore = {
   state: {
     assignments: [],
-    activeAssignments: [],
+    // activeAssignments: [],
     activeAssignmentDetails: {},
     ActiveAssignmentsbyStudentId: [],
   },
@@ -28,6 +28,9 @@ export const AssignmentsStore = {
         assignments.id,
         assignments.data
       );
+    },
+    setUpdateAssignment(state, assignment) {
+      state.assignments.push(assignment);
     },
   },
   actions: {
@@ -94,7 +97,8 @@ export const AssignmentsStore = {
           "assignments/" + updateDetails.assignmentId,
           updateDetails
         );
-        // dispatch("getAllAssignments");
+        // commit("setUpdateAssignment", res.data);
+        dispatch("getAllAssignments");
       } catch (error) {
         console.error(error);
       }
