@@ -18,7 +18,11 @@
         </form>
       </div>
       <div class="col-12">
-        <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <comment
+          v-for="comment in comments"
+          :key="comment.id"
+          :comment="comment"
+        />
       </div>
     </div>
   </div>
@@ -29,6 +33,7 @@ import comment from "../components/postsComponents/comment";
 import post from "../components/postsComponents/post";
 export default {
   mounted() {
+    // this.$store.dispatch("initializeSocket", this.$route.params.id);
     this.$store.dispatch("setActivePost", this.$route.params.id);
     this.$store.dispatch("getCommentsByPostId", this.$route.params.id);
   },
@@ -42,23 +47,22 @@ export default {
     },
     comments() {
       return this.$store.state.CommentsStore.comments;
-    }
+    },
   },
   methods: {
     async addComment() {
       let data = {
         body: this.commentData.body,
-        postId: this.$route.params.id
+        postId: this.$route.params.id,
       };
       await this.$store.dispatch("addComment", data);
       this.$store.dispatch("getCommentsByPostId", this.$route.params.id);
       this.commentData.body = "";
-    }
+    },
   },
   components: {
     comment,
-    post
-  }
+    post,
+  },
 };
 </script>
-
