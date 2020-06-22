@@ -165,13 +165,13 @@ export default {
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
         arg.draggedEl.id
       );
-      console.log(event);
+      console.log(arg, "this is the drop");
 
       if (event) {
         event.remove();
       }
       let cool = await this.$refs.Fullcalendar.getApi().getEvents();
-      console.log(cool);
+      console.log(cool, "this is from cool");
 
       this.$store.dispatch("updateAssignment", newElements);
     },

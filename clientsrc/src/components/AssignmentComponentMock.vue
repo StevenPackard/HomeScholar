@@ -33,8 +33,9 @@ export default {
       assignmentString: JSON.stringify({
         title: this.assignment.title,
         duration: "02:00",
-        id: this.assignment.id
-      })
+        id: this.assignment.id,
+        backgroundColor: "#e83e8c",
+      }),
     };
   },
   computed: {},
@@ -50,13 +51,13 @@ export default {
 
     dragging() {
       console.log("dragging");
-    }
+    },
     // createDraggable() {
 
     // }
   },
   components: {},
-  props: ["assignment"]
+  props: ["assignment"],
 };
 </script>
 
