@@ -80,6 +80,10 @@ class SocketService {
     this.io.emit("addPost");
   }
 
+  _addComment(postId) {
+    this.io.emit("addComment", postId);
+  }
+
   _onDisconnect(socket) {
     return () => {
       try {
