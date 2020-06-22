@@ -16,7 +16,7 @@ export default {
         commit("deleteProduct", data);
       });
       socket.on("addPost", (data) => {
-        console.log("got msg on client");
+        dispatch("getAllPosts");
         // commit("addPost", data);
       });
     },
