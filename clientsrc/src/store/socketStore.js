@@ -7,6 +7,8 @@ export default {
     initalizeSocket({ commit, dispatch }) {
       //establish connection with socket
       socket = io("//localhost:3000");
+      //   socket = io("//localhost:3000/posts/" + id);
+
       //Handle any on connection events
       socket.on("CONNECTED", (data) => {
         console.log("Connected to socket let the posting commence");
@@ -34,12 +36,12 @@ export default {
       socket.emit("addComment", data);
     },
 
-    // joinRoom({ commit, dispatch }, boardId) {
-    //   socket.emit("join", { boardId });
-    // },
+    joinRoom({ commit, dispatch }, postId) {
+      socket.emit("join", { postId });
+    },
 
-    leaveRoom({ commit, dispatch }, boardId) {
-      socket.emit("leave", { boardId });
+    leaveRoom({ commit, dispatch }, postId) {
+      socket.emit("leave", { postId });
     },
   },
 };
