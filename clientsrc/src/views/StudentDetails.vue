@@ -3,7 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 justify-content-center">
-          <div class="col-8 bg-warning shadow border-dark border justify-content-center">
+          <div
+            class="col-8 bg-warning shadow border-dark border justify-content-center"
+          >
             <h4 class="d-inline">
               {{ student.name }}
               <i class="fas fa-school mx-4"></i>
@@ -18,8 +20,10 @@
             ></i>
           </div>
 
-          <div class="col-8 text-left description-box bg-warning mt-1 shadow border-dark border">
-            <h5>{{student.description}}</h5>
+          <div
+            class="col-8 text-left description-box bg-warning mt-1 shadow border-dark border"
+          >
+            <h5>{{ student.description }}</h5>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -28,11 +32,15 @@
               data-toggle="modal"
               data-target="#addAssignmentModal"
               class="btn btn-success text-dark mt-3 shadow"
-            >Add Assignment</button>
+            >
+              Add Assignment
+            </button>
             <button
               @click="showDeleteStudentAlert"
               class="btn btn-danger mt-3 ml-2 shadow"
-            >Delete Student</button>
+            >
+              Delete Student
+            </button>
           </div>
         </div>
         <div class="row bg-warning mt-2 justify-content-center">
@@ -62,6 +70,9 @@
             />
           </ol>
         </div>
+        <router-link :to="{ name: 'transcript' }" class="nav-link">
+          <b>Transcript</b>
+        </router-link>
       </div>
     </div>
   </div>
@@ -84,9 +95,9 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments.filter(
-        a => a.studentId.id == this.student.id
+        (a) => a.studentId.id == this.student.id
       );
-    }
+    },
   },
   methods: {
     showDeleteStudentAlert() {
@@ -95,8 +106,8 @@ export default {
         text: "Once deleted, you will not be able to recover this Student!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -108,11 +119,11 @@ export default {
 
     deleteStudent() {
       this.$store.dispatch("deleteStudent", this.$route.params.id);
-    }
+    },
   },
   components: {
-    AssignmentComponentMock
-  }
+    AssignmentComponentMock,
+  },
 };
 </script>
 
