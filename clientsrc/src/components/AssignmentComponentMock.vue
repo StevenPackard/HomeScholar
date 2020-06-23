@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="showAll"
     @click="setActiveAssignmentDetails"
     :id="assignment.id"
     draggable="true"
@@ -30,6 +31,7 @@ export default {
   name: "assignment-component-mock",
   data() {
     return {
+      showAll: true,
       assignmentString: JSON.stringify({
         title: this.assignment.title,
         duration: "02:00",

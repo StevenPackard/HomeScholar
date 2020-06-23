@@ -4,6 +4,14 @@
       <div class="col-12 p-5 mt-5 ">
         <h1 align="center">Transcript for {{ student.name }}</h1>
       </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-3 ">Title</div>
+          <div class="col-3 ">Subject</div>
+          <div class="col-3 ">Description</div>
+          <div class="col-3 ">Score</div>
+        </div>
+      </div>
       <div
         v-for="assignment in assignments"
         :key="assignment.id"
@@ -20,11 +28,6 @@
           </div>
           <div v-if="!assignment.score" class="col-3">Ungraded</div>
         </div>
-        <span></span>
-        <span> </span>
-        <span></span>
-        <span></span>
-        <span></span>
       </div>
     </div>
     <div class="row">
