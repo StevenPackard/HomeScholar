@@ -1,4 +1,5 @@
 import Vue from "vue";
+// @ts-ignore
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -26,4 +27,4 @@ new Vue({
     return h(App);
   },
 }).$mount("#app");
-// store.dispatch("initalizeSocket");
+store.dispatch("initalizeSocket");

@@ -1,6 +1,6 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
-
+import socketService from "../services/SocketService";
 class PostsService {
   async getAll() {
     return await dbContext.Posts.find().populate("creator", "name picture");
@@ -13,6 +13,7 @@ class PostsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+
     return data;
   }
 
