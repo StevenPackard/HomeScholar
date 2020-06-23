@@ -9,10 +9,11 @@
           data-toggle="modal"
           data-target="#editComment"
           class="fa fa-pencil top-right action"
+          v-if="this.$auth.user.email == comment.creatorEmail"
         ></i>
       </div>
-      <h5 class="p-2 mt-3">{{comment.creatorEmail}}</h5>
-      <p class="p-2">{{comment.body}}</p>
+      <h5 class="p-2 mt-3">{{ comment.creatorEmail }}</h5>
+      <p class="p-2">{{ comment.body }}</p>
     </div>
   </div>
 </template>
@@ -22,7 +23,7 @@ export default {
   props: ["comment"],
   data() {
     return {
-      commentData: {}
+      commentData: {},
     };
   },
   methods: {
@@ -31,8 +32,7 @@ export default {
     },
     editComment() {
       this.$store.dispatch("editComment", this.commentData);
-    }
-  }
+    },
+  },
 };
 </script>
-
