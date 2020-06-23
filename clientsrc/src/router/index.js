@@ -10,6 +10,8 @@ import StudentDetails from "../views/StudentDetails.vue";
 import Posts from "../views/Posts.vue";
 // @ts-ignore
 import PostDetails from "../views/PostDetails.vue";
+// @ts-ignore
+import Transcript from "../views/Transcript.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(Router);
@@ -43,6 +45,12 @@ export default new Router({
       path: "/postDetails/:id",
       name: "postDetails",
       component: PostDetails,
+      beforeEnter: authGuard,
+    },
+    {
+      path: "/transcript",
+      name: "transcript",
+      component: Transcript,
       beforeEnter: authGuard,
     },
     {

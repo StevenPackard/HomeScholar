@@ -6,6 +6,7 @@ import store from "./store";
 import swal from "sweetalert";
 import { Auth0Plugin } from "@bcwdev/auth0-vue";
 import { domain, clientId, audience } from "./authConfig";
+import VueHtmlToPaper from "vue-html-to-paper";
 
 Vue.use(Auth0Plugin, {
   domain,
@@ -19,6 +20,16 @@ Vue.use(Auth0Plugin, {
     );
   },
 });
+const options = {
+  name: "_blank",
+  specs: ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],
+  styles: [
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    "https://unpkg.com/kidlat-css/css/kidlat.css",
+  ],
+};
+
+Vue.use(VueHtmlToPaper, options);
 
 new Vue({
   router,

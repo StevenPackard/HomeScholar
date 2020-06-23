@@ -31,8 +31,8 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal
-  }
+    AssignmentModal,
+  },
 };
 </script>
 <style lang="scss">
@@ -72,12 +72,3 @@ export default {
   cursor: pointer;
 }
 </style>
-
-.push-down {
-  margin-top: 5rem;
-}
-.push-down-less {
-  margin-top: 4rem;
-}
-</style>
-
