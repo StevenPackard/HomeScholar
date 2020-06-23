@@ -404,7 +404,7 @@
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
-              @click="deletePost"
+              @click="showDeletePostAlert"
             >
               Delete
             </button>
@@ -521,7 +521,7 @@
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
-              @click="deleteComment"
+              @click="showDeleteCommentAlert"
             >
               Delete
             </button>
@@ -599,6 +599,38 @@ export default {
           //   icon: "success",
           // });
           this.deleteAssignment();
+        }
+      });
+    },
+    showDeletePostAlert() {
+      swal({
+        title: "Delete Post",
+        text: "Are you sure you want to delete this post?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          // swal("List deleted!", {
+          //   icon: "success",
+          // });
+          this.deletePost();
+        }
+      });
+    },
+    showDeleteCommentAlert() {
+      swal({
+        title: "Delete Comment",
+        text: "Are you sure you want to delete this comment?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          // swal("List deleted!", {
+          //   icon: "success",
+          // });
+          this.deleteComment();
         }
       });
     },
