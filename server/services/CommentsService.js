@@ -25,6 +25,7 @@ class CommentsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    socketService.addComment(data);
     return data;
   }
 
@@ -36,6 +37,7 @@ class CommentsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    socketService.addComment(data);
   }
 }
 
