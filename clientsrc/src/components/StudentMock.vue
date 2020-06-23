@@ -12,15 +12,29 @@
             Grade Level - {{ student.gradeLevel }}
           </h4>
         </router-link>
+        <span>Hide Graded </span>
+        <input
+          class="btn btn-warning"
+          type="checkbox"
+          checked
+          @click="filtered = !filtered"
+        />
       </div>
       <div class="col-7 border-bottom border-dark">
         <h5>Assignments</h5>
       </div>
     </div>
     <div class="row assignment-box justify-content-center">
-      <ol class="col-11">
+      <ol v-if="filtered" class="col-11">
         <AssignmentComponentMock
           v-for="assignment in assignments"
+          :key="assignment.id"
+          :assignment="assignment"
+        />
+      </ol>
+      <ol v-if="!filtered" class="col-11">
+        <AssignmentComponentMock
+          v-for="assignment in filteredAssignments"
           :key="assignment.id"
           :assignment="assignment"
         />
@@ -36,6 +50,7 @@ export default {
   name: "student-mock",
   data() {
     return {
+      filtered: false,
       background: "background-color:" + this.student.backgroundColor + ";",
     };
   },
@@ -47,6 +62,9 @@ export default {
       return this.$store.state.AssignmentsStore.assignments.filter(
         (a) => a.studentId.id == this.student.id
       );
+    },
+    filteredAssignments() {
+      return this.assignments.filter((assignment) => !assignment.score);
     },
 
     //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
