@@ -24,7 +24,7 @@ export default {
       socket.on("updateComments", (data) => {
         console.log("added comment commit.....");
 
-        dispatch("getCommentsById", data.postId);
+        dispatch("getCommentsByPostId", data.postId);
         console.log("comment was added");
       });
     },

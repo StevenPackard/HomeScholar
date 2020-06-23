@@ -118,18 +118,19 @@ class SocketService {
   }
 
   //NOTE MAY WORK MAY NOT GUESS WE WILL FIND OUT
-  joinRoom(payload, data) {
+  joinRoom(socket, data) {
     console.log("attempting to join the room");
     // NOTE made it to this point at least
-    console.log("payload", payload);
-    this.io.join(payload.postId);
+    console.log("payload", data);
+    socket.join(data);
     console.log("joined room");
   }
 
   addComment(data) {
     console.log("adding comment");
-    console.log(data.postId);
-    this.io.to(data.postId).emit("updateComments", data);
+    console.log("comment postid", data.postId);
+    console.log(JSON.stringify(data));
+    this.io.in(data.postId).emit("updateComments", data);
   }
 }
 
