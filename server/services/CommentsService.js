@@ -1,6 +1,6 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
-
+import socketService from "../services/SocketService";
 class CommentsService {
   async getCommentsByPostId(id) {
     let res = await dbContext.Comments.find({ postId: id }).populate(
@@ -11,6 +11,8 @@ class CommentsService {
   }
   async create(rawData) {
     let data = await dbContext.Comments.create(rawData);
+    console.log(data.postId);
+    socketService.addComment(data);
     return data;
   }
 

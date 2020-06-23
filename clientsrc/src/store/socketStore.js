@@ -21,23 +21,28 @@ export default {
         dispatch("getAllPosts");
         // commit("addPost", data);
       });
-      socket.on("addComment", (postId) => {
-        dispatch("getCommentsById", postId);
+      socket.on("updateComments", (data) => {
+        console.log("added comment commit.....");
+
+        dispatch("getCommentsById", data.postId);
         console.log("comment was added");
+      });
+    },
+
+    joinPostRoom({ commit, dispatch }, postId) {
+      console.log("joining room client side");
+      socket.emit("dispatch", {
+        action: "joinRoom",
+        data: postId,
       });
     },
 
     addPost(data) {
       socket.emit("addPost", data);
-      // commit('addPost', data)
     },
 
     addComment(data) {
       socket.emit("addComment", data);
-    },
-
-    joinRoom({ commit, dispatch }, postId) {
-      socket.emit("join", { postId });
     },
 
     leaveRoom({ commit, dispatch }, postId) {

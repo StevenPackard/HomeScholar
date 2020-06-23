@@ -8,8 +8,10 @@ class SocketService {
   setIO(io) {
     try {
       this.io = io;
+      this.rooms = {};
       //Server listeners
       io.on("connection", this._onConnect());
+      io.on("join", (data) => this.joinRoom(data));
     } catch (e) {
       console.error("[SOCKETSTORE ERROR]", e);
     }
@@ -72,10 +74,6 @@ class SocketService {
     };
   }
 
-  // _postsAdded(data) {
-  //   this.io.on()
-  // }
-
   _addPost(data) {
     this.io.emit("addPost");
   }
@@ -96,6 +94,10 @@ class SocketService {
   }
 
   _onDispatch(socket) {
+    console.log(socket);
+
+    console.log("dispatching recived on the server");
+
     return (payload = {}) => {
       try {
         var action = this[payload.action];
@@ -113,6 +115,21 @@ class SocketService {
       socket: socket.id,
       message: "Successfully Connected",
     });
+  }
+
+  //NOTE MAY WORK MAY NOT GUESS WE WILL FIND OUT
+  joinRoom(payload, data) {
+    console.log("attempting to join the room");
+    // NOTE made it to this point at least
+    console.log("payload", payload);
+    this.io.join(payload.postId);
+    console.log("joined room");
+  }
+
+  addComment(data) {
+    console.log("adding comment");
+    console.log(data.postId);
+    this.io.to(data.postId).emit("updateComments", data);
   }
 }
 
