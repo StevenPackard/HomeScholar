@@ -13,7 +13,6 @@
             @click="searchPosts,toggleSearch = !toggleSearch"
             class="btn btn-info"
           >search posts</button>
-          {{this.postQuery}}
         </div>
       </div>
       <div class="col-12">
