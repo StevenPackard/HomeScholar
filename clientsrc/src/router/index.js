@@ -48,7 +48,7 @@ export default new Router({
       beforeEnter: authGuard,
     },
     {
-      path: "/transcript",
+      path: "/transcript/:id",
       name: "transcript",
       component: Transcript,
       beforeEnter: authGuard,
