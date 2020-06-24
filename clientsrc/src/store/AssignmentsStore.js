@@ -114,12 +114,9 @@ export const AssignmentsStore = {
         let studentAssignments = this.state.AssignmentsStore.assignments.filter(
           (a) => a.studentId.id == data.studentId
         );
-        console.log(studentAssignments, "this is broken cool");
-
         studentAssignments.forEach(async (a) => {
           (a.backgroundColor = data.color),
-            await api.put("assignments/" + a.id, a),
-            console.log("this is from the for each");
+            await api.put("assignments/" + a.id, a);
         });
       } catch (error) {
         console.error(error);
