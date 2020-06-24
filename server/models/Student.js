@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
+import { dbContext } from "../db/DbContext";
 
-const Assignment = new Schema(
+const Student = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -14,21 +15,21 @@ const Assignment = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-Assignment.virtual("creator", {
+Student.virtual("creator", {
   localField: "creatorEmail",
   ref: "Profile",
   foreignField: "email",
   justOne: true,
 });
 
-//CASCADE ON DELETE
-// Assignment.pre('findOneAndRemove', function (next) {
+// CASCADE ON DELETE
+// Assignment.pre("findOneAndRemove", function (next) {
 //   //lets find all the lists and remove them
 //   Promise.all([
-//     dbContext.List.deleteMany({ assignmentId: this._conditions._id })
+//     dbContext.Assignments.deleteMany({ studentId: this._conditions._id }),
 //   ])
 //     .then(() => next())
-//     .catch(err => next(err))
-// })
+//     .catch((err) => next(err));
+// });
 
-export default Assignment;
+export default Student;
