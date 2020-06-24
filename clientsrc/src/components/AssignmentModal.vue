@@ -563,6 +563,11 @@ export default {
     },
     editStudent() {
       this.$store.dispatch("editStudent", this.student);
+      this.$store.commit("setStudentAssignments", this.student.id);
+      this.$store.dispatch("editAssignColor", {
+        color: this.student.backgroundColor,
+        studentId: this.student.id
+      });
     }
   },
   components: {}

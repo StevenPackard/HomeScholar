@@ -8,6 +8,7 @@ export const AssignmentsStore = {
     // activeAssignments: [],
     activeAssignmentDetails: {},
     ActiveAssignmentsbyStudentId: [],
+    studentAssignments: [],
   },
   mutations: {
     setActiveAssignmentDetails(state, assignmentId) {
@@ -31,6 +32,11 @@ export const AssignmentsStore = {
     },
     setUpdateAssignment(state, assignment) {
       state.assignments.push(assignment);
+    },
+    setStudentAssignments(state, studentId) {
+      state.studentAssignments = state.assignments.filter(
+        (a) => a.studentId == studentId
+      );
     },
   },
   actions: {
@@ -99,6 +105,22 @@ export const AssignmentsStore = {
         );
         // commit("setUpdateAssignment", res.data);
         dispatch("getAllAssignments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async editAssignColor({ commit, dispatch }, data) {
+      try {
+        let studentAssignments = this.state.AssignmentsStore.assignments.filter(
+          (a) => a.studentId.id == data.studentId
+        );
+        console.log(studentAssignments, "this is broken cool");
+
+        studentAssignments.forEach(async (a) => {
+          (a.backgroundColor = data.color),
+            await api.put("assignments/" + a.id, a),
+            console.log("this is from the for each");
+        });
       } catch (error) {
         console.error(error);
       }
