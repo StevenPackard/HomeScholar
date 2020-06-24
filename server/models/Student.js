@@ -23,13 +23,13 @@ Student.virtual("creator", {
 });
 
 // CASCADE ON DELETE
-// Assignment.pre("findOneAndRemove", function (next) {
-//   //lets find all the lists and remove them
-//   Promise.all([
-//     dbContext.Assignments.deleteMany({ studentId: this._conditions._id }),
-//   ])
-//     .then(() => next())
-//     .catch((err) => next(err));
-// });
+Student.pre("findOneAndRemove", function (next) {
+  //lets find all the lists and remove them
+  Promise.all([
+    dbContext.Assignments.deleteMany({ studentId: this._conditions._id }),
+  ])
+    .then(() => next())
+    .catch((err) => next(err));
+});
 
 export default Student;
