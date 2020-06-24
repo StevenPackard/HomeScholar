@@ -39,6 +39,27 @@ export const AssignmentsStore = {
       );
     },
   },
+  getters: {
+    transcriptSummary: (state) => {
+      // let sortedArray = [];
+      // for (let i = 0; i < state.assignments.length; i++) {
+      //   let assignment = state.assignments[i];
+      //   if (
+      //     sortedArray.find(
+      //       (sortedArray) => sortedArray.subject == assignment.subject
+      //     )
+      //   ) {
+      //     sortedArray[assignment.subject].score.push(assignment.score);
+      //   } else {
+      //     sortedArray.push({
+      //       subject: assignment.subject,
+      //       score: [assignment.score],
+      //     });
+      //   }
+      // }
+      return state.assignments;
+    },
+  },
   actions: {
     async deleteAssignment({ commit, dispatch }, data) {
       try {
