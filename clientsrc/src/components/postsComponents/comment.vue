@@ -1,19 +1,22 @@
 <template>
-  <div class="bg-warning p-0 my-5 rounded shadow">
-    <div class="p-1">
-      <div class="p-relative p-2">
-        <img class="profile-img" src="https://placehold.it/60" alt />
-        <i
-          @click="setActiveComment"
-          type="button"
-          data-toggle="modal"
-          data-target="#editComment"
-          class="fa fa-pencil top-right action"
-          v-if="this.$auth.user.email == comment.creatorEmail"
-        ></i>
+  <div class="col-7" :class="{ offset: isCreator }">
+    <div class="bg-warning p-0 my-3 rounded shadow">
+      <div class="p-1">
+        <div class="p-relative p-2">
+          <i
+            @click="setActiveComment"
+            type="button"
+            data-toggle="modal"
+            data-target="#editComment"
+            class="fa fa-pencil top-right action"
+            v-if="isCreator"
+          ></i>
+        </div>
+        <h5 class="p-2 mt-3">
+          {{ comment.creatorEmail }} - {{ comment.createdAt }}
+        </h5>
+        <p class="p-2">{{ comment.body }}</p>
       </div>
-      <h5 class="p-2 mt-3">{{ comment.creatorEmail }}</h5>
-      <p class="p-2">{{ comment.body }}</p>
     </div>
   </div>
 </template>
@@ -34,5 +37,15 @@ export default {
       this.$store.dispatch("editComment", this.commentData);
     },
   },
+  computed: {
+    isCreator() {
+      return this.$store.state.user.email == this.comment.creatorEmail;
+    },
+  },
 };
 </script>
+<style>
+.offset {
+  margin-left: 30rem;
+}
+</style>

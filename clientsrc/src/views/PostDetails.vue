@@ -17,9 +17,13 @@
           </div>
         </form>
       </div>
-      <div class="col-12">
-        <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
-      </div>
+    </div>
+    <div class="row  comment-box">
+      <comment
+        v-for="comment in comments"
+        :key="comment.id"
+        :comment="comment"
+      />
     </div>
   </div>
 </template>
@@ -43,23 +47,29 @@ export default {
       return this.$store.state.PostsStore.activePost;
     },
     comments() {
-      return this.$store.state.CommentsStore.comments;
-    }
+      return this.$store.state.CommentsStore.comments.reverse().slice(0, 6);
+    },
   },
   methods: {
     async addComment() {
       let data = {
         body: this.commentData.body,
-        postId: this.$route.params.id
+        postId: this.$route.params.id,
       };
       await this.$store.dispatch("addComment", data);
       this.$store.dispatch("getCommentsByPostId", this.$route.params.id);
       this.commentData.body = "";
-    }
+    },
   },
   components: {
     comment,
-    post
-  }
+    post,
+  },
 };
 </script>
+<style>
+.comment-box {
+  height: 50vh;
+  overflow-y: auto;
+}
+</style>
