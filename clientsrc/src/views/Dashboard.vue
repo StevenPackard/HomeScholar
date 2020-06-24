@@ -98,17 +98,34 @@ export default {
   },
   methods: {
     handleReceived(arg) {
-      let event = this.$refs.Fullcalendar.getApi().getEventById(
-        arg.draggedEl.id
-      );
-      console.log("recieved", arg);
-      event.remove();
+      let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
+      // console.log("recieved", arg);
+      // event.remove();
       // NOTE We may need to revert this because we still get duplicates
-      // let event = this.$refs.Fullcalendar.getApi().getEvents();
-      // for (let i = 0; i < event.length; i++) {
-      //   event[i].remove();
-      // }
+      let events = this.$refs.Fullcalendar.getApi().getEvents();
+      console.log(event.id);
+      console.log(events);
+      for (let i = 0; i < events.length; i++) {
+        if (event.id == events[i].id) {
+          events[i].remove();
+        }
+        // console.log(events[i].id);
+        // events[i].remove();
+      }
     },
+    // handleEventRender(arg) {
+    //   let events = this.$refs.Fullcalendar.getApi().getEvents();
+    //   // console.log("event render events", events);
+    //   let eventIds = [];
+    //   for (let i = 0; i < events.length; i++) {
+    //     eventIds.push(events[i].id);
+    //   }
+
+    //   if (eventIds.includes(arg.event.id)) {
+    //     console.log("hello from if");
+    //     return false;
+    //   }
+    // },
     handleDragStart(arg) {
       console.log("drag start");
     },
@@ -158,7 +175,6 @@ export default {
       if (event) {
         event.remove();
       }
-      let cool = await this.$refs.Fullcalendar.getApi().getEvents();
 
       this.$store.dispatch("updateAssignment", newElements);
     },

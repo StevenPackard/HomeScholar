@@ -8,6 +8,7 @@ export const AssignmentsStore = {
     // activeAssignments: [],
     activeAssignmentDetails: {},
     ActiveAssignmentsbyStudentId: [],
+    studentAssignments: [],
   },
   mutations: {
     setActiveAssignmentDetails(state, assignmentId) {
@@ -31,6 +32,32 @@ export const AssignmentsStore = {
     },
     setUpdateAssignment(state, assignment) {
       state.assignments.push(assignment);
+    },
+    setStudentAssignments(state, studentId) {
+      state.studentAssignments = state.assignments.filter(
+        (a) => a.studentId == studentId
+      );
+    },
+  },
+  getters: {
+    transcriptSummary: (state) => {
+      // let sortedArray = [];
+      // for (let i = 0; i < state.assignments.length; i++) {
+      //   let assignment = state.assignments[i];
+      //   if (
+      //     sortedArray.find(
+      //       (sortedArray) => sortedArray.subject == assignment.subject
+      //     )
+      //   ) {
+      //     sortedArray[assignment.subject].score.push(assignment.score);
+      //   } else {
+      //     sortedArray.push({
+      //       subject: assignment.subject,
+      //       score: [assignment.score],
+      //     });
+      //   }
+      // }
+      return state.assignments;
     },
   },
   actions: {
@@ -99,6 +126,19 @@ export const AssignmentsStore = {
         );
         // commit("setUpdateAssignment", res.data);
         dispatch("getAllAssignments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async editAssignColor({ commit, dispatch }, data) {
+      try {
+        let studentAssignments = this.state.AssignmentsStore.assignments.filter(
+          (a) => a.studentId.id == data.studentId
+        );
+        studentAssignments.forEach(async (a) => {
+          (a.backgroundColor = data.color),
+            await api.put("assignments/" + a.id, a);
+        });
       } catch (error) {
         console.error(error);
       }

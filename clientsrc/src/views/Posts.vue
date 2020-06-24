@@ -10,6 +10,7 @@
             placeholder="email@email.com"
           />
           <button
+
             @click="searchPosts, (toggleSearch = !toggleSearch)"
             class="btn btn-warning col-md-2 col-8 mt-3 mt-md-0 btn-outline-dark"
           >
