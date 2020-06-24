@@ -195,6 +195,7 @@ export default {
       if (trashEventX > trashElRect.x) {
         console.log("good to delete");
         event.remove();
+        // I added to fix a git push
         let newTimes = {
           start: "",
           end: "",
