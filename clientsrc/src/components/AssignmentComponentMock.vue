@@ -4,7 +4,7 @@
     @click="setActiveAssignmentDetails"
     :id="assignment.id"
     draggable="true"
-    class="assignment-component-mock p-0 col-12 text-center border border-dark my-1 action p-2 drag-item"
+    class="assignment-component-mock p-0 col-12 text-center rounded border border-dark my-1 action p-2 drag-item"
     :data-event="assignmentString"
   >
     <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
@@ -66,5 +66,8 @@ export default {
 <style scoped>
 .assignment-component-mock {
   height: 5vh;
+}
+.action {
+  cursor: pointer;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="bg-light" id="app">
     <navbar />
     <router-view class="grow" />
     <footer class="text-center bg-info">

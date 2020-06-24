@@ -1,9 +1,9 @@
 <template>
-  <div class="home container-fluid push-down-less">
-    <div class="row bg-info pt-4">
-      <div class="col-8 bounce-in-top">
-        <div class="jumbotron shadow">
-          <h1 class="display-4">Welcome to HomeScholar</h1>
+  <div class="home container-fluid">
+    <div class="row bg-info pt-4 mt-5">
+      <div class="col-12 col-md-8 order-2 order-md-1">
+        <div class="jumbotron bg-success shadow">
+          <h2 class="display-4">Welcome to HomeScholar</h2>
           <p class="lead">
             Optimize the education of your children at home. Better planning
             leads to better learning
@@ -15,16 +15,21 @@
             life
           </p>
           <p class="lead">
-            <a class="btn btn-info btn-lg shadow" href="#" role="button">Take a tour</a>
+            <a
+              class="btn btn-warning btn-outline-dark btn-lg shadow"
+              href="#"
+              role="button"
+              >Take a tour</a
+            >
           </p>
         </div>
       </div>
-      <div class="col-4 text-center bounce-in-right">
+      <div class="col-md-4 col-12 text-center order-1 order-md-2">
         <img class="app-logo" src="@/assets/Logo.png" alt />
       </div>
     </div>
-    <div class="row home-row-large justify-content-center">
-      <div class="col-4 pt-5 bounce-in-left">
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-12 pt-5">
         <div class="row">
           <div class="col-12">
             <h3>
@@ -32,7 +37,7 @@
               Make learning fun for everyone!
             </h3>
           </div>
-          <div class="col">
+          <div class="col-12">
             <h3>
               Take your childrens learning to the next level from home.
               HomeScholar allows you to to create lesson plans easily and stick
@@ -41,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col-5 text-right bounce-in-bottom">
+      <div class="col-md-5 col-12 text-right">
         <img
           src="https://cf.ltkcdn.net/home-school/images/orig/261690-1600x1030-best-free-online-homeschool-programs.jpg"
           class="image-large mt-5 shadow"
@@ -50,9 +55,9 @@
       </div>
     </div>
     <!-- Reviews Row -->
-    <div class="row home-row-large justify-content-center align-items-center">
-      <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow bg-warning" style="width: 20rem;">
+    <div class="row  justify-content-around mt-3 mt-lg-0  align-items-center">
+      <div class="col-12 col-md-4 col-lg-3 justify-content-center text-center">
+        <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -70,8 +75,10 @@
           </div>
         </div>
       </div>
-      <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow bg-warning" style="width: 20rem;">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center  text-center"
+      >
+        <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -80,7 +87,9 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Its the best thing ever!</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Its the best thing ever!
+            </h6>
             <p class="card-text">
               "HomeScholar really is the best thing for me as a parent. I really
               feel empowered in my childrens education now I can spend more time
@@ -90,8 +99,10 @@
           </div>
         </div>
       </div>
-      <div class="col-4 justify-content-center d-flex text-center">
-        <div class="card shadow bg-warning" style="width: 20rem;">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center  text-center"
+      >
+        <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -111,13 +122,17 @@
         </div>
       </div>
     </div>
-    <div class="row home-row-small bg-info justify-content-center">
-      <div class="col-6 text-center text-box mt-3">
+    <div class="row bg-info justify-content-center">
+      <div class="col-md-6 col-12 text-center mt-3">
         <h3 class="text-dark">Take control of your childrens education.</h3>
-        <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
+        <h3 class="text-dark">
+          Ditch the hassle and start using HomeScholar today!
+        </h3>
       </div>
-      <div class="col-7 text-center">
-        <button class="btn-lg btn-success shadow">Sign up</button>
+      <div class="col-md-7 col-12 text-center">
+        <button class="btn-lg my-2 btn-success btn-outline-dark">
+          Sign up
+        </button>
       </div>
     </div>
   </div>
@@ -131,7 +146,7 @@ export default {
   },
   computed: {},
   methods: {},
-  components: {}
+  components: {},
 };
 </script>
 
@@ -147,18 +162,25 @@ export default {
   height: 20vh;
 }
 .image-large {
-  height: 300px;
+  width: 100%;
 }
 .jumbotron {
-  background-color: $yellow;
+  opacity: 85%;
+  // background-color: $yellow;
 }
 .text-box {
   height: 10vh;
 }
 .app-logo {
-  height: 400px;
+  width: 100%;
 }
-.push-down-less {
-  margin-top: 4rem;
+@media screen and (min-width: 600px) {
+  .push-down-less {
+    margin-top: 4rem;
+  }
+}
+.card {
+  opacity: 85%;
+  min-height: 15em;
 }
 </style>

@@ -1,8 +1,12 @@
 <template>
   <div class="post col-12 col-md-9 my-2 py-4 m-auto">
-    <div class="bg-warning shadow text-dark rounded p-1">
-      <div class="p-2 p-relative">
-        <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />
+    <div class=" shadow text-dark rounded p-1">
+      <div class="p-2 p-relative bg-info p-4 rounded">
+        <img
+          class="profile-img"
+          :src="post.creator.picture"
+          alt="img not avalable"
+        />
         <i
           @click="setActivePost"
           type="button"
@@ -12,11 +16,14 @@
           class="fa fa-pencil top-right action"
         ></i>
       </div>
-      <h4 class="p-3">{{ post.creatorEmail }}</h4>
-      <h5 class="text-center p-2">{{ post.title }}</h5>
-      <p class="p-2">{{ post.body }}</p>
+      <p class="p-3">{{ post.creatorEmail }}</p>
+      <h2 type="button" @click="routeToDetails" class="text-center p-2 action">
+        {{ post.title }}
+      </h2>
+      <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>
+      <p class="p-2 text-center">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
-        <p @click="routeToDetails" class="btn btn-outline-dark">
+        <p @click="routeToDetails" class="btn btn-outline-dark btn-warning">
           view comments
           <i class="fa fa-comment"></i>
         </p>
@@ -37,8 +44,8 @@ export default {
     setActivePost() {
       console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -58,5 +65,8 @@ export default {
   position: absolute;
   top: -1.6rem;
   left: 1.5rem;
+}
+.action {
+  cursor: default;
 }
 </style>
