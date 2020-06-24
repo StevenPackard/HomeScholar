@@ -19,6 +19,7 @@
           @eventResize="handleUpdate"
           @eventClick="setActiveAssignmentDetails"
           @dateClick="goToDate"
+          @eventLeave="handleEventLeave"
           @eventDragStop="handleEventDragStop"
           :header="{
             center: 'title',
@@ -30,6 +31,11 @@
       <div
         id="draggableContainer"
         class="col-md-4 col-12 max-height overflow-y"
+        @dragover="dragging"
+        @dragenter="handleDragEnter"
+        @drop="handleDropEvent"
+        droppable="true"
+        dropzone="true"
       >
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
@@ -118,11 +124,29 @@ export default {
     // },
   },
   methods: {
+    dragging(event) {
+      console.log("dragging");
+    },
+    handleDragEnter(event) {
+      console.log("drag enter");
+    },
+    handleEventLeave(arg) {
+      console.log("event leave", arg);
+    },
+    handleDropEvent(arg) {
+      console.log("draggable container");
+    },
     handleReceived(arg) {
-      let event = this.$refs.Fullcalendar.getApi().getEvents();
-      for (let i = 0; i < event.length; i++) {
-        event[i].remove();
-      }
+      let event = this.$refs.Fullcalendar.getApi().getEventById(
+        arg.draggedEl.id
+      );
+      console.log("recieved", arg);
+      event.remove();
+
+      // let event = this.$refs.Fullcalendar.getApi().getEvents();
+      // for (let i = 0; i < event.length; i++) {
+      //   event[i].remove();
+      // }
     },
     handleSelect(arg) {
       console.log(arg);
@@ -183,8 +207,8 @@ export default {
       console.log(arg);
       this.$store.dispatch("updateAssignment", newElements);
     },
-    handleEventDragStop(arg) {
-      console.log(" event ddrag stop method");
+    async handleEventDragStop(arg) {
+      console.log(" event drag stop method");
       console.log(arg);
       let trashEventX = arg.jsEvent.clientX;
       let trashEventY = arg.jsEvent.clientY;
@@ -193,15 +217,24 @@ export default {
       let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
       console.log(trashElRect);
       if (trashEventX > trashElRect.x) {
-        console.log("good to delete");
-        event.remove();
-        // I added to fix a git push
-        let newTimes = {
-          start: "",
-          end: "",
-          assignmentId: arg.event.id,
-        };
-        this.$store.dispatch("updateAssignment", newTimes);
+        swal({
+          title: "Remove Event",
+          text:
+            "Are you sure you want to remove this event? This will not delete the assignment.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            event.remove();
+            let newTimes = {
+              start: "",
+              end: "",
+              assignmentId: arg.event.id,
+            };
+            this.$store.dispatch("updateAssignment", newTimes);
+          }
+        });
       }
 
       // let trashEl = document.getElementById("event-trash");
