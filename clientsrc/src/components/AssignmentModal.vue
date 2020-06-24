@@ -96,6 +96,7 @@
               class="close"
               data-dismiss="modal"
               aria-label="Close"
+              @click="removeDatePars"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -652,6 +653,10 @@ export default {
         document.getElementById("start-element").remove();
         document.getElementById("end-element").remove();
         document.getElementById("allday-element").remove();
+        let assignmentForm = document.getElementById("addAssignmentModal");
+        assignmentForm.removeAttribute("data-start");
+        assignmentForm.removeAttribute("data-end");
+        assignmentForm.removeAttribute("data-allday");
       }
     },
     addNewAssignment() {
@@ -679,6 +684,10 @@ export default {
         document.getElementById("start-element").remove();
         document.getElementById("end-element").remove();
         document.getElementById("allday-element").remove();
+        let assignmentForm = document.getElementById("addAssignmentModal");
+        assignmentForm.removeAttribute("data-start");
+        assignmentForm.removeAttribute("data-end");
+        assignmentForm.removeAttribute("data-allday");
       }
     },
     editStudent() {
