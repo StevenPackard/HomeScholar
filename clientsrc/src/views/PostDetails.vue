@@ -1,9 +1,11 @@
 <template>
-  <div class="container-fluid">
-    <div class="row pt-4 bg-light">
+  <div class="container-fluid bg-light">
+    <div class="row pt-4">
       <div class="col-12 pt-5">
-        <post :post="activePost" />
-        <form @submit.prevent="addComment">
+        <div class="row">
+          <post :post="activePost" />
+        </div>
+        <form class="col-10 offset-1" @submit.prevent="addComment">
           <div class="text-center">
             <input
               class="w-80 p-2 my-2 rounded"
@@ -18,12 +20,11 @@
         </form>
       </div>
     </div>
-    <div class="row  comment-box">
-      <comment
-        v-for="comment in comments"
-        :key="comment.id"
-        :comment="comment"
-      />
+    <div class="row comment-box mt-2">
+      <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+      <div class="col-12 text-center">
+        <button @click="commentLength += 10" class="btn btn-success">Show More</button>
+      </div>
     </div>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
     this.$store.dispatch("joinPostRoom", this.$route.params.id);
   },
   data() {
-    return { commentData: {} };
+    return { commentData: {}, commentLength: 10 };
   },
 
   computed: {
@@ -47,29 +48,37 @@ export default {
       return this.$store.state.PostsStore.activePost;
     },
     comments() {
-      return this.$store.state.CommentsStore.comments.reverse().slice(0, 6);
-    },
+      return this.$store.state.CommentsStore.comments
+        .sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          } else if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+        })
+        .slice(0, this.commentLength);
+    }
   },
   methods: {
     async addComment() {
       let data = {
         body: this.commentData.body,
-        postId: this.$route.params.id,
+        postId: this.$route.params.id
       };
       await this.$store.dispatch("addComment", data);
       this.$store.dispatch("getCommentsByPostId", this.$route.params.id);
       this.commentData.body = "";
-    },
+    }
   },
   components: {
     comment,
-    post,
-  },
+    post
+  }
 };
 </script>
 <style>
 .comment-box {
-  height: 50vh;
+  height: 52vh;
   overflow-y: auto;
 }
 </style>
