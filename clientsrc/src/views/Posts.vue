@@ -1,9 +1,8 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 p-0 pt-5 text-center"></div>
-      <div class="col-12 py-5">
-        <div class="mt-5 pt-3 text-center w-100 fixed-top">
+    <div class="row push-down-less mb-2">
+      <div class="col-12">
+        <div class="pt-3 text-center w-100">
           <button
             type="button"
             data-toggle="modal"
@@ -11,8 +10,10 @@
             class="btn text-dark btn-info"
           >Share an event or get advice</button>
         </div>
-        <post v-for="post in posts" :key="post.id" :post="post" />
       </div>
+    </div>
+    <div class="row justify-content-center post-box">
+      <post v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
@@ -38,5 +39,12 @@ export default {
 }
 .w-80 {
   min-width: 80%;
+}
+.push-down-less {
+  margin-top: 4rem;
+}
+.post-box {
+  height: 82vh;
+  overflow-y: auto;
 }
 </style>

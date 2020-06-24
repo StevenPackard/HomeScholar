@@ -1,12 +1,8 @@
 <template>
-  <div class="post my-2 py-4">
+  <div class="post col-12 col-md-9 my-2 py-4 m-auto">
     <div class="bg-warning shadow text-dark rounded p-1">
       <div class="p-2 p-relative">
-        <img
-          class="profile-img"
-          src="https://placehold.it/60"
-          alt="img not avalable"
-        />
+        <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />
         <i
           @click="setActivePost"
           type="button"
@@ -41,8 +37,8 @@ export default {
     setActivePost() {
       console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -60,7 +56,7 @@ export default {
   height: 60px;
   border-radius: 50%;
   position: absolute;
-  top: -2rem;
+  top: -1.6rem;
   left: 1.5rem;
 }
 </style>
