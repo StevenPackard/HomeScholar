@@ -19,6 +19,7 @@
           @eventResize="handleUpdate"
           @eventClick="setActiveAssignmentDetails"
           @dateClick="goToDate"
+          @eventDragStop="handleEventDragStop"
           :header="{
             center: 'title',
             left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
@@ -30,6 +31,7 @@
         id="draggableContainer"
         class="col-md-4 col-12 max-height overflow-y"
       >
+        <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
           <button
             data-toggle="modal"
@@ -181,6 +183,40 @@ export default {
       console.log(arg);
       this.$store.dispatch("updateAssignment", newElements);
     },
+    handleEventDragStop(arg) {
+      console.log(" event ddrag stop method");
+      console.log(arg);
+      let trashEventX = arg.jsEvent.clientX;
+      let trashEventY = arg.jsEvent.clientY;
+      let trashEl = document.getElementById("draggableContainer");
+      let trashElRect = trashEl.getBoundingClientRect();
+      let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
+      console.log(trashElRect);
+      if (trashEventX > trashElRect.x) {
+        console.log("good to delete");
+        event.remove();
+        let newTimes = {
+          start: "",
+          end: "",
+          assignmentId: arg.event.id,
+        };
+        this.$store.dispatch("updateAssignment", newTimes);
+      }
+
+      // let trashEl = document.getElementById("event-trash");
+      // let trashElRect = trashEl.getBoundingClientRect();
+      // console.log("trashEvent coors", trashEventX, trashEventY);
+      // console.log("trash coors", trashElRect.x, trashElRect.y);
+
+      // let diffX = Math.abs(trashEventX - trashElRect.x);
+      // let diffY = Math.abs(trashEventY - trashElRect.y);
+      // console.log("diffx: ", diffX);
+      // console.log("diffY: ", diffY);
+      // if (diffX < 50 && diffY < 40) {
+      //   console.log("good to delete");
+      // }
+    },
+
     setActiveAssignmentDetails(arg) {
       this.$store.commit("setActiveAssignmentDetails", arg.event.id);
       $("#assignmentDetailsModal").modal("toggle");
