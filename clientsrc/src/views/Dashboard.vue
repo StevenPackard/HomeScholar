@@ -4,6 +4,7 @@
       <!-- <timeline /> -->
       <div class="col-md-8 col-12 max-height">
         <Fullcalendar
+          class="rounded shadow"
           id="myCal"
           ref="Fullcalendar"
           height="parent"
@@ -39,7 +40,7 @@
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
-            class="btn btn-success sticky-top"
+            class="btn btn-warning btn-outline-dark mt-2 sticky-top"
           >
             add assignment
           </button>
@@ -277,20 +278,30 @@ export default {
 } */
 
 .fc {
-  background-color: #ffce67; /* most backgrounds */
+  background-color: #6cc3d5; /* most backgrounds */
 }
 .fc-today {
   background-color: white !important;
 }
 .fc-button-primary {
-  background-color: teal;
+  background-color: #ffce67;
+  color: #343a40;
+  margin-top: 7px;
+  margin-left: 10px;
+  margin-right: 7px;
 }
 .fc-button-primary:not(:disabled).fc-button-active {
-  background-color: thistle;
+  background-color: #888;
+  cursor: default;
 }
 .fc-button-primary:disabled {
-  background-color: tomato;
+  background-color: #888;
 }
+.fc-toolbar h2 {
+  color: whitesmoke;
+  text-shadow: 0.5px 0.5px black;
+}
+
 /* .fc-event {
   background-color: #f3969a;
   border-color: #f3969a;

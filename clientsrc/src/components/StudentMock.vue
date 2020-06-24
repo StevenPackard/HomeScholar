@@ -1,7 +1,7 @@
 <template>
   <div
     :style="background"
-    class="student-mock-component col-12 my-3 shadow color"
+    class="student-mock-component col-12 my-3 shadow rounded color"
   >
     <div class="row text-center justify-content-center">
       <div class="col-12">

@@ -3,7 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 justify-content-center">
-          <div class="col-8 bg-warning shadow border-dark border justify-content-center">
+          <div
+            class="col-md-8 col-12 bg-success rounded-top border-dark border-top border-left border-right justify-content-center"
+          >
             <h4 class="d-inline">
               {{ student.name }}
               <i class="fas fa-school mx-4"></i>
@@ -13,32 +15,37 @@
               type="button"
               data-toggle="modal"
               data-target="#editStudentModal"
-              class="fa fa-pencil pencil"
+              class="fa fa-pencil pencil text-warning text-shadow"
               aria-hidden="true"
             ></i>
           </div>
 
-          <div class="col-8 text-left description-box bg-warning mt-1 shadow border-dark border">
+          <div
+            class="col-md-8 col-12 text-left description-box rounded-bottom shadow border-dark border-left border-right border-bottom"
+          >
             <h5>{{ student.description }}</h5>
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-4 text-center">
+          <div class="col-md-4 col-12 text-center">
             <button
               data-toggle="modal"
               data-target="#addAssignmentModal"
-              class="btn btn-success text-dark mt-3 shadow"
-            >Add Assignment</button>
+              class="btn btn-warning btn-outline-dark mt-3 shadow"
+            >
+              Add Assignment
+            </button>
             <button
               @click="showDeleteStudentAlert"
-              class="btn btn-danger mt-3 ml-2 shadow"
-            >Delete Student</button>
+              class="btn btn-danger btn-outline-dark mt-3 ml-2 shadow"
+            >
+              Delete Student
+            </button>
           </div>
         </div>
-        <div class="row bg-warning mt-2 justify-content-center mx-2">
-          <div class="col-5 text-center border-bottom border-dark">
-            <h3>Assignments</h3>
-          </div>
+        <div
+          class="row bg-info rounded-top mt-2 border-dark border-top border-left border-right justify-content-center mx-md-2"
+        >
           <div class="col-12 mt-2">
             <div class="row text-center">
               <div class="col-4">
@@ -53,7 +60,9 @@
             </div>
           </div>
         </div>
-        <div class="row mx-2 justify-content-center bg-warning overflow-y shadow">
+        <div
+          class="row mx-md-2 justify-content-center border-left border-right border-bottom border-dark rounded-bottom min shadow"
+        >
           <ol class="col-12 pl-4">
             <assignmentComponentMock
               v-for="assignment in assignments"
@@ -87,9 +96,9 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments.filter(
-        a => a.studentId.id == this.student.id
+        (a) => a.studentId.id == this.student.id
       );
-    }
+    },
   },
   methods: {
     showDeleteStudentAlert() {
@@ -98,8 +107,8 @@ export default {
         text: "Once deleted, you will not be able to recover this Student!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -111,11 +120,11 @@ export default {
 
     deleteStudent() {
       this.$store.dispatch("deleteStudent", this.$route.params.id);
-    }
+    },
   },
   components: {
-    AssignmentComponentMock
-  }
+    AssignmentComponentMock,
+  },
 };
 </script>
 
@@ -148,5 +157,11 @@ export default {
   position: absolute;
   right: 10px;
   top: 5px;
+}
+.min {
+  min-height: 25vh;
+}
+.text-shadow {
+  text-shadow: 0.5px 0.5px black;
 }
 </style>

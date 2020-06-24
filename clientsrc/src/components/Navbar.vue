@@ -39,13 +39,17 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
-              <a @click="routeToStudent(student.id)" class="nav-link">{{
-                student.name
-              }}</a>
+              <a
+                @click="routeToStudent(student.id)"
+                type="button"
+                class="nav-link"
+                >{{ student.name }}</a
+              >
             </span>
             <a
               class="dropdown-item pl-2"
               href="#"
+              type="button"
               data-toggle="modal"
               data-target="#addStudentModal"
               >Add Student</a
@@ -58,13 +62,17 @@
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-success"
+          class="btn btn-success btn-outline-dark"
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
           Login
         </button>
-        <button class="btn btn-danger" @click="showLogoutAlert" v-else>
+        <button
+          class="btn btn-danger btn-outline-dark"
+          @click="showLogoutAlert"
+          v-else
+        >
           logout
         </button>
       </span>

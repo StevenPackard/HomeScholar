@@ -1,19 +1,29 @@
 <template>
-  <div class="col-12 col-md-7 offset-md-1" :class="{ 'offset-md-4': isCreator }">
-    <div class="bg-warning p-0 my-4 rounded shadow">
+  <div
+    class="col-12 col-md-7 offset-md-1"
+    :class="{ 'offset-md-4': isCreator }"
+  >
+    <div class=" p-0 my-4 rounded shadow">
       <div class="p-1">
-        <div class="p-relative p-2">
-          <img class="profile-img" :src="comment.creator.picture" alt="img not avalable" />
+        <div class="p-relative p-3 rounded bg-warning">
+          <img
+            class="profile-img"
+            :src="comment.creator.picture"
+            alt="img not avalable"
+          />
           <i
             @click="setActiveComment"
             type="button"
             data-toggle="modal"
             data-target="#editComment"
-            class="fa fa-pencil top-right action"
+            class="fa fa-pencil top-right"
             v-if="isCreator"
           ></i>
         </div>
-        <h5 class="p-2 mt-3">{{ comment.creatorEmail }} - {{ comment.createdAt }}</h5>
+        <h5 class="p-2 mt-3">
+          {{ comment.creatorEmail }} -
+          {{ new Date(comment.createdAt).toLocaleString() }}
+        </h5>
         <p class="p-2">{{ comment.body }}</p>
       </div>
     </div>
@@ -25,7 +35,7 @@ export default {
   props: ["comment"],
   data() {
     return {
-      commentData: {}
+      commentData: {},
     };
   },
   methods: {
@@ -34,13 +44,13 @@ export default {
     },
     editComment() {
       this.$store.dispatch("editComment", this.commentData);
-    }
+    },
   },
   computed: {
     isCreator() {
       return this.$store.state.user.email == this.comment.creatorEmail;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
