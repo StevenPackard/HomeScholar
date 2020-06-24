@@ -41,23 +41,31 @@ export const AssignmentsStore = {
   },
   getters: {
     transcriptSummary: (state) => {
-      // let sortedArray = [];
-      // for (let i = 0; i < state.assignments.length; i++) {
-      //   let assignment = state.assignments[i];
-      //   if (
-      //     sortedArray.find(
-      //       (sortedArray) => sortedArray.subject == assignment.subject
-      //     )
-      //   ) {
-      //     sortedArray[assignment.subject].score.push(assignment.score);
-      //   } else {
-      //     sortedArray.push({
-      //       subject: assignment.subject,
-      //       score: [assignment.score],
-      //     });
-      //   }
-      // }
-      return state.assignments;
+      let assignments = state.assignments.filter((e) => e.score > 0);
+      console.log(assignments);
+
+      let subjectObj = {};
+
+      for (let i = 0; i < assignments.length; i++) {
+        let keys = Object.keys(subjectObj);
+        for (let j = 0; j <= keys.length; j++) {
+          if (keys.includes(assignments[i].subject)) {
+            subjectObj[assignments[i].subject].push(assignments[i].score);
+          } else {
+            subjectObj[assignments[i].subject] = [assignments[i].score];
+          }
+        }
+      }
+      console.log(subjectObj);
+
+      let keys = Object.keys(subjectObj);
+      let avgObj = {};
+      for (let i = 0; i < keys.length; i++) {
+        avgObj[keys[i]] =
+          subjectObj[keys[i]].reduce((a, b) => a + b, 0) /
+          subjectObj[keys[i]].length;
+      }
+      return avgObj;
     },
   },
   actions: {
