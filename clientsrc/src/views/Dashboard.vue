@@ -298,10 +298,19 @@ export default {
 } */
 
 .fc {
-  background-color: #20c997; /* most backgrounds */
+  background-color: #ffce67; /* most backgrounds */
 }
 .fc-today {
   background-color: white !important;
+}
+.fc-button-primary {
+  background-color: teal;
+}
+.fc-button-primary:not(:disabled).fc-button-active {
+  background-color: thistle;
+}
+.fc-button-primary:disabled {
+  background-color: tomato;
 }
 /* .fc-event {
   background-color: #f3969a;

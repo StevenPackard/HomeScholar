@@ -2,14 +2,15 @@
   <div class="transcript container-fluid">
     <div id="transcript" class="row ">
       <div class="col-12 p-5 mt-5 ">
-        <h1 align="center">Transcript for {{ student.name }}</h1>
+        <h1 align="center">Homeschool Transcript for {{ student.name }}</h1>
       </div>
       <div class="col-12">
-        <div class="row">
-          <div class="col-3 ">Title</div>
-          <div class="col-3 ">Subject</div>
-          <div class="col-3 ">Description</div>
-          <div class="col-3 ">Score</div>
+        <div class="row justify-content-center mb-2">
+          <div class="col-2 border ">Title</div>
+          <div class="col-2 border">Subject</div>
+          <div class="col-2 border">Description</div>
+          <div class="col-2 border ">Score</div>
+          <div class="col-2 border">hours</div>
         </div>
       </div>
       <div
@@ -17,16 +18,24 @@
         :key="assignment.id"
         class="col-12"
       >
-        <div class="row">
-          <div class="col-3">{{ assignment.title }}</div>
-          <div v-if="assignment.title != assignment.subject" class="col-3">
-            {{ assignment.subject }}
+        <div v-if="assignment.score">
+          <div class="row justify-content-center">
+            <div class="col-2 border">{{ assignment.title }}</div>
+            <div class="col-2 border">
+              {{ assignment.subject }}
+            </div>
+            <div class="col-2 border">{{ assignment.description }}</div>
+            <div v-if="assignment.score" class="col-2 border">
+              {{ assignment.score }}
+            </div>
+            <div v-if="!assignment.score" class="col-2 border">Ungraded</div>
+            <div class="col-2 border">
+              {{
+                new Date(assignment.end).getUTCHours() -
+                  new Date(assignment.start).getUTCHours()
+              }}
+            </div>
           </div>
-          <div class="col-3">{{ assignment.description }}</div>
-          <div v-if="assignment.score" class="col-3">
-            Score: {{ assignment.score }}
-          </div>
-          <div v-if="!assignment.score" class="col-3">Ungraded</div>
         </div>
       </div>
     </div>
@@ -45,6 +54,10 @@ export default {
     return {
       output: null,
     };
+  },
+  mounted() {
+    this.$store.dispatch("getStudentById", this.$route.params.id);
+    this.$store.dispatch("getAllAssignments");
   },
   methods: {
     print() {
