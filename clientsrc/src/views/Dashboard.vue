@@ -10,33 +10,30 @@
           defaultView="timeGridDay"
           :plugins="calendarPlugins"
           :selectable="true"
-          @select="handleSelect"
+          :dragRevertDuration="0"
           :events="assignments"
           :editable="true"
+          :header="{
+            center: 'title',
+            left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
+            right: 'prev today next',
+          }"
+          @select="handleSelect"
           @eventReceive="handleReceived"
           @drop="handleDrop"
           @eventDrop="handleUpdate"
           @eventResize="handleUpdate"
           @eventClick="setActiveAssignmentDetails"
           @dateClick="goToDate"
-          @eventLeave="handleEventLeave"
+          @eventDragStart="handleDragStart"
           @eventDragStop="handleEventDragStop"
-          :header="{
-            center: 'title',
-            left: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
-            right: 'prev today next',
-          }"
         />
       </div>
       <div
         id="draggableContainer"
         class="col-md-4 col-12 max-height overflow-y"
-        @dragover="dragging"
-        @dragenter="handleDragEnter"
-        @drop="handleDropEvent"
-        droppable="true"
-        dropzone="true"
       >
+        <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
           <button
@@ -55,19 +52,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row justify-content-center mt-4">
-      <div class="col-12 shadow">
-
-        <div class="row justify-content-center students-box bg-info">
-          <student
-            v-for="student in students"
-            :key="student.id"
-            :student="student"
-          />
-        </div>
-
-      </div>
-    </div>-->
   </div>
 </template>
 
@@ -91,13 +75,8 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
-    console.log(document.getElementsByClassName("drag-item"), "from mounted");
   },
 
-  // updated() {
-  //   let draggableElement = document.getElementById("draggableContainer");
-  //   new Draggable(draggableElement, { itemSelector: ".drag-item" });
-  // },
   data() {
     return {
       calendarPlugins: [
@@ -115,38 +94,22 @@ export default {
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
     },
-    // activeAssignments() {
-    //   return this.$store.state.AssignmentsStore.activeAssignments;
-    // },
-
-    // events() {
-    //   return this.$store.state.events;
-    // },
   },
   methods: {
-    dragging(event) {
-      console.log("dragging");
-    },
-    handleDragEnter(event) {
-      console.log("drag enter");
-    },
-    handleEventLeave(arg) {
-      console.log("event leave", arg);
-    },
-    handleDropEvent(arg) {
-      console.log("draggable container");
-    },
     handleReceived(arg) {
       let event = this.$refs.Fullcalendar.getApi().getEventById(
         arg.draggedEl.id
       );
       console.log("recieved", arg);
       event.remove();
-
+      // NOTE We may need to revert this because we still get duplicates
       // let event = this.$refs.Fullcalendar.getApi().getEvents();
       // for (let i = 0; i < event.length; i++) {
       //   event[i].remove();
       // }
+    },
+    handleDragStart(arg) {
+      console.log("drag start");
     },
     handleSelect(arg) {
       console.log(arg);
@@ -236,7 +199,7 @@ export default {
           }
         });
       }
-
+      // NOTE This goes with the trash icon for event removal
       // let trashEl = document.getElementById("event-trash");
       // let trashElRect = trashEl.getBoundingClientRect();
       // console.log("trashEvent coors", trashEventX, trashEventY);
