@@ -7,7 +7,7 @@ export default {
   actions: {
     initalizeSocket({ commit, dispatch }) {
       //establish connection with socket
-      socket = io(base + port);
+      socket = io(base);
       //   socket = io("//localhost:3000/posts/" + id);
 
       //Handle any on connection events
