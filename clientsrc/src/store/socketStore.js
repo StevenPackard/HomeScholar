@@ -1,12 +1,12 @@
 import io from "socket.io-client";
 
 let socket = {};
-
+const port = process.env.PORT || 3000;
 export default {
   actions: {
     initalizeSocket({ commit, dispatch }) {
       //establish connection with socket
-      socket = io("//localhost:3000");
+      socket = io("//localhost:" + port);
       //   socket = io("//localhost:3000/posts/" + id);
 
       //Handle any on connection events
