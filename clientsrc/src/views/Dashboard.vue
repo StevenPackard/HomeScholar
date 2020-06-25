@@ -8,7 +8,7 @@
           id="myCal"
           ref="Fullcalendar"
           height="parent"
-          defaultView="timeGridDay"
+          defaultView="timeGridWeek"
           :plugins="calendarPlugins"
           :selectable="true"
           :dragRevertDuration="0"

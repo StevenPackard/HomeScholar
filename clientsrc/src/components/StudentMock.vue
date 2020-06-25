@@ -21,7 +21,8 @@
         />
       </div>
       <div class="col-7 border-bottom border-dark">
-        <h5>Assignments</h5>
+        <h5 v-if="!filtered">Unscheduled Assignments</h5>
+        <h5 v-if="filtered">All Assignments</h5>
       </div>
     </div>
     <div class="row assignment-box justify-content-center">
@@ -64,7 +65,12 @@ export default {
       );
     },
     filteredAssignments() {
-      return this.assignments.filter((assignment) => !assignment.score);
+      return this.scheduledAssignments.filter(
+        (assignment) => !assignment.score
+      );
+    },
+    scheduledAssignments() {
+      return this.assignments.filter((assignment) => !assignment.start);
     },
 
     //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
