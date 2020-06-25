@@ -2,10 +2,13 @@
   <div class="post col-12 col-md-9 pb-3 pt-4 m-auto">
     <div class="shadow text-dark rounded p-1">
       <div class="p-2 p-relative bg-info p-4 rounded">
-        <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />
+        <img
+          class="profile-img"
+          :src="post.creator.picture"
+          alt="img not avalable"
+        />
         <i
           @click="setActivePost"
-          type="button"
           data-toggle="modal"
           data-target="#editPost"
           v-if="this.$auth.user.email == post.creatorEmail"
@@ -13,7 +16,9 @@
         ></i>
       </div>
       <p class="p-3">{{ post.creatorEmail }}</p>
-      <h2 type="button" @click="routeToDetails" class="text-center p-2 action">{{ post.title }}</h2>
+      <h2 type="button" @click="routeToDetails" class="text-center p-2 action">
+        {{ post.title }}
+      </h2>
       <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>
       <p class="p-2 text-center">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
@@ -38,8 +43,8 @@ export default {
     setActivePost() {
       console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    }
-  }
+    },
+  },
 };
 </script>
 

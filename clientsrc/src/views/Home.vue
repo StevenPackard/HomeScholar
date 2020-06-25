@@ -15,7 +15,10 @@
             life
           </p>
           <p class="lead">
-            <button class="btn-lg my-2 btn-warning btn-outline-dark">
+            <button
+              @click="login"
+              class="btn-lg my-2 btn-warning btn-outline-dark"
+            >
               Sign up
             </button>
           </p>
@@ -145,7 +148,16 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    async login() {
+      await this.$auth.loginWithPopup();
+      this.$store.dispatch("setBearer", this.$auth.bearer);
+      this.$store.dispatch("getProfile");
+      this.$router.push({ name: "dashboard" });
+      console.log("this.$auth.user: ");
+      console.log(this.$auth.user);
+    },
+  },
   components: {},
 };
 </script>
@@ -165,7 +177,7 @@ export default {
   width: 100%;
 }
 .jumbotron {
-  opacity: 85%;
+  opacity: 0.85;
   background-color: #f4f5f6;
 }
 .text-box {
@@ -180,7 +192,7 @@ export default {
   }
 }
 .card {
-  opacity: 85%;
+  opacity: 0.85;
   min-height: 15em;
 }
 </style>

@@ -21,7 +21,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li v-if="$auth.isAuthenticated" class="nav-item active">
           <router-link
             :to="{ name: 'dashboard' }"
             class="nav-link"
@@ -31,7 +31,7 @@
             <b>Dashboard</b>
           </router-link>
         </li>
-        <li class="nav-item active">
+        <li v-if="$auth.isAuthenticated" class="nav-item active">
           <router-link
             :to="{ name: 'posts' }"
             data-toggle="collapse"
@@ -41,7 +41,7 @@
             <b>Posts</b>
           </router-link>
         </li>
-        <li class="dropdown nav-item mt-2">
+        <li v-if="$auth.isAuthenticated" class="dropdown nav-item mt-2">
           <a
             class="dropdown-toggle"
             type="button"
@@ -119,6 +119,7 @@ export default {
       await this.$auth.loginWithPopup();
       this.$store.dispatch("setBearer", this.$auth.bearer);
       this.$store.dispatch("getProfile");
+      this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
     },

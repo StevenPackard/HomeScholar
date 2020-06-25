@@ -12,7 +12,9 @@
           <button
             @click="searchPosts, (toggleSearch = !toggleSearch)"
             class="btn btn-warning col-md-2 col-8 mt-3 mt-md-0 btn-outline-dark"
-          >search posts</button>
+          >
+            search posts
+          </button>
         </div>
       </div>
       <div class="col-12">
@@ -22,7 +24,9 @@
             data-toggle="modal"
             data-target="#addPost"
             class="btn btn-outline-dark btn-info"
-          >Share</button>
+          >
+            Share
+          </button>
         </div>
       </div>
     </div>
@@ -45,18 +49,24 @@ export default {
   },
   computed: {
     posts() {
-      return this.$store.state.PostsStore.posts;
+      return this.$store.state.PostsStore.posts.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+          return -1;
+        } else if (a.createdAt < b.createdAt) {
+          return 1;
+        }
+      });
     },
     searchPosts() {
-      let matches = this.posts.filter(p => p.creator.email == this.postQuery);
+      let matches = this.posts.filter((p) => p.creator.email == this.postQuery);
       return matches;
-    }
+    },
   },
 
   methods: {},
   components: {
-    Post
-  }
+    Post,
+  },
 };
 </script>
 <style>

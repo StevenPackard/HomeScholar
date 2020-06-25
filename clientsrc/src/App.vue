@@ -8,6 +8,7 @@
         <i class="fa fa-book fa-sm" aria-hidden="true"></i> Troy
         <i class="fa fa-book fa-sm" aria-hidden="true"></i> Chris
         <i class="fa fa-book fa-sm" aria-hidden="true"></i> Steven
+        <i class="fa fa-book fa-sm" aria-hidden="true"></i>
       </h5>
     </footer>
     <assignmentModal />
