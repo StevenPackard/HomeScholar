@@ -133,7 +133,10 @@ export const AssignmentsStore = {
           updateDetails
         );
         // commit("setUpdateAssignment", res.data);
-        dispatch("getAllAssignments");
+        if (updateDetails.fromDashboard) {
+          console.log("hacky");
+          // dispatch("getAllAssignments");
+        }
       } catch (error) {
         console.error(error);
       }
