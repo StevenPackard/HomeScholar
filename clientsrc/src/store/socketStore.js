@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 
 let socket = {};
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 443;
 export default {
   actions: {
     initalizeSocket({ commit, dispatch }) {
