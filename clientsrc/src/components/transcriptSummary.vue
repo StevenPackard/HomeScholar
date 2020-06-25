@@ -12,7 +12,7 @@
       <div class="col-12">
         <div class="row justify-content-center">
           <div class="col-6 border">{{name}}</div>
-          <div class="col-6 border">{{value}}</div>
+          <div class="col-6 border">{{Math.ceil(value)}}</div>
         </div>
       </div>
     </div>
