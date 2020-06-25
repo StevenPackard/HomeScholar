@@ -1,6 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">
+    <router-link
+      class="navbar-brand"
+      data-toggle="collapse"
+      data-target=".navbar-collapse.show"
+      :to="{ name: 'home' }"
+    >
       <b>HomeScholar</b>
     </router-link>
     <button
@@ -17,12 +22,22 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link">
+          <router-link
+            :to="{ name: 'dashboard' }"
+            class="nav-link"
+            data-toggle="collapse"
+            data-target=".navbar-collapse.show"
+          >
             <b>Dashboard</b>
           </router-link>
         </li>
         <li class="nav-item active">
-          <router-link :to="{ name: 'posts' }" class="nav-link">
+          <router-link
+            :to="{ name: 'posts' }"
+            data-toggle="collapse"
+            data-target=".navbar-collapse.show"
+            class="nav-link"
+          >
             <b>Posts</b>
           </router-link>
         </li>
@@ -40,6 +55,8 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span v-for="student in students" :key="student.id">
               <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
                 @click="routeToStudent(student.id)"
                 type="button"
                 class="nav-link"
