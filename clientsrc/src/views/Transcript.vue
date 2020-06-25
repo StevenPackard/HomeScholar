@@ -1,50 +1,35 @@
 <template>
   <div class="transcript container-fluid">
-    <div id="transcript" class="row">
-      <div class="col-12 p-5 mt-5">
-        <h1 align="center">Homeschool Transcript for {{ student.name }}</h1>
-      </div>
-      <div class="col-12">
-        <div class="row justify-content-center mb-2">
-          <div class="col-2 border">Title</div>
-          <div class="col-2 border">Subject</div>
-          <div class="col-2 border">Description</div>
-          <div class="col-2 border">Score</div>
-          <div class="col-2 border">hours</div>
-        </div>
-      </div>
-      <div v-for="assignment in assignments" :key="assignment.id" class="col-12">
-        <div v-if="assignment.score">
-          <div class="row justify-content-center">
-            <div class="col-2 border">{{ assignment.title }}</div>
-            <div class="col-2 border">{{ assignment.subject }}</div>
-            <div class="col-2 border">{{ assignment.description }}</div>
-            <div v-if="assignment.score" class="col-2 border">{{ assignment.score }}</div>
-            <div v-if="!assignment.score" class="col-2 border">Ungraded</div>
-            <div class="col-2 border">
-              {{
-              new Date(assignment.end).getUTCHours() -
-              new Date(assignment.start).getUTCHours()
-              }}
-            </div>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-12 pt-5 mt-5">
+        <input @change="showFullTranscript = !showFullTranscript" type="checkbox" />
+        <p class="d-inline">Full transcript</p>
       </div>
     </div>
+    <div id="transcript" class="row">
+      <div class="col-12 p-5 mt-5">
+        <h1 align="center">HomeScholar Transcript for {{ student.name }}</h1>
+      </div>
+      <transcriptSummary v-if="!showFullTranscript" />
+      <transcriptAll :assignments="assignments" v-else />
+    </div>
+
     <div class="row">
-      <div class="col">
+      <div class="col-12 m-auto">
         <button class="btn btn-success" @click="print">Print</button>
-        {{test}}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import transcriptAll from "../components/transcriptAll";
+import transcriptSummary from "../components/transcriptSummary";
 export default {
   name: "transcript",
   data() {
     return {
+      showFullTranscript: false,
       output: null
     };
   },
@@ -58,9 +43,6 @@ export default {
     }
   },
   computed: {
-    test() {
-      return this.$store.getters.transcriptSummary;
-    },
     student() {
       return this.$store.state.StudentStore.activeStudent;
     },
@@ -74,7 +56,10 @@ export default {
         });
     }
   },
-  components: {}
+  components: {
+    transcriptAll,
+    transcriptSummary
+  }
 };
 </script>
 

@@ -41,7 +41,7 @@ export const AssignmentsStore = {
   },
   getters: {
     transcriptSummary: (state) => {
-      let assignments = state.assignments.filter((e) => e.score > 0);
+      let assignments = state.assignments.filter((e) => e.score >= 0);
       console.log(assignments);
 
       let subjectObj = {};

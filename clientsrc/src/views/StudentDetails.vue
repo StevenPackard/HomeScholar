@@ -4,7 +4,7 @@
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 justify-content-center">
           <div
-            class="col-md-8 col-12 bg-success rounded-top border-dark border-top border-left border-right justify-content-center"
+            class="col-md-8 col-12 bg-info rounded-top border-dark border-top border-left border-right justify-content-center"
           >
             <h4 class="d-inline">
               {{ student.name }}
@@ -31,7 +31,7 @@
             <button
               data-toggle="modal"
               data-target="#addAssignmentModal"
-              class="btn btn-warning btn-outline-dark mt-3 shadow"
+              class="btn btn-info btn-outline-dark mt-3 shadow"
             >
               Add Assignment
             </button>
@@ -43,8 +43,11 @@
             </button>
           </div>
         </div>
+        <router-link :to="{ name: 'transcript' }" class="nav-link">
+          <b>Transcript</b>
+        </router-link>
         <div
-          class="row bg-info rounded-top mt-2 border-dark border-top border-left border-right justify-content-center mx-md-2"
+          class="row bg-warning rounded-top mt-2 border-dark border-top border-left border-right justify-content-center mx-md-2"
         >
           <div class="col-12 mt-2">
             <div class="row text-center">
@@ -71,9 +74,6 @@
             />
           </ol>
         </div>
-        <router-link :to="{ name: 'transcript' }" class="nav-link">
-          <b>Transcript</b>
-        </router-link>
       </div>
     </div>
   </div>
