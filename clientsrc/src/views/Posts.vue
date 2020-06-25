@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row push-down-less mb-2">
       <div class="col-12 col-md-10 col-lg-8 m-auto text-center">
-        <div class="row pt-3 justify-content-around">
+        <div class="row pt-3 justify-content-around sticky">
           <input
             v-model="postQuery"
             class="form-control col-md-9 col-11"
@@ -30,10 +30,10 @@
         </div>
       </div>
     </div>
-    <div v-if="!toggleSearch" class="row justify-content-center post-box">
+    <div v-if="!toggleSearch" class="row justify-content-center">
       <post v-for="post in posts" :key="post.id" :post="post" />
     </div>
-    <div v-if="toggleSearch" class="row justify-content-center post-box">
+    <div v-if="toggleSearch" class="row justify-content-center">
       <post v-for="post in searchPosts" :key="post.id" :post="post" />
     </div>
   </div>
@@ -82,5 +82,8 @@ export default {
 .post-box {
   height: 82vh;
   overflow-y: auto;
+}
+.sticky {
+  position: sticky;
 }
 </style>

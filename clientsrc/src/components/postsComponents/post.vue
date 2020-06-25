@@ -16,7 +16,7 @@
         ></i>
       </div>
       <p class="p-3">{{ post.creatorEmail }}</p>
-      <h2 type="button" @click="routeToDetails" class="text-center p-2 action">
+      <h2 @click="routeToDetails" class="text-center p-2 action">
         {{ post.title }}
       </h2>
       <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>

@@ -12,18 +12,24 @@
       </div>
     </div>
     <div class="row">
-      <div v-for="assignment in assignments" :key="assignment.id" class="col-12">
+      <div
+        v-for="assignment in assignments"
+        :key="assignment.id"
+        class="col-12"
+      >
         <div v-if="assignment.score">
           <div class="row justify-content-center">
             <div class="col-2 border">{{ assignment.title }}</div>
             <div class="col-2 border">{{ assignment.subject }}</div>
             <div class="col-2 border">{{ assignment.description }}</div>
-            <div v-if="assignment.score" class="col-2 border">{{ assignment.score }}</div>
+            <div v-if="assignment.score" class="col-2 border">
+              {{ assignment.score }}
+            </div>
             <div v-if="!assignment.score" class="col-2 border">Ungraded</div>
             <div class="col-2 border">
               {{
-              new Date(assignment.end).getUTCHours() -
-              new Date(assignment.start).getUTCHours()
+                new Date(assignment.end).getHours() -
+                  new Date(assignment.start).getHours()
               }}
             </div>
           </div>
@@ -35,9 +41,8 @@
 
 <script>
 export default {
-  props: ["assignments"]
+  props: ["assignments"],
 };
 </script>
 
-<style>
-</style>
+<style></style>

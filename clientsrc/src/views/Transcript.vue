@@ -2,7 +2,10 @@
   <div class="transcript container-fluid">
     <div class="row">
       <div class="col-12 pt-5 mt-5">
-        <input @change="showFullTranscript = !showFullTranscript" type="checkbox" />
+        <input
+          @change="showFullTranscript = !showFullTranscript"
+          type="checkbox"
+        />
         <p class="d-inline">Full transcript</p>
       </div>
     </div>
@@ -30,7 +33,7 @@ export default {
   data() {
     return {
       showFullTranscript: false,
-      output: null
+      output: null,
     };
   },
   mounted() {
@@ -40,7 +43,7 @@ export default {
   methods: {
     print() {
       this.$htmlToPaper("transcript");
-    }
+    },
   },
   computed: {
     student() {
@@ -48,18 +51,18 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments
-        .filter(a => a.studentId.id == this.student.id)
+        .filter((a) => a.studentId.id == this.student.id)
         .sort((a, b) => {
           if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
             return 1;
           } else return -1;
         });
-    }
+    },
   },
   components: {
     transcriptAll,
-    transcriptSummary
-  }
+    transcriptSummary,
+  },
 };
 </script>
 

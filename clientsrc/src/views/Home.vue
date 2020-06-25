@@ -147,7 +147,11 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    profile() {
+      return this.$store.state.user;
+    },
+  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
