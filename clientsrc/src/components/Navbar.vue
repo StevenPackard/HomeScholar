@@ -53,6 +53,14 @@
             <b>Students</b>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              type="button"
+              class="nav-link"
+            >
+            </a>
+
             <span v-for="student in students" :key="student.id">
               <a
                 data-toggle="collapse"
@@ -73,13 +81,20 @@
             >
           </div>
         </li>
-        <!-- <li class="nav-item" :class="{ active: $route.name == 'student-details' }">
-          <router-link :to="{ name: 'student-details' }" class="nav-link">Students</router-link>
-        </li>-->
       </ul>
-      <span class="navbar-text">
+
+      <router-link
+        :to="{ path: 'profile/' + user.id }"
+        class="nav-link d-inline profileImgNav p-0 m-0 mr-3 active"
+        data-toggle="collapse"
+        data-target=".navbar-collapse.show"
+      >
+        <img class="profileImgNav d-inline" :src="user.picture" alt />
+      </router-link>
+
+      <span class="navbar-text nav-item  d-inline" v-if="$auth.isAuthenticated">
         <button
-          class="btn btn-success btn-outline-dark"
+          class="btn btn-success btn-outline-dark d-inline"
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
@@ -112,6 +127,9 @@ export default {
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
+    },
+    user() {
+      return this.$store.state.user;
     },
   },
   methods: {
@@ -147,4 +165,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.profileImgNav {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+</style>

@@ -14,6 +14,8 @@ import PostDetails from "../views/PostDetails.vue";
 import Transcript from "../views/Transcript.vue";
 // @ts-ignore
 import Tour from "../views/TourPage.vue";
+// @ts-ignore
+import Profile from "../views/Profile.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(Router);
@@ -53,6 +55,12 @@ export default new Router({
       path: "/transcript/:id",
       name: "transcript",
       component: Transcript,
+      beforeEnter: authGuard,
+    },
+    {
+      path: "/profile/:id",
+      name: "profile",
+      component: Profile,
       beforeEnter: authGuard,
     },
     {

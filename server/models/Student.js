@@ -11,6 +11,7 @@ const Student = new Schema(
     subjects: [{ type: String }],
     creatorEmail: { type: String, required: true },
     backgroundColor: { type: String, default: "#fd7e14" },
+    archived: { type: Boolean, default: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
