@@ -2,7 +2,7 @@
   <div class="home container-fluid">
     <div class="row bg-info pt-4 mt-5">
       <div class="col-12 col-md-8">
-        <div class="jumbotron  shadow">
+        <div class="jumbotron shadow">
           <h2 class="display-4">Welcome to HomeScholar</h2>
           <p class="lead">
             Optimize the education of your children at home. Better planning
@@ -15,12 +15,7 @@
             life
           </p>
           <p class="lead">
-            <button
-              @click="login"
-              class="btn-lg my-2 btn-warning btn-outline-dark"
-            >
-              Sign up
-            </button>
+            <button @click="login" class="btn-lg my-2 btn-warning btn-outline-dark">Sign up</button>
           </p>
         </div>
       </div>
@@ -55,7 +50,7 @@
       </div>
     </div>
     <!-- Reviews Row -->
-    <div class="row  justify-content-around mt-3 mt-lg-0  align-items-center">
+    <div class="row justify-content-around mt-3 mt-lg-0 align-items-center">
       <div class="col-12 col-md-4 col-lg-3 justify-content-center text-center">
         <div class="card shadow bg-warning">
           <div class="card-body">
@@ -75,9 +70,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center  text-center"
-      >
+      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center text-center">
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -87,9 +80,7 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              Its the best thing ever!
-            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">Its the best thing ever!</h6>
             <p class="card-text">
               "HomeScholar really is the best thing for me as a parent. I really
               feel empowered in my childrens education now I can spend more time
@@ -99,9 +90,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center  text-center"
-      >
+      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center text-center">
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -125,17 +114,16 @@
     <div class="row bg-info justify-content-center">
       <div class="col-md-6 col-12 text-center mt-3">
         <h3 class="text-dark">Take control of your childrens education.</h3>
-        <h3 class="text-dark">
-          Ditch the hassle and start using HomeScholar today!
-        </h3>
+        <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
       </div>
       <div class="col-md-7 col-12 text-center">
-        <a
-          class="btn btn-warning btn-outline-dark btn-lg shadow"
-          href="#"
-          role="button"
-          >Take a tour</a
-        >
+        <router-link :to="{ name: 'tour' }">
+          <a
+            class="btn btn-warning btn-outline-dark btn-lg shadow"
+            href="#"
+            role="button"
+          >Take a tour</a>
+        </router-link>
       </div>
     </div>
   </div>
@@ -150,7 +138,7 @@ export default {
   computed: {
     profile() {
       return this.$store.state.user;
-    },
+    }
   },
   methods: {
     async login() {
@@ -160,9 +148,9 @@ export default {
       this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
-    },
+    }
   },
-  components: {},
+  components: {}
 };
 </script>
 
