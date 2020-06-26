@@ -8,7 +8,7 @@
           id="myCalFake"
           ref="Fullcalendar"
           height="parent"
-          defaultView="timeGridWeek"
+          defaultView="timeGridDay"
           :plugins="calendarPlugins"
           :selectable="true"
           :dragRevertDuration="0"
@@ -40,7 +40,10 @@
             class="btn btn-warning btn-outline-dark mt-2 sticky-top"
           >add assignment</button>
           <!-- <assignment /> -->
-          <div :style="background" class="student-mock-component col-12 my-3 shadow rounded color">
+          <div
+            :style="background"
+            class="student-mock-component col-12 my-3 shadow rounded color bg-warning"
+          >
             <div class="row text-center justify-content-center">
               <div class="col-12">
                 <h4>
@@ -106,7 +109,7 @@ import student from "../components/StudentMock";
 export default {
   name: "dashboard",
   mounted() {
-    let draggableElement = document.getElementById(fakeAssign);
+    let draggableElement = document.getElementById("fakeAssign");
     new Draggable(draggableElement);
   },
 
@@ -117,12 +120,12 @@ export default {
         TimeGridPlugin,
         InteractionPlugin,
         ListPlugin
-      ]
-      // assignmentString: {
-      //   title: Division,
-      //   duration: "02:00",
-      //   id: "fakeAssign"
-      // }
+      ],
+      assignmentString: JSON.stringify({
+        title: "Division",
+        duration: "02:00",
+        id: "fakeAssign"
+      })
     };
   },
   computed: {},
@@ -135,13 +138,13 @@ export default {
       let events = this.$refs.Fullcalendar.getApi().getEvents();
       console.log(event.id);
       console.log(events);
-      for (let i = 0; i < events.length; i++) {
-        if (event.id == events[i].id) {
-          events[i].remove();
-        }
-        // console.log(events[i].id);
-        // events[i].remove();
-      }
+      // for (let i = 0; i < events.length; i++) {
+      //   if (event.id == events[i].id) {
+      //     events[i].remove();
+      //   }
+      //   // console.log(events[i].id);
+      //   // events[i].remove();
+      // }
     },
     // handleEventRender(arg) {
     //   let events = this.$refs.Fullcalendar.getApi().getEvents();
