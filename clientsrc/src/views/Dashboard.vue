@@ -28,6 +28,7 @@
           @dateClick="goToDate"
           @eventDragStart="handleDragStart"
           @eventDragStop="handleEventDragStop"
+          @datesRender="handleDatesRender"
         />
       </div>
       <div
@@ -113,6 +114,17 @@ export default {
         // console.log(events[i].id);
         // events[i].remove();
       }
+    },
+    handleDateRender(arg) {
+      // NOTE This function indicates whether the dayView is up on full calendar and returns the day for that day
+      // This is the first step for getting assignment just for a chosen day view
+      console.log("handle date render");
+      console.log(arg.view.type);
+      console.log(new Date(arg.view.activeStart).getDate());
+      // this.$store.dispatch("updateDashboardAssignment", {
+      //   indicator: arg.view.type,
+      //   day: day,
+      // });
     },
     // handleEventRender(arg) {
     //   let events = this.$refs.Fullcalendar.getApi().getEvents();
