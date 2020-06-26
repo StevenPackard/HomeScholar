@@ -77,16 +77,30 @@
         </li>
       </ul>
 
-      <router-link
+      <!-- <router-link
         :to="{ path: 'profile/' + user.id }"
         class="nav-link d-inline profileImgNav p-0 m-0 mr-3 active"
         data-toggle="collapse"
         data-target=".navbar-collapse.show"
       >
         <img class="profileImgNav d-inline" :src="user.picture" alt />
-      </router-link>
+      </router-link> -->
+      <img
+        @click="routeToProfile"
+        class="profileImgNav d-inline action mr-2"
+        :src="user.picture"
+        alt
+      />
 
-      <span class="navbar-text nav-item  d-inline" v-if="$auth.isAuthenticated">
+      <!--
+
+
+
+routeToProfile
+
+  -->
+
+      <span class="navbar-text nav-item  d-inline">
         <button
           class="btn btn-success btn-outline-dark d-inline"
           @click="login"
@@ -154,6 +168,10 @@ export default {
     routeToStudent(id) {
       this.$router.push("/student/" + id);
       this.$store.dispatch("getStudentById", id);
+    },
+    routeToProfile() {
+      this.$router.push({ name: "profile", params: { id: this.user.id } });
+      console.log(this.$route);
     },
   },
 };
