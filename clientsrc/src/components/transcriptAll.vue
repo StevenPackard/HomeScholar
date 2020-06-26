@@ -42,6 +42,8 @@
 <script>
 export default {
   props: ["assignments"],
+
+  computed: {},
 };
 </script>
 

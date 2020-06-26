@@ -13,7 +13,10 @@
       <div class="col-12 p-5 mt-5">
         <h1 align="center">HomeScholar Transcript for {{ student.name }}</h1>
       </div>
-      <transcriptSummary v-if="!showFullTranscript" />
+      <transcriptSummary
+        v-if="!showFullTranscript"
+        :assignments="assignments"
+      />
       <transcriptAll :assignments="assignments" v-else />
     </div>
 
