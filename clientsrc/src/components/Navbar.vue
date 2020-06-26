@@ -53,13 +53,7 @@
             <b>Students</b>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-              type="button"
-              class="nav-link"
-            >
-            </a>
+            <p class="p-0 m-0"></p>
 
             <span v-for="student in students" :key="student.id">
               <a
