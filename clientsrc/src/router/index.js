@@ -12,6 +12,8 @@ import Posts from "../views/Posts.vue";
 import PostDetails from "../views/PostDetails.vue";
 // @ts-ignore
 import Transcript from "../views/Transcript.vue";
+// @ts-ignore
+import Tour from "../views/TourPage.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(Router);
@@ -52,6 +54,11 @@ export default new Router({
       name: "transcript",
       component: Transcript,
       beforeEnter: authGuard,
+    },
+    {
+      path: "/tour",
+      name: "tour",
+      component: Tour,
     },
     {
       path: "*",
