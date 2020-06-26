@@ -6,7 +6,7 @@ const Assignment = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    subject: { type: String, required: true },
+    subject: { type: String, required: true, lowercase: true },
     studentId: { type: ObjectId, ref: "Student", required: true },
     published: { type: Boolean, default: true },
     completed: { type: Boolean, default: false },

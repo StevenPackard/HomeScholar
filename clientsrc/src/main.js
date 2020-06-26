@@ -7,6 +7,12 @@ import swal from "sweetalert";
 import { Auth0Plugin } from "@bcwdev/auth0-vue";
 import { domain, clientId, audience } from "./authConfig";
 import VueHtmlToPaper from "vue-html-to-paper";
+import VueTour from "vue-tour";
+
+// @ts-ignore
+require("vue-tour/dist/vue-tour.css");
+// @ts-ignore
+Vue.use(VueTour);
 
 Vue.use(Auth0Plugin, {
   domain,
