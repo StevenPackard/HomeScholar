@@ -8,10 +8,32 @@
         />
         <p class="d-inline">Full transcript</p>
       </div>
+      <div class="col-12 text-danger text-center">
+        <p>
+          Information changed on this page will not be saved. Print before
+          leaving to have for your records
+        </p>
+      </div>
     </div>
     <div id="transcript" class="row">
-      <div class="col-12 p-5 mt-5">
-        <h1 align="center">HomeScholar Transcript for {{ student.name }}</h1>
+      <div class="col-12 bg-dark">
+        <h3 class="text-light" align="center">Official transcript</h3>
+      </div>
+      <div class="col-12">
+        <h1 align="center">
+          <span v-if="!form" @click="form = !form">{{ school }}</span
+          ><span v-if="form"
+            ><input v-model="school" type="text" />
+            <button @click="form = !form" class="btn btn-success">
+              change
+            </button></span
+          >
+          Transcript for
+          {{ student.name }}
+        </h1>
+        <h3 align="center">
+          {{ student.gradeLevel }}
+        </h3>
       </div>
       <transcriptSummary
         v-if="!showFullTranscript"
@@ -37,6 +59,8 @@ export default {
     return {
       showFullTranscript: false,
       output: null,
+      form: false,
+      school: "HomeScholar",
     };
   },
   mounted() {
