@@ -2,7 +2,7 @@
   <div
     :style="background"
     class="student-mock-component col-12 my-3 shadow rounded color"
-    :class="{solo: students.length < 2  }"
+    :class="{ solo: students.length < 2 }"
   >
     <div class="row text-center justify-content-center">
       <div class="col-12">
@@ -23,7 +23,7 @@
     </div>
     <div
       class="row assignment-box justify-content-center mt-2"
-      :class="{soloAssigns: students.length < 2}"
+      :class="{ soloAssigns: students.length < 2 }"
     >
       <ol v-if="filtered" class="col-11">
         <AssignmentComponentMock
@@ -65,12 +65,10 @@ export default {
       );
     },
     filteredAssignments() {
-      return this.scheduledAssignments.filter(
-        (assignment) => !assignment.score
-      );
+      return this.scheduledAssignments.filter(assignment => !assignment.score);
     },
     scheduledAssignments() {
-      return this.assignments.filter((assignment) => !assignment.start);
+      return this.assignments.filter(assignment => assignment.start == null);
     },
     students() {
       return this.$store.state.StudentStore.students;

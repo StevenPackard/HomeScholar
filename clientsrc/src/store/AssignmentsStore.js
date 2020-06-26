@@ -31,7 +31,14 @@ export const AssignmentsStore = {
       );
     },
     setUpdateAssignment(state, assignment) {
-      state.assignments.push(assignment);
+      let newState = state.assignments.filter((a) => a.id != assignment.id);
+      console.log(newState, "first line");
+
+      newState.push(assignment);
+      console.log(newState, "secondLine");
+      console.log(assignment, "assignment");
+
+      state.assignments = newState;
     },
     setStudentAssignments(state, studentId) {
       state.studentAssignments = state.assignments.filter(
@@ -132,7 +139,7 @@ export const AssignmentsStore = {
           "assignments/" + updateDetails.assignmentId,
           updateDetails
         );
-        // commit("setUpdateAssignment", res.data);
+        commit("setUpdateAssignment", res.data);
         if (updateDetails.fromDashboard) {
           console.log("hacky");
           // dispatch("getAllAssignments");
