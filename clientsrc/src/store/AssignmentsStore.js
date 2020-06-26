@@ -39,35 +39,35 @@ export const AssignmentsStore = {
       );
     },
   },
-  getters: {
-    transcriptSummary: (state) => {
-      let assignments = state.assignments.filter((e) => e.score >= 0);
-      console.log(assignments);
+  // getters: {
+  //   transcriptSummary: (state) => {
+  //     let assignments = state.assignments.filter((e) => e.score >= 0);
+  //     console.log(assignments);
 
-      let subjectObj = {};
+  //     let subjectObj = {};
 
-      for (let i = 0; i < assignments.length; i++) {
-        let keys = Object.keys(subjectObj);
-        for (let j = 0; j <= keys.length; j++) {
-          if (keys.includes(assignments[i].subject)) {
-            subjectObj[assignments[i].subject].push(assignments[i].score);
-          } else {
-            subjectObj[assignments[i].subject] = [assignments[i].score];
-          }
-        }
-      }
-      console.log(subjectObj);
+  //     for (let i = 0; i < assignments.length; i++) {
+  //       let keys = Object.keys(subjectObj);
+  //       for (let j = 0; j <= keys.length; j++) {
+  //         if (keys.includes(assignments[i].subject)) {
+  //           subjectObj[assignments[i].subject].push(assignments[i].score);
+  //         } else {
+  //           subjectObj[assignments[i].subject] = [assignments[i].score];
+  //         }
+  //       }
+  //     }
+  //     console.log(subjectObj);
 
-      let keys = Object.keys(subjectObj);
-      let avgObj = {};
-      for (let i = 0; i < keys.length; i++) {
-        avgObj[keys[i]] =
-          subjectObj[keys[i]].reduce((a, b) => a + b, 0) /
-          subjectObj[keys[i]].length;
-      }
-      return avgObj;
-    },
-  },
+  //     let keys = Object.keys(subjectObj);
+  //     let avgObj = {};
+  //     for (let i = 0; i < keys.length; i++) {
+  //       avgObj[keys[i]] =
+  //         subjectObj[keys[i]].reduce((a, b) => a + b, 0) /
+  //         subjectObj[keys[i]].length;
+  //     }
+  //     return avgObj;
+  //   },
+  // },
   actions: {
     async deleteAssignment({ commit, dispatch }, data) {
       try {
