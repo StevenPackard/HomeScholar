@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+  <nav class="navbar text-light shadow navbar-expand-lg navbar-light bg-info fixed-top">
     <router-link
       class="navbar-brand"
       data-toggle="collapse"
@@ -41,7 +41,7 @@
             <b>Posts</b>
           </router-link>
         </li>
-        <li v-if="$auth.isAuthenticated" class="dropdown nav-item mt-2">
+        <li v-if="$auth.isAuthenticated" class="dropdown nav-item mt-2 ml-2">
           <a
             class="dropdown-toggle"
             type="button"
@@ -62,8 +62,7 @@
                 @click="routeToStudent(student.id)"
                 type="button"
                 class="nav-link"
-                >{{ student.name }}</a
-              >
+              >{{ student.name }}</a>
             </span>
             <a
               class="dropdown-item pl-2"
@@ -71,8 +70,7 @@
               type="button"
               data-toggle="modal"
               data-target="#addStudentModal"
-              >Add Student</a
-            >
+            >Add Student</a>
           </div>
         </li>
       </ul>
@@ -84,7 +82,7 @@
         data-target=".navbar-collapse.show"
       >
         <img class="profileImgNav d-inline" :src="user.picture" alt />
-      </router-link> -->
+      </router-link>-->
       <img
         @click="routeToProfile"
         class="profileImgNav d-inline action mr-2"
@@ -98,23 +96,15 @@
 
 routeToProfile
 
-  -->
+      -->
 
-      <span class="navbar-text nav-item  d-inline">
+      <span class="navbar-text nav-item d-inline">
         <button
           class="btn btn-success btn-outline-dark d-inline"
           @click="login"
           v-if="!$auth.isAuthenticated"
-        >
-          Login
-        </button>
-        <button
-          class="btn btn-danger btn-outline-dark"
-          @click="showLogoutAlert"
-          v-else
-        >
-          logout
-        </button>
+        >Login</button>
+        <button class="btn btn-danger btn-outline-dark" @click="showLogoutAlert" v-else>logout</button>
       </span>
     </div>
   </nav>
@@ -124,7 +114,7 @@ routeToProfile
 import axios from "axios";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true,
+  withCredentials: true
 });
 export default {
   name: "Navbar",
@@ -138,7 +128,7 @@ export default {
     },
     user() {
       return this.$store.state.user;
-    },
+    }
   },
   methods: {
     async login() {
@@ -157,8 +147,8 @@ export default {
         title: "Are you sure you want to log out?",
         icon: "warning",
         buttons: true,
-        dangerMode: true,
-      }).then((willLogOut) => {
+        dangerMode: true
+      }).then(willLogOut => {
         if (willLogOut) {
           this.logout();
         }
@@ -172,8 +162,8 @@ export default {
     routeToProfile() {
       this.$router.push({ name: "profile", params: { id: this.user.id } });
       console.log(this.$route);
-    },
-  },
+    }
+  }
 };
 </script>
 

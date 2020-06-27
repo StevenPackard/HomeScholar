@@ -32,15 +32,11 @@
               data-toggle="modal"
               data-target="#addAssignmentModal"
               class="btn btn-info btn-outline-dark mt-3 shadow"
-            >
-              Add Assignment
-            </button>
+            >Add Assignment</button>
             <button
               @click="showDeleteStudentAlert"
               class="btn btn-danger btn-outline-dark mt-3 ml-2 shadow"
-            >
-              Delete Student
-            </button>
+            >Delete Student</button>
           </div>
         </div>
         <router-link :to="{ name: 'transcript' }" class="nav-link">
@@ -64,7 +60,7 @@
           </div>
         </div>
         <div
-          class="row mx-md-2 justify-content-center border-left border-right border-bottom border-dark rounded-bottom min shadow"
+          class="row mx-md-2 bg-light justify-content-center border-left border-right border-bottom border-dark rounded-bottom min shadow"
         >
           <ol class="col-12 pl-4">
             <assignmentComponentMock
@@ -96,9 +92,9 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments.filter(
-        (a) => a.studentId.id == this.student.id
+        a => a.studentId.id == this.student.id
       );
-    },
+    }
   },
   methods: {
     showDeleteStudentAlert() {
@@ -107,8 +103,8 @@ export default {
         text: "Once deleted, you will not be able to recover this Student!",
         icon: "warning",
         buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
+        dangerMode: true
+      }).then(willDelete => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -120,11 +116,11 @@ export default {
 
     deleteStudent() {
       this.$store.dispatch("deleteStudent", this.$route.params.id);
-    },
+    }
   },
   components: {
-    AssignmentComponentMock,
-  },
+    AssignmentComponentMock
+  }
 };
 </script>
 

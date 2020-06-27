@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light" id="app">
+  <div class="bg-grey" id="app">
     <navbar />
     <router-view class="grow" />
     <footer class="text-center bg-info">
@@ -32,8 +32,8 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal,
-  },
+    AssignmentModal
+  }
 };
 </script>
 <style lang="scss">
@@ -71,5 +71,8 @@ export default {
 }
 .action {
   cursor: pointer;
+}
+.bg-grey {
+  background-color: #e9ebed;
 }
 </style>

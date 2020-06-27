@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid bg-png bg-light">
     <div class="row push-down">
       <!-- <timeline /> -->
       <div class="col-md-8 order-md-1 order-2 col-12 max-height">
@@ -269,6 +269,12 @@ export default {
 .overflow-y {
   overflow-y: auto;
 }
+.bg-png {
+  background-image: url(../assets/pencil.jpg);
+  height: fit-content;
+  background-repeat: repeat;
+  background-size: cover;
+}
 
 .push-down {
   margin-top: 5rem;
@@ -283,7 +289,20 @@ export default {
 } */
 
 .fc {
-  background-color: #6cc3d5; /* most backgrounds */
+  background-color: #f4f5f6; /* most backgrounds */
+  opacity: 0.9;
+}
+.fc-unthemed .fc-content,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-row,
+.fc-unthemed tbody,
+.fc-unthemed td,
+.fc-unthemed th,
+.fc-unthemed thead {
+  border-color: rgb(173, 173, 173);
 }
 .fc-today {
   background-color: white !important;
@@ -302,10 +321,10 @@ export default {
 .fc-button-primary:disabled {
   background-color: #888;
 }
-.fc-toolbar h2 {
+/* .fc-toolbar h2 {
   color: whitesmoke;
   text-shadow: 0.5px 0.5px black;
-}
+} */
 
 /* .fc-event {
   background-color: #f3969a;
