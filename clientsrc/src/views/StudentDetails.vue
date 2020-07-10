@@ -4,7 +4,8 @@
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 justify-content-center">
           <div
-            class="col-md-8 col-12 bg-info rounded-top border-dark border-top border-left border-right justify-content-center"
+            class="col-md-8 col-12 rounded-top border-dark border-top border-left border-right justify-content-center"
+            :style="{'background-color': this.student.backgroundColor}"
           >
             <h4 class="d-inline">
               {{ student.name }}

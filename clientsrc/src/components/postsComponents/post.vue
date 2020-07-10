@@ -1,5 +1,5 @@
 <template>
-  <div class="post col-12 col-md-7 pb-3 pt-4">
+  <div class="post col-12 col-md-9 pb-3 pt-4">
     <div class="shadow text-dark bg-light rounded p-1">
       <div class="p-2 p-relative bg-success p-4 rounded">
         <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />

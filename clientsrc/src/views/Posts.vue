@@ -28,6 +28,13 @@
     </div>
     <div v-if="!toggleSearch" class="row justify-content-center">
       <post v-for="post in posts" :key="post.id" :post="post" />
+      <div class="col-12 text-center mb-3">
+        <button
+          v-if="posts.length >= postLength"
+          @click="postLength += 10"
+          class="btn btn-success"
+        >Show More</button>
+      </div>
     </div>
     <div v-if="toggleSearch" class="row justify-content-center">
       <post v-for="post in searchPosts" :key="post.id" :post="post" />
@@ -38,20 +45,27 @@
 import Post from "../components/postsComponents/post";
 export default {
   data() {
-    return { postQuery: "", toggleSearch: false, postsByquery: [] };
+    return {
+      postQuery: "",
+      toggleSearch: false,
+      postsByquery: [],
+      postLength: 10
+    };
   },
   mounted() {
     this.$store.dispatch("getAllPosts");
   },
   computed: {
     posts() {
-      return this.$store.state.PostsStore.posts.sort((a, b) => {
-        if (a.createdAt > b.createdAt) {
-          return -1;
-        } else if (a.createdAt < b.createdAt) {
-          return 1;
-        }
-      });
+      return this.$store.state.PostsStore.posts
+        .sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          } else if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+        })
+        .slice(0, this.postLength);
     },
     searchPosts() {
       let matches = this.posts.filter(p => p.creator.email == this.postQuery);

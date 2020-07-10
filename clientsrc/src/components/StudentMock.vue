@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="!student.archived"
-    :style="background"
+    :style="{'background-color': student.backgroundColor}"
     class="student-mock-component col-12 my-3 text-black shadow rounded opaque color"
-    :class="{ solo: students.length < 2 }"
+    :class="{ solo: soloDolo }"
   >
     <div class="row text-center justify-content-center">
       <div class="col-12">
@@ -51,8 +51,7 @@ export default {
   name: "student-mock",
   data() {
     return {
-      filtered: false,
-      background: "background-color:" + this.student.backgroundColor + ";"
+      filtered: false
       // soloStudent: this.students.length == 1 ? true : false
     };
   },
@@ -85,7 +84,7 @@ export default {
     AddAssignmentModal,
     AssignmentComponentMock
   },
-  props: ["student", "studentsLength"]
+  props: ["student", "soloDolo"]
 };
 </script>
 
