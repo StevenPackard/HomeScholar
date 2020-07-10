@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar text-light shadow navbar-expand-lg navbar-light bg-info fixed-top">
     <router-link
-      class="navbar-brand"
+      class="navbar-brand text-light"
       data-toggle="collapse"
       data-target=".navbar-collapse.show"
       :to="{ name: 'home' }"
@@ -24,7 +24,7 @@
         <li v-if="$auth.isAuthenticated" class="nav-item active">
           <router-link
             :to="{ name: 'dashboard' }"
-            class="nav-link"
+            class="nav-link text-light"
             data-toggle="collapse"
             data-target=".navbar-collapse.show"
           >
@@ -36,7 +36,7 @@
             :to="{ name: 'posts' }"
             data-toggle="collapse"
             data-target=".navbar-collapse.show"
-            class="nav-link"
+            class="nav-link text-light"
           >
             <b>Posts</b>
           </router-link>
