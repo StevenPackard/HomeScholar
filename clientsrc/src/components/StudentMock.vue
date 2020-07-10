@@ -1,7 +1,7 @@
 <template>
   <div
     :style="background"
-    class="student-mock-component col-12 my-3 shadow rounded color"
+    class="student-mock-component col-12 my-3 text-black shadow rounded opaque color"
     :class="{ solo: students.length < 2 }"
   >
     <div class="row text-center justify-content-center">
@@ -105,6 +105,9 @@ export default {
 }
 .solo {
   height: 70vh;
+}
+.opaque {
+  opacity: 0.85;
 }
 .soloAssigns {
   height: 55vh;

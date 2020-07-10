@@ -291,7 +291,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .max-height {
   height: 87vh;
 }

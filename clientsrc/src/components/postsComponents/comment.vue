@@ -1,16 +1,9 @@
 <template>
-  <div
-    class="col-12 col-md-7 offset-md-1"
-    :class="{ 'offset-md-4': isCreator }"
-  >
-    <div class=" p-0 my-4 rounded shadow">
+  <div class="col-12 col-md-7 offset-md-1 comment" :class="{ 'offset-md-4': isCreator }">
+    <div class="p-0 my-4 rounded shadow bg-light">
       <div class="p-1">
-        <div class="p-relative p-3 rounded bg-warning">
-          <img
-            class="profile-img"
-            :src="comment.creator.picture"
-            alt="img not avalable"
-          />
+        <div class="p-relative p-3 rounded bg-secondary">
+          <img class="profile-img" :src="comment.creator.picture" alt="img not avalable" />
           <i
             @click="setActiveComment"
             type="button"
@@ -35,7 +28,7 @@ export default {
   props: ["comment"],
   data() {
     return {
-      commentData: {},
+      commentData: {}
     };
   },
   methods: {
@@ -44,17 +37,20 @@ export default {
     },
     editComment() {
       this.$store.dispatch("editComment", this.commentData);
-    },
+    }
   },
   computed: {
     isCreator() {
       return this.$store.state.user.email == this.comment.creatorEmail;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
 .offset {
   margin-left: 35rem;
+}
+.comment {
+  opacity: 0.9;
 }
 </style>

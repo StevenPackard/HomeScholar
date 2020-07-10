@@ -1,8 +1,8 @@
 <template>
   <div class="home container-fluid">
-    <div class="row bg-info pt-4 mt-5">
+    <div class="row bg-success pt-4 mt-5">
       <div class="col-12 col-md-8">
-        <div class="jumbotron shadow">
+        <div class="jumbotron shadow mt-5">
           <h2 class="display-4">Welcome to HomeScholar</h2>
           <p class="lead">
             Optimize the education of your children at home. Better planning
@@ -23,7 +23,7 @@
         <img class="app-logo" src="@/assets/Logo.png" alt />
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center bg-light">
       <div class="col-md-4 col-12 pt-5">
         <div class="row">
           <div class="col-12">
@@ -50,7 +50,7 @@
       </div>
     </div>
     <!-- Reviews Row -->
-    <div class="row justify-content-around mt-3 mt-lg-0 align-items-center">
+    <div class="row justify-content-around mt-3 mt-lg-0 bg-light align-items-center">
       <div class="col-12 col-md-4 col-lg-3 justify-content-center text-center">
         <div class="card shadow bg-warning">
           <div class="card-body">
@@ -170,7 +170,6 @@ export default {
 }
 .jumbotron {
   opacity: 0.85;
-  background-color: #f4f5f6;
 }
 .text-box {
   height: 10vh;
