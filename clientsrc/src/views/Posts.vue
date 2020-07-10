@@ -97,7 +97,7 @@ export default {
   position: sticky;
 }
 .bg-image {
-  background-image: url(../assets/crayon.jpg);
+  background: url(../assets/crayon.jpg);
   height: fit-content;
   background-repeat: repeat;
 }

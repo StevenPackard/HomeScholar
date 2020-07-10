@@ -50,7 +50,4 @@ export default {
 .offset {
   margin-left: 35rem;
 }
-.comment {
-  opacity: 0.9;
-}
 </style>
