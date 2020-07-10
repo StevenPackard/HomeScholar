@@ -6,6 +6,9 @@ const Post = new Schema(
     title: { type: String, required: true },
     body: { type: String, required: true },
     creatorEmail: { type: String, required: true },
+    isEvent: { type: Boolean, default: false },
+    start: { type: Date, default: null },
+    end: { type: Date, default: null },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
