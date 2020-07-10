@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!student.archived"
     :style="background"
     class="student-mock-component col-12 my-3 text-black shadow rounded opaque color"
     :class="{ solo: students.length < 2 }"
