@@ -15,7 +15,7 @@
       </div>
       <div class="col-12">
         <h1 align="center">
-          <span class="bg-warning" v-if="!form" @click="form = !form">{{ school }}</span>
+          <span class="bg-highlight" v-if="!form" @click="form = !form">{{ school }}</span>
           <span v-if="form">
             <input v-model="school" type="text" />
             <button @click="form = !form" class="btn btn-success">change</button>
@@ -24,7 +24,7 @@
           <span
             v-if="!Nform"
             @click="Nform = !Nform"
-            class="bg-warning"
+            class="bg-highlight"
           >{{ student.name }}</span>
           <span v-if="Nform">
             <input v-model="student.name" type="text" />
@@ -35,7 +35,7 @@
         <h5>Curriculum:</h5>
         <p>{{student.description}}</p>
         <h5>Birth Date:</h5>
-        <p class="bg-warning size" @click="Dform = !Dform" v-if="!Dform">{{birth}}</p>
+        <p class="bg-highlight size" @click="Dform = !Dform" v-if="!Dform">{{birth}}</p>
         <span v-if="Dform">
           <input v-model="birth" type="text" />
           <button @click="Dform = !Dform" class="btn btn-success">change</button>
@@ -102,6 +102,9 @@ export default {
 <style scoped>
 .size {
   max-width: 10em;
+}
+.bg-highlight {
+  background-color: #ffce6752;
 }
 </style>
 

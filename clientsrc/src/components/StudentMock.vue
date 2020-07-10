@@ -108,7 +108,7 @@ export default {
   height: 70vh;
 }
 .opaque {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .soloAssigns {
   height: 55vh;

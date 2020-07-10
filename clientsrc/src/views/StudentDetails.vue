@@ -1,10 +1,11 @@
 <template>
-  <div class="student-details container-fluid push-down-less bg-light">
+  <div class="student-details container-fluid push-down-less bg-image">
+    <img src alt srcset />
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
-        <div class="row text-center mt-4 justify-content-center">
+        <div class="row text-center mt-4 opacity justify-content-center">
           <div
-            class="col-md-8 col-12 bg-info rounded-top border-dark border-top border-left border-right justify-content-center"
+            class="col-md-8 col-12 bg-info opacity rounded-top border-dark border-top border-left border-right justify-content-center"
           >
             <h4 class="d-inline">
               {{ student.name }}
@@ -21,7 +22,7 @@
           </div>
 
           <div
-            class="col-md-8 col-12 text-left description-box rounded-bottom shadow border-dark border-left border-right border-bottom"
+            class="col-md-8 col-12 text-left description-box bg-light opacity rounded-bottom shadow border-dark border-left border-right border-bottom"
           >
             <h5>{{ student.description }}</h5>
           </div>
@@ -39,11 +40,11 @@
             >Delete Student</button>
           </div>
         </div>
-        <router-link :to="{ name: 'transcript' }" class="nav-link">
+        <router-link :to="{ name: 'transcript' }" class="nav-link text-shadow">
           <b>Transcript</b>
         </router-link>
         <div
-          class="row bg-warning rounded-top mt-2 border-dark border-top border-left border-right justify-content-center mx-md-2"
+          class="row bg-warning opacity rounded-top mt-2 border-dark border-top border-left border-right justify-content-center mx-md-2"
         >
           <div class="col-12 mt-2">
             <div class="row text-center">
@@ -60,7 +61,7 @@
           </div>
         </div>
         <div
-          class="row mx-md-2 bg-light justify-content-center border-left border-right border-bottom border-dark rounded-bottom min shadow"
+          class="row mx-md-2 bg-light justify-content-center border-left opacity border-right border-bottom border-dark rounded-bottom min shadow"
         >
           <ol class="col-12 pl-4">
             <assignmentComponentMock
@@ -159,5 +160,20 @@ export default {
 }
 .text-shadow {
   text-shadow: 0.5px 0.5px black;
+}
+.bg-image {
+  background-image: url(../assets/pencilCup.jpg);
+  height: fit-content;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.opacity {
+  opacity: 0.9;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: #ffce67;
 }
 </style>

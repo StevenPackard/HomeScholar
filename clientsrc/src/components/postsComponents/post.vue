@@ -62,7 +62,4 @@ export default {
 .action {
   cursor: default;
 }
-.post {
-  opacity: 0.9;
-}
 </style>
