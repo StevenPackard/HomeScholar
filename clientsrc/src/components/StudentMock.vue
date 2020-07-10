@@ -22,10 +22,7 @@
         <h5 v-if="filtered">All Assignments</h5>
       </div>
     </div>
-    <div
-      class="row assignment-box justify-content-center mt-2"
-      :class="{ soloAssigns: students.length < 2 }"
-    >
+    <div class="row assignment-box justify-content-center mt-2" :class="{ soloAssigns: soloDolo}">
       <ol v-if="filtered" class="col-11">
         <AssignmentComponentMock
           v-for="assignment in assignments"
@@ -104,13 +101,13 @@ export default {
   background-color: var(--Bcolor);
 }
 .solo {
-  height: 70vh;
+  height: 75vh;
 }
 .opaque {
   opacity: 0.85;
 }
 .soloAssigns {
-  height: 55vh;
+  height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
