@@ -115,7 +115,7 @@ export default {
         // events[i].remove();
       }
     },
-    handleDateRender(arg) {
+    handleDatesRender(arg) {
       // NOTE This function indicates whether the dayView is up on full calendar and returns the day for that day
       // This is the first step for getting assignment just for a chosen day view
       console.log("handle date render");
