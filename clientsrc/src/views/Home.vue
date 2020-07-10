@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-md-4 col-12 text-center">
-        <img class="app-logo" src="@/assets/Logo.png" alt />
+        <img class="app-logo" src="@/assets/newLogo.png" alt />
       </div>
     </div>
     <div class="row justify-content-center bg-light">
