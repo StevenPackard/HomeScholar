@@ -3,12 +3,12 @@
     <navbar />
     <router-view class="grow" />
     <footer class="text-center bg-info">
-      <h5>
+      <h5 class="text-light">
         Made with Love by Justin
-        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Troy
-        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Chris
-        <i class="fa fa-book fa-sm" aria-hidden="true"></i> Steven
-        <i class="fa fa-book fa-sm" aria-hidden="true"></i>
+        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Troy
+        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Chris
+        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Steven
+        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
       </h5>
     </footer>
     <assignmentModal />
