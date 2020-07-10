@@ -111,8 +111,8 @@
         </div>
       </div>
     </div>
-    <div class="row bg-info justify-content-center">
-      <div class="col-md-6 col-12 text-center mt-3">
+    <div class="row bg-success justify-content-center pb-2">
+      <div class="col-md-6 col-12 text-center mt-2">
         <h3 class="text-dark">Take control of your childrens education.</h3>
         <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
       </div>
