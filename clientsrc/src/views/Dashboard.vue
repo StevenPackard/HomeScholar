@@ -70,12 +70,23 @@
             >Show All</a>
           </div>
           <!-- <assignment /> -->
-          <div v-if="showAll">
-            <student v-for="student in students" :key="student.id" :student="student" />
+          <div v-if="students.length > 1">
+            <div v-if=" showAll">
+              <student v-for="student in students" :key="student.id" :student="student" />
+            </div>
+            <div v-else>
+              <student v-show="activeStudent" :student="activeStudent" :soloDolo="true" />
+            </div>
           </div>
           <div v-else>
-            <student v-show="activeStudent" :student="activeStudent" :soloDolo="true" />
+            <student
+              v-for="student in students"
+              :key="student.id"
+              :student="student"
+              :soloDolo="true"
+            />
           </div>
+
           <!-- <student v-show="activeStudent" :student="a" /> -->
         </div>
       </div>
