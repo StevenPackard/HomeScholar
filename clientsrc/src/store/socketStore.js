@@ -1,8 +1,10 @@
 import io from "socket.io-client";
 
 let socket = {};
-let base = window.location.host.includes("localhost") ? "//localhost:" : "/";
-const port = process.env.PORT || 3000;
+let base = window.location.host.includes("localhost")
+  ? "//localhost:3000"
+  : "/";
+// const port = process.env.PORT || 3000;
 export default {
   actions: {
     initalizeSocket({ commit, dispatch }) {
