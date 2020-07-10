@@ -358,6 +358,24 @@
                 <label for="postBody" class="col-form-label">Body</label>
                 <textarea class="form-control" id="editpostBody" v-model="postForm.body"></textarea>
               </div>
+              <label for="checkbox">Event</label>
+              <input
+                type="checkbox"
+                id="checkbox"
+                :max="postForm.endTime"
+                v-model="postForm.isEvent"
+              />
+              <div v-if="postForm.isEvent">
+                <label for="checkbox">Start time</label>
+                <input type="datetime-local" class="form-control" v-model="postForm.startTime" />
+                <label for="checkbox">End time</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  v-model="postForm.endTime"
+                  :min="postForm.startTime"
+                />
+              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -427,7 +445,9 @@ export default {
       addStudent: {
         backgroundColor: "#f3969a"
       },
-      postForm: {}
+      postForm: {
+        isEvent: false
+      }
     };
   },
   computed: {
