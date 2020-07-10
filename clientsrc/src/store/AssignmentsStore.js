@@ -148,6 +148,18 @@ export const AssignmentsStore = {
         console.error(error);
       }
     },
+    async updateStudentMock({ commit, dispatch }, updateDetails) {
+      try {
+        let res = await api.put(
+          "assignments/" + updateDetails.assignmentId,
+          updateDetails
+        );
+        // commit("setUpdateAssignment", res.data);
+        dispatch("getAllAssignments");
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async editAssignColor({ commit, dispatch }, data) {
       try {
         let studentAssignments = this.state.AssignmentsStore.assignments.filter(

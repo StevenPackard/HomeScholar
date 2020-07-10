@@ -31,7 +31,10 @@
           @datesRender="handleDatesRender"
         />
       </div>
-      <div id="draggableContainer" class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y">
+      <div
+        id="draggableContainer"
+        class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y"
+      >
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
@@ -39,9 +42,15 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top"
-          >add assignment</button>
+          >
+            add assignment
+          </button>
           <!-- <assignment /> -->
-          <student v-for="student in students" :key="student.id" :student="student" />
+          <student
+            v-for="student in students"
+            :key="student.id"
+            :student="student"
+          />
         </div>
       </div>
     </div>
@@ -76,8 +85,8 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin
-      ]
+        ListPlugin,
+      ],
     };
   },
   computed: {
@@ -87,7 +96,7 @@ export default {
 
     assignments() {
       return this.$store.state.AssignmentsStore.assignments;
-    }
+    },
   },
   methods: {
     handleReceived(arg) {
@@ -147,7 +156,7 @@ export default {
           allDay:
             "<p id='allday-element'> All Day: " +
             (arg.allDay ? "Yes" : "No") +
-            " </p>"
+            " </p>",
         };
         $("#addAssignmentForm").append(
           newElements.start,
@@ -169,7 +178,7 @@ export default {
         end: endDate,
         allDay: arg.allDay,
         assignmentId: arg.draggedEl.id,
-        fromDashboard: true
+        fromDashboard: true,
       };
 
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
@@ -187,7 +196,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id
+        assignmentId: arg.event.id,
       };
       console.log(arg);
       this.$store.dispatch("updateAssignment", newElements);
@@ -208,16 +217,16 @@ export default {
             "Are you sure you want to remove this event? This will not delete the assignment.",
           icon: "warning",
           buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
+          dangerMode: true,
+        }).then((willDelete) => {
           if (willDelete) {
             event.remove();
             let newTimes = {
               start: "",
               end: "",
-              assignmentId: arg.event.id
+              assignmentId: arg.event.id,
             };
-            this.$store.dispatch("updateAssignment", newTimes);
+            this.$store.dispatch("updateStudentMock", newTimes);
           }
         });
       }
@@ -251,14 +260,14 @@ export default {
       );
       let dateTime = new Date(timestampWithRemovedEnd);
       return dateTime.toLocaleString("en-US");
-    }
+    },
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student
-  }
+    student,
+  },
 };
 </script>
 
