@@ -2,43 +2,46 @@
   <div class="transcript container-fluid">
     <div class="row">
       <div class="col-12 pt-5 mt-5">
-        <input
-          @change="showFullTranscript = !showFullTranscript"
-          type="checkbox"
-        />
+        <input @change="showFullTranscript = !showFullTranscript" type="checkbox" />
         <p class="d-inline">Full transcript</p>
       </div>
-      <div class="col-12 text-danger text-center">
-        <p>
-          Information changed on this page will not be saved. Print before
-          leaving to have for your records
-        </p>
+      <div class="col-12 text-dark text-center">
+        <p>Highlighted Information can be changed on this page, but will not be saved. The highlight will not show up on the actual printed page. If you don't want a highlighted option just leave it blank. Print before leaving to have for your records</p>
       </div>
     </div>
     <div id="transcript" class="row">
-      <div class="col-12 bg-dark">
+      <div style="background-color: black" class="col-12">
         <h3 class="text-light" align="center">Official transcript</h3>
       </div>
       <div class="col-12">
         <h1 align="center">
-          <span v-if="!form" @click="form = !form">{{ school }}</span
-          ><span v-if="form"
-            ><input v-model="school" type="text" />
-            <button @click="form = !form" class="btn btn-success">
-              change
-            </button></span
-          >
+          <span class="bg-warning" v-if="!form" @click="form = !form">{{ school }}</span>
+          <span v-if="form">
+            <input v-model="school" type="text" />
+            <button @click="form = !form" class="btn btn-success">change</button>
+          </span>
           Transcript for
-          {{ student.name }}
+          <span
+            v-if="!Nform"
+            @click="Nform = !Nform"
+            class="bg-warning"
+          >{{ student.name }}</span>
+          <span v-if="Nform">
+            <input v-model="student.name" type="text" />
+            <button @click="Nform = !Nform" class="btn btn-success">change</button>
+          </span>
         </h1>
-        <h3 align="center">
-          {{ student.gradeLevel }}
-        </h3>
+        <h3 align="center">Grade: {{ student.gradeLevel }}</h3>
+        <h5>Curriculum:</h5>
+        <p>{{student.description}}</p>
+        <h5>Birth Date:</h5>
+        <p class="bg-warning size" @click="Dform = !Dform" v-if="!Dform">{{birth}}</p>
+        <span v-if="Dform">
+          <input v-model="birth" type="text" />
+          <button @click="Dform = !Dform" class="btn btn-success">change</button>
+        </span>
       </div>
-      <transcriptSummary
-        v-if="!showFullTranscript"
-        :assignments="assignments"
-      />
+      <transcriptSummary v-if="!showFullTranscript" :assignments="assignments" />
       <transcriptAll :assignments="assignments" v-else />
     </div>
 
@@ -61,6 +64,9 @@ export default {
       output: null,
       form: false,
       school: "HomeScholar",
+      Dform: false,
+      birth: "01 / 01 / 1999",
+      Nform: false
     };
   },
   mounted() {
@@ -70,7 +76,7 @@ export default {
   methods: {
     print() {
       this.$htmlToPaper("transcript");
-    },
+    }
   },
   computed: {
     student() {
@@ -78,21 +84,25 @@ export default {
     },
     assignments() {
       return this.$store.state.AssignmentsStore.assignments
-        .filter((a) => a.studentId.id == this.student.id)
+        .filter(a => a.studentId.id == this.student.id)
         .sort((a, b) => {
           if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
             return 1;
           } else return -1;
         });
-    },
+    }
   },
   components: {
     transcriptAll,
-    transcriptSummary,
-  },
+    transcriptSummary
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.size {
+  max-width: 10em;
+}
+</style>
 
 new Date(assignment.updatedAt).toLocaleDateString("en-US")

@@ -57,6 +57,7 @@
 
             <span v-for="student in students" :key="student.id">
               <a
+                v-if="!student.archived"
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show"
                 @click="routeToStudent(student.id)"
@@ -84,6 +85,7 @@
         <img class="profileImgNav d-inline" :src="user.picture" alt />
       </router-link>-->
       <img
+        v-if="$auth.isAuthenticated"
         @click="routeToProfile"
         class="profileImgNav d-inline action mr-2"
         :src="user.picture"

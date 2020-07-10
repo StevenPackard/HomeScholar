@@ -2,7 +2,7 @@
   <div class="col-12 text-center">
     <div class="row">
       <div class="col-12">
-        <div class="row  mb-2">
+        <div class="row mb-2">
           <div class="col-4 border">Subject</div>
           <div class="col-4 border">Score</div>
           <div class="col-4 border">Hours</div>
@@ -11,16 +11,10 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <div
-          class="row"
-          v-for="(value, name, index) in transcriptData"
-          :key="index"
-        >
+        <div class="row" v-for="(value, name, index) in transcriptData" :key="index">
           <div class="col-12">
             <div class="row">
-              <div class="col-6 border">
-                {{ name[0].toUpperCase() + name.slice(1) }}
-              </div>
+              <div class="col-6 border">{{ name[0].toUpperCase() + name.slice(1) }}</div>
               <div class="col-6 border">{{ Math.ceil(value) }}</div>
             </div>
           </div>
@@ -28,9 +22,7 @@
       </div>
       <div class="col-4">
         <div class="row" v-for="(value, name, index) in hours" :key="index">
-          <div class="col-12 border">
-            {{ value }}
-          </div>
+          <div v-if="value !=0" class="col-12 border">{{ value }}</div>
         </div>
       </div>
     </div>
@@ -46,7 +38,7 @@ export default {
     //   return this.$store.getters.transcriptSummary;
     // }
     transcriptData() {
-      let assignment = this.assignments.filter((e) => e.score >= 0);
+      let assignment = this.assignments.filter(e => e.score >= 0);
       let subjectObj = {};
       for (let i = 0; i < assignment.length; i++) {
         let keys = Object.keys(subjectObj);
@@ -82,7 +74,7 @@ export default {
           } else {
             subjectObjHours[this.assignments[i].subject] = [
               new Date(this.assignments[i].end).getHours() -
-                new Date(this.assignments[i].start).getHours(),
+                new Date(this.assignments[i].start).getHours()
             ];
           }
         }
@@ -97,8 +89,8 @@ export default {
         );
       }
       return avgObjHours;
-    },
-  },
+    }
+  }
 };
 </script>
 
