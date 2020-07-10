@@ -23,7 +23,7 @@
       </div>
       <div class="col-12 p-1" v-for="(student, index) in students" :key="index">
         <div class="row text-center" v-if="!student.archived">
-          <div class="col-3">{{student.name.toUpperCase()}}</div>
+          <div class="col-3">{{student.name}}</div>
           <div class="col-3">
             <span v-if="true" class>{{ student.gradeLevel }}</span>
           </div>
