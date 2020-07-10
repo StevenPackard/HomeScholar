@@ -15,7 +15,12 @@
             life
           </p>
           <p class="lead">
-            <button @click="login" class="btn-lg my-2 btn-warning btn-outline-dark">Sign up</button>
+            <button
+              @click="login"
+              class="btn-lg my-2 btn-warning btn-outline-dark"
+            >
+              Sign up
+            </button>
           </p>
         </div>
       </div>
@@ -70,7 +75,9 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center text-center">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center text-center"
+      >
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -80,7 +87,9 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Its the best thing ever!</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Its the best thing ever!
+            </h6>
             <p class="card-text">
               "HomeScholar really is the best thing for me as a parent. I really
               feel empowered in my childrens education now I can spend more time
@@ -90,7 +99,9 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center text-center">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center text-center"
+      >
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -114,16 +125,18 @@
     <div class="row bg-info justify-content-center">
       <div class="col-md-6 col-12 text-center mt-3">
         <h3 class="text-dark">Take control of your childrens education.</h3>
-        <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
+        <h3 class="text-dark">
+          Ditch the hassle and start using HomeScholar today!
+        </h3>
       </div>
       <div class="col-md-7 col-12 text-center">
-        <router-link :to="{ name: 'tour' }">
-          <a
-            class="btn btn-warning btn-outline-dark btn-lg shadow"
-            href="#"
-            role="button"
-          >Take a tour</a>
-        </router-link>
+        <a
+          class="btn btn-warning btn-outline-dark btn-lg shadow"
+          href="#"
+          role="button"
+          @click="showTourAlert"
+          >Take a tour</a
+        >
       </div>
     </div>
   </div>
@@ -138,8 +151,9 @@ export default {
   computed: {
     profile() {
       return this.$store.state.user;
-    }
+    },
   },
+
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
@@ -148,9 +162,32 @@ export default {
       this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
-    }
+    },
+    async tourLogout() {
+      debugger;
+      await this.$auth.logout({
+        returnTo: window.location.origin + "/#/tour",
+      });
+    },
+    showTourAlert() {
+      if (!this.$auth.isAuthenticated) {
+        this.$router.push({ name: "tour" });
+      } else {
+        swal({
+          title: "Are you sure?",
+          text: "You will be logged out if you want to take the tour",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            this.tourLogout();
+          }
+        });
+      }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="tourPage container-fluid">
     <div class="row push-down">
       <!-- <timeline /> -->
       <div class="col-md-8 col-12 max-height">
@@ -24,13 +24,13 @@
           @drop="handleDrop"
           @eventDrop="handleUpdate"
           @eventResize="handleUpdate"
-          @eventClick="setActiveAssignmentDetails"
+          @eventClick="openFakeModal"
           @dateClick="goToDate"
           @eventDragStart="handleDragStart"
           @eventDragStop="handleEventDragStop"
         />
       </div>
-      <div id="draggableContainer" class="col-md-4 col-12 max-height overflow-y">
+      <div id="draggableContainerFake" class="col-md-4 col-12 max-height overflow-y">
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
@@ -67,7 +67,7 @@
                   :data-event="assignmentString"
                   id="fakeAssign"
                 >
-                  <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
+                  <div data-toggle="modal" data-target="#fakeAssignmentDetailsModal" class>
                     <div class="row">
                       <div class="col-4">
                         <h5 class>Math</h5>
@@ -87,6 +87,7 @@
         </div>
       </div>
     </div>
+    <v-tour name="myTour" :steps="steps"></v-tour>
   </div>
 </template>
 
@@ -107,7 +108,7 @@ import ListPlugin from "@fullcalendar/list";
 import student from "../components/StudentMock";
 
 export default {
-  name: "dashboard",
+  name: "tour",
   mounted() {
     let draggableElement = document.getElementById("fakeAssign");
     new Draggable(draggableElement);
@@ -125,149 +126,61 @@ export default {
         title: "Division",
         duration: "02:00",
         id: "fakeAssign"
-      })
+      }),
+      steps: [
+        {
+          target: "#v-step-0", // We're using document.querySelector() under the hood
+          header: {
+            title: "Welcome to 4Sight!"
+          },
+          content: `Take the tour to see what you can do! `,
+          params: {}
+        },
+        {
+          target: "#v-step-1",
+          content:
+            "Add lists for each step of your project.  ex. 'In Progress' ",
+          params: {
+            placement: "left"
+          }
+        },
+        {
+          target: "#v-step-2",
+          content: "Add tasks to break down what needs to happen at each step",
+          params: {
+            placement: "right" // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        },
+        {
+          target: ".v-step-3",
+          content:
+            "Click on the task to see options, like moving to a new list",
+          params: {
+            placement: "right" // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        },
+        {
+          target: "#v-step-3",
+          content:
+            "Add comments to flesh out what really needs done in that task!",
+          params: {
+            placement: "left" // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        },
+        {
+          target: "#v-step-4",
+          content: "Sign up to get started today!",
+          params: {
+            placement: "right" // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        }
+      ]
     };
   },
   computed: {},
   methods: {
-    handleReceived(arg) {
-      let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
-      // console.log("recieved", arg);
-      // event.remove();
-      // NOTE We may need to revert this because we still get duplicates
-      let events = this.$refs.Fullcalendar.getApi().getEvents();
-      console.log(event.id);
-      console.log(events);
-      // for (let i = 0; i < events.length; i++) {
-      //   if (event.id == events[i].id) {
-      //     events[i].remove();
-      //   }
-      //   // console.log(events[i].id);
-      //   // events[i].remove();
-      // }
-    },
-    // handleEventRender(arg) {
-    //   let events = this.$refs.Fullcalendar.getApi().getEvents();
-    //   // console.log("event render events", events);
-    //   let eventIds = [];
-    //   for (let i = 0; i < events.length; i++) {
-    //     eventIds.push(events[i].id);
-    //   }
-
-    //   if (eventIds.includes(arg.event.id)) {
-    //     console.log("hello from if");
-    //     return false;
-    //   }
-    // },
-    handleDragStart(arg) {
-      console.log("drag start");
-    },
-    handleSelect(arg) {
-      console.log(arg);
-      // console.log("this is the type", arg.view.type);
-
-      if (arg.view.type != "dayGridMonth") {
-        let startTimestamp = this.fixTimestamp(arg.startStr);
-        let endTimestamp = this.fixTimestamp(arg.endStr);
-
-        let newElements = {
-          start: "<p id='start-element'> Start: " + startTimestamp + " </p>",
-          end: "<p id='end-element'> End: " + endTimestamp + " </p>",
-          allDay:
-            "<p id='allday-element'> All Day: " +
-            (arg.allDay ? "Yes" : "No") +
-            " </p>"
-        };
-        $("#addAssignmentForm").append(
-          newElements.start,
-          newElements.end,
-          newElements.allDay
-        );
-        $("#addAssignmentModal").attr("data-start", arg.start);
-        $("#addAssignmentModal").attr("data-end", arg.end);
-        $("#addAssignmentModal").attr("data-allDay", arg.allday);
-        $("#addAssignmentModal").modal("toggle");
-      }
-    },
-    async handleDrop(arg) {
-      let endDate = new Date(arg.date);
-      endDate.setHours(endDate.getHours() + 2);
-
-      let newElements = {
-        start: arg.date,
-        end: endDate,
-        allDay: arg.allDay,
-        assignmentId: arg.draggedEl.id,
-        fromDashboard: true
-      };
-
-      let event = await this.$refs.Fullcalendar.getApi().getEventById(
-        arg.draggedEl.id
-      );
-      console.log(arg, "this is the drop");
-
-      if (event) {
-        event.remove();
-      }
-
-      this.$store.dispatch("updateAssignment", newElements);
-    },
-    handleUpdate(arg) {
-      let newElements = {
-        start: arg.event.start,
-        end: arg.event.end,
-        assignmentId: arg.event.id
-      };
-      console.log(arg);
-      this.$store.dispatch("updateAssignment", newElements);
-    },
-    async handleEventDragStop(arg) {
-      console.log(" event drag stop method");
-      console.log(arg);
-      let trashEventX = arg.jsEvent.clientX;
-      let trashEventY = arg.jsEvent.clientY;
-      let trashEl = document.getElementById("draggableContainer");
-      let trashElRect = trashEl.getBoundingClientRect();
-      let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
-      console.log(trashElRect);
-      if (trashEventX > trashElRect.x) {
-        swal({
-          title: "Remove Event",
-          text:
-            "Are you sure you want to remove this event? This will not delete the assignment.",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
-          if (willDelete) {
-            event.remove();
-            let newTimes = {
-              start: "",
-              end: "",
-              assignmentId: arg.event.id
-            };
-            this.$store.dispatch("updateAssignment", newTimes);
-          }
-        });
-      }
-      // NOTE This goes with the trash icon for event removal
-      // let trashEl = document.getElementById("event-trash");
-      // let trashElRect = trashEl.getBoundingClientRect();
-      // console.log("trashEvent coors", trashEventX, trashEventY);
-      // console.log("trash coors", trashElRect.x, trashElRect.y);
-
-      // let diffX = Math.abs(trashEventX - trashElRect.x);
-      // let diffY = Math.abs(trashEventY - trashElRect.y);
-      // console.log("diffx: ", diffX);
-      // console.log("diffY: ", diffY);
-      // if (diffX < 50 && diffY < 40) {
-      //   console.log("good to delete");
-      // }
-    },
-
-    setActiveAssignmentDetails(arg) {
-      this.$store.commit("setActiveAssignmentDetails", arg.event.id);
-      $("#assignmentDetailsModal").modal("toggle");
+    openFakeModal() {
+      $("#fakeAssignmentDetailsModal").modal("toggle");
     },
     goToDate(arg) {
       this.$refs.Fullcalendar.getApi().changeView("timeGridDay", arg.date);
@@ -284,9 +197,7 @@ export default {
   },
   components: {
     timeline,
-    assignment,
-    Fullcalendar,
-    student
+    Fullcalendar
   }
 };
 </script>

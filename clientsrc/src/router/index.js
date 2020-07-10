@@ -26,6 +26,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: "/tour",
+      name: "tour",
+      component: Tour,
+    },
+    {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
@@ -54,11 +59,6 @@ export default new Router({
       name: "transcript",
       component: Transcript,
       beforeEnter: authGuard,
-    },
-    {
-      path: "/tour",
-      name: "tour",
-      component: Tour,
     },
     {
       path: "*",

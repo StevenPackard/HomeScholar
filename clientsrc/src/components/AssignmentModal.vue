@@ -21,11 +21,7 @@
           <div class="modal-body">
             <form id="addAssignmentForm">
               <select v-model="assignmentForm.name" class="form-control form-control-sm">
-                <option v-for="student in students" :key="student.id">
-                  {{
-                  student.name
-                  }}
-                </option>
+                <option v-for="student in students" :key="student.id">{{ student.name }}</option>
               </select>
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
@@ -109,7 +105,7 @@
               </div>
               <div class="form-group">
                 <label for="studentSubjects" class="col-form-label">Color</label>
-                <input type="color" id="color" v-model="addStudent.backgroundColor" class />
+                <input type="color" id="studentColor" v-model="addStudent.backgroundColor" class />
               </div>
             </form>
           </div>
@@ -213,7 +209,80 @@
     </div>
 
     <!--!SECTION -->
-
+    <!-- Fake Assignment Modal -->
+    <div
+      class="modal fade"
+      id="fakeAssignmentDetailsModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="fakeAssignmentDetailsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-center text-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="fakeAssignmentModalLabel">Assignment Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">
+                  <small>Title:</small>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fakeAssignmentTitle"
+                  placeholder="Division"
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">
+                  <small>Subject</small>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fakeAssignmentSubject"
+                  placeholder="Math"
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentDescription" class="col-form-label">
+                  <small>Description:</small>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="fakeAssignmentDescription"
+                  placeholder="This is where you can put the details of the assignment and explain exactly what youll be doing!"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="studentGrade" class="col-form-label">Score</label>
+                <input class="form-control" id="fakeAssignmentScore" type="number" />
+              </div>
+            </form>
+          </div>
+          <div class="d-flex justify-content-center p-4">
+            <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Delete</button>
+          </div>
+          <div class="form-group p-3">
+            <label for="assignment Note" class="col-form-label">Note</label>
+            <textarea
+              class="form-control"
+              id="fakeAssginmentNote"
+              type="text"
+              placeholder="You can leave a note on the assignment to add some extra details!"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Section -->
     <!-- SECTION EDIT STUDENT MODAL -->
     <div
       class="modal fade"
@@ -235,7 +304,7 @@
             <form>
               <div class="form-group">
                 <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="editstudentName" v-model="student.name" />
+                <input type="text" class="form-control" id="editStudentName" v-model="student.name" />
               </div>
               <div class="form-group">
                 <label for="studentDescription" class="col-form-label">Description</label>
@@ -276,10 +345,10 @@
     <!-- SECTION EDIT POST MODAL -->
     <div
       class="modal fade"
-      id="editPost"
+      id="editPostModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="editPostLabel"
+      aria-labelledby="editPostModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg modal-dialog-center" role="document">
@@ -298,7 +367,7 @@
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
-                <textarea class="form-control" id="editpostBody" v-model="post.body"></textarea>
+                <textarea class="form-control" id="editPostBody" v-model="post.body"></textarea>
               </div>
             </form>
           </div>
@@ -327,13 +396,13 @@
       id="addPost"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="editPostLabel"
+      aria-labelledby="addPostModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editPostLabel">New Post</h5>
+            <h5 class="modal-title" id="addPostModalLabel">New Post</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -342,7 +411,7 @@
             <form>
               <div class="form-group">
                 <label for="postTitle" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="editPostTitle" v-model="postForm.title" />
+                <input type="text" class="form-control" id="addPostTitle" v-model="postForm.title" />
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
@@ -380,7 +449,7 @@
             <form>
               <div class="form-group">
                 <label for="studentName" class="col-form-label">Body</label>
-                <input type="text" class="form-control" id="editstudentName" v-model="comment.body" />
+                <input type="text" class="form-control" id="editCommentBody" v-model="comment.body" />
               </div>
             </form>
           </div>
