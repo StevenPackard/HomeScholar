@@ -16,10 +16,15 @@
       <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>
       <p class="p-2 text-center">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
-        <p @click="routeToDetails" class="btn btn-outline-dark btn-warning">
+        <p @click="routeToDetails" class="btn btn-outline-dark btn-warning m-0">
           view comments
           <i class="fa fa-comment"></i>
         </p>
+        <button
+          v-if="post.isEvent"
+          class="btn btn-warning btn-outline-dark"
+          title="Add this event to your calander"
+        >Add to calander</button>
       </div>
     </div>
   </div>

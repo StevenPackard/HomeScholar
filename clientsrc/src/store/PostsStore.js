@@ -19,6 +19,7 @@ export const PostsStore = {
   actions: {
     async addPost({ commit, dispatch }, data) {
       try {
+        console.log(JSON.stringify(data));
         let res = await api.post("posts", data);
         console.log(res.data);
         dispatch("getAllPosts");
