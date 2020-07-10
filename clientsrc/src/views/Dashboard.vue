@@ -38,19 +38,17 @@
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
-            class="btn btn-warning btn-outline-dark mt-2 sticky-top"
+            class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
           >Add Assignment</button>
           <!-- student dropdown -->
           <button
             v-if="this.students.length > 1"
-            class="dropdown-toggle btn btn-warning text-dark"
+            class="dropdown-toggle btn btn-warning btn-outline-dark mt-2 mx-2"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >
-            <b>Students</b>
-          </button>
+          >Students</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="p-0 m-0"></p>
 
@@ -63,6 +61,13 @@
                 class="nav-link"
               >{{ student.name }}</a>
             </span>
+            <a
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              @click="showAll = true"
+              type="button"
+              class="nav-link"
+            >Show All</a>
           </div>
           <!-- <assignment /> -->
           <div v-if="showAll">
