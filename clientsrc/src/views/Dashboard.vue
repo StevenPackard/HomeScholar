@@ -89,7 +89,7 @@
                 <span class="p-1">{{eventToDisplay.title}}</span>
               </div>
               <div>
-                <span class="p-1">{{new Date(eventToDisplay.start).toLocaleString()}}</span>
+                <span class="p-1">{{new Date(eventToDisplay.start).toLocaleString().slice(0,9)}}</span>
                 <i
                   title="delete event"
                   type="button"
