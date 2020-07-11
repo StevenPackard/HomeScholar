@@ -46,6 +46,9 @@
           >
             Add Assignment
           </button>
+
+          <!-- view events button -->
+
           <button
             @click="boo = !boo"
             class="btn btn-warning btn-outline-dark mt-2 mx-2"
