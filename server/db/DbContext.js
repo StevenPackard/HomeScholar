@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import ValueSchema from "../models/Value";
+import EventSchema from "../models/Event";
 import ProfileSchema from "../models/Profile";
 import AssignmentSchema from "../models/Assignment";
 import StudentSchema from "../models/Student";
 import PostSchema from "../models/Post";
 import CommentSchema from "../models/Comment";
 class DbContext {
-  Values = mongoose.model("Value", ValueSchema);
+  Events = mongoose.model("Event", EventSchema);
   Profile = mongoose.model("Profile", ProfileSchema);
   Assignments = mongoose.model("Assignment", AssignmentSchema);
   Students = mongoose.model("Student", StudentSchema);

@@ -5,6 +5,11 @@ class AssignmentService {
   async find(query = {}) {
     return await dbContext.Assignments.find(query).populate("studentId");
   }
+
+  // async getAll(userEmail) {
+  //   return await dbContext.Assignments.find();
+  // }
+
   async getAll(userEmail) {
     return await dbContext.Assignments.find({
       creatorEmail: userEmail,

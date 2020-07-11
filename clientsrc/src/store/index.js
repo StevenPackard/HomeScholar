@@ -42,24 +42,24 @@ export default new Vuex.Store({
       }
     },
 
-    async addEvent({ commit, dispatch }, arg) {
-      try {
-        let argObj = {
-          date: new Date().getTime(),
-          start: arg.start,
-          end: arg.end,
-          allDay: arg.allDay,
-          studentId: arg.id,
-        };
-        let res = await api.put(
-          "assignments/" + "5eebbf352f929106fb5433e8",
-          argObj
-        );
-        commit("addToEvents", res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    },
+    // async addEvent({ commit, dispatch }, arg) {
+    //   try {
+    //     let argObj = {
+    //       date: new Date().getTime(),
+    //       start: arg.start,
+    //       end: arg.end,
+    //       allDay: arg.allDay,
+    //       studentId: arg.id,
+    //     };
+    //     let res = await api.put(
+    //       "assignments/" + "5eebbf352f929106fb5433e8",
+    //       argObj
+    //     );
+    //     commit("addToEvents", res.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
   },
   modules: {
     StudentStore,

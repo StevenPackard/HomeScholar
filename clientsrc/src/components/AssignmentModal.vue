@@ -359,21 +359,16 @@
                 <textarea class="form-control" id="editpostBody" v-model="postForm.body"></textarea>
               </div>
               <label for="checkbox">Event</label>
-              <input
-                type="checkbox"
-                id="checkbox"
-                :max="postForm.endTime"
-                v-model="postForm.isEvent"
-              />
+              <input type="checkbox" id="checkbox" :max="postForm.end" v-model="postForm.isEvent" />
               <div v-if="postForm.isEvent">
                 <label for="checkbox">Start time</label>
-                <input type="datetime-local" class="form-control" v-model="postForm.startTime" />
+                <input type="datetime-local" class="form-control" v-model="postForm.start" />
                 <label for="checkbox">End time</label>
                 <input
                   type="datetime-local"
                   class="form-control"
-                  v-model="postForm.endTime"
-                  :min="postForm.startTime"
+                  v-model="postForm.end"
+                  :min="postForm.start"
                 />
               </div>
             </form>
