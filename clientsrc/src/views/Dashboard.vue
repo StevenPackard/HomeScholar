@@ -41,6 +41,7 @@
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
           >Add Assignment</button>
+          <button @click="boo = !boo" class="btn btn-warning btn-outline-dark mt-2 mx-2">View Events</button>
           <!-- student dropdown -->
           <button
             v-if="this.students.length > 1"
@@ -72,6 +73,7 @@
               <b>Show All</b>
             </a>
           </div>
+          <div class="col-12" v-if="boo">hello I am events</div>
           <!-- <assignment /> -->
           <div v-if="students.length > 1">
             <div v-if=" showAll">
@@ -127,7 +129,8 @@ export default {
         InteractionPlugin,
         ListPlugin
       ],
-      showAll: true
+      showAll: true,
+      boo: false
     };
   },
   computed: {
