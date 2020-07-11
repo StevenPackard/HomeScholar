@@ -1,18 +1,17 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid bg-png bg-light">
     <div class="row push-down">
       <!-- <timeline /> -->
-      <div class="col-md-8 col-12 max-height">
+      <div class="col-md-8 order-md-1 order-2 col-12 max-height">
         <Fullcalendar
           class="rounded shadow"
-          id="myCalFake"
+          id="myFakeCal"
           ref="Fullcalendar"
           height="parent"
           defaultView="timeGridDay"
           :plugins="calendarPlugins"
           :selectable="true"
           :dragRevertDuration="0"
-          :events="assignments"
           :editable="true"
           :header="{
             center: 'title',
@@ -30,19 +29,61 @@
           @eventDragStop="handleEventDragStop"
         />
       </div>
-      <div id="draggableContainer" class="col-md-4 col-12 max-height overflow-y">
+      <div
+        id="draggableFakeContainer"
+        class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y"
+      >
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
           <button
             data-toggle="modal"
             data-target="#addAssignmentModal"
-            class="btn btn-warning btn-outline-dark mt-2 sticky-top"
-          >add assignment</button>
+            class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
+          >Add Assignment</button>
+          <!-- student dropdown -->
+          <button
+            class="dropdown-toggle btn btn-warning btn-outline-dark mt-2 mx-2"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Students</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <p class="p-0 m-0"></p>
+            <span>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                @click="showOne = true"
+                type="button"
+                class="nav-link"
+              >Fake Name 1</a>
+            </span>
+            <span>
+              <a
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                @click="showOne = true"
+                type="button"
+                class="nav-link"
+              >Fake Name 2</a>
+            </span>
+            <a
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              @click="showOne = false"
+              type="button"
+              class="nav-link"
+            >
+              <b>Show All</b>
+            </a>
+          </div>
           <!-- <assignment /> -->
+          <!-- Fake Student Component 1 -->
           <div
-            :style="background"
             class="student-mock-component col-12 my-3 shadow rounded color bg-warning"
+            :class="{showAllSize: showOne == false, solo: showOne}"
           >
             <div class="row text-center justify-content-center">
               <div class="col-12">
@@ -59,13 +100,13 @@
                 <h5>All Assignments</h5>
               </div>
             </div>
-            <div class="row assignment-box justify-content-center mt-2">
+            <div class="row assignment-box justify-content-center mt-2 solo-assigns">
               <ol class="col-11">
                 <li
                   draggable="true"
                   class="assignment-component-mock p-0 col-12 text-center rounded border border-dark my-1 action p-2 drag-item"
                   :data-event="assignmentString"
-                  id="fakeAssign"
+                  id="fakeAssign1"
                 >
                   <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
                     <div class="row">
@@ -84,6 +125,52 @@
               </ol>
             </div>
           </div>
+          <!-- Fake Student component 2 -->
+          <div
+            class="student-mock-component col-12 my-3 shadow rounded color bg-secondary"
+            :class="{showAllSize: showOne == false, hide: showOne == true}"
+          >
+            <div class="row text-center justify-content-center">
+              <div class="col-12">
+                <h4>
+                  Fake Name 2
+                  <i class="fas fa-school mx-4"></i>
+                  Grade Level - 1
+                </h4>
+
+                <span>Hide Graded</span>
+                <input class="btn btn-warning" type="checkbox" checked />
+              </div>
+              <div class="col-7 border-bottom border-dark">
+                <h5>All Assignments</h5>
+              </div>
+            </div>
+            <div class="row assignment-box justify-content-center mt-2 solo-assigns">
+              <ol class="col-11">
+                <li
+                  draggable="true"
+                  class="assignment-component-mock p-0 col-12 text-center rounded border border-dark my-1 action p-2 drag-item"
+                  :data-event="assignmentString"
+                  id="fakeAssign2"
+                >
+                  <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
+                    <div class="row">
+                      <div class="col-4">
+                        <h5 class>Math</h5>
+                      </div>
+                      <div class="col-4">
+                        <h5 class>Division</h5>
+                      </div>
+                      <div class="col-4">
+                        <h5 class>Ungraded</h5>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <!-- <student v-show="activeStudent" :student="a" /> -->
         </div>
       </div>
     </div>
@@ -109,8 +196,10 @@ import student from "../components/StudentMock";
 export default {
   name: "dashboard",
   mounted() {
-    let draggableElement = document.getElementById("fakeAssign");
-    new Draggable(draggableElement);
+    let draggableElement1 = document.getElementById("fakeAssign1");
+    new Draggable(draggableElement1);
+    let draggableElement2 = document.getElementById("fakeAssign2");
+    new Draggable(draggableElement2);
   },
 
   data() {
@@ -124,8 +213,9 @@ export default {
       assignmentString: JSON.stringify({
         title: "Division",
         duration: "02:00",
-        id: "fakeAssign"
-      })
+        id: "fakeAssign1"
+      }),
+      showOne: false
     };
   },
   computed: {},
@@ -209,8 +299,6 @@ export default {
       if (event) {
         event.remove();
       }
-
-      this.$store.dispatch("updateAssignment", newElements);
     },
     handleUpdate(arg) {
       let newElements = {
@@ -219,17 +307,20 @@ export default {
         assignmentId: arg.event.id
       };
       console.log(arg);
-      this.$store.dispatch("updateAssignment", newElements);
     },
     async handleEventDragStop(arg) {
       console.log(" event drag stop method");
       console.log(arg);
       let trashEventX = arg.jsEvent.clientX;
       let trashEventY = arg.jsEvent.clientY;
-      let trashEl = document.getElementById("draggableContainer");
+      let trashEl = document.getElementById("draggableFakeContainer");
       let trashElRect = trashEl.getBoundingClientRect();
-      let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
       console.log(trashElRect);
+      console.log(trashEventX);
+
+      let events = this.$refs.Fullcalendar.getApi().getEvents();
+      console.log(events);
+
       if (trashEventX > trashElRect.x) {
         swal({
           title: "Remove Event",
@@ -240,13 +331,17 @@ export default {
           dangerMode: true
         }).then(willDelete => {
           if (willDelete) {
-            event.remove();
+            for (let i = 0; i < events.length; i++) {
+              events[i].remove();
+
+              // console.log(events[i].id);
+              // events[i].remove();
+            }
             let newTimes = {
               start: "",
               end: "",
               assignmentId: arg.event.id
             };
-            this.$store.dispatch("updateAssignment", newTimes);
           }
         });
       }
@@ -298,6 +393,12 @@ export default {
 .overflow-y {
   overflow-y: auto;
 }
+.bg-png {
+  background-image: url(../assets/pencil.jpg);
+  height: fit-content;
+  background-repeat: repeat;
+  background-size: cover;
+}
 
 .push-down {
   margin-top: 5rem;
@@ -312,7 +413,20 @@ export default {
 } */
 
 .fc {
-  background-color: #6cc3d5; /* most backgrounds */
+  background-color: #f4f5f6; /* most backgrounds */
+  opacity: 0.9;
+}
+.fc-unthemed .fc-content,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-row,
+.fc-unthemed tbody,
+.fc-unthemed td,
+.fc-unthemed th,
+.fc-unthemed thead {
+  border-color: rgb(173, 173, 173);
 }
 .fc-today {
   background-color: white !important;
@@ -331,17 +445,32 @@ export default {
 .fc-button-primary:disabled {
   background-color: #888;
 }
-.fc-toolbar h2 {
+/* .fc-toolbar h2 {
   color: whitesmoke;
   text-shadow: 0.5px 0.5px black;
-}
-
-.student-mock-component {
-  height: 37vh;
-}
+} */
 
 /* .fc-event {
   background-color: #f3969a;
   border-color: #f3969a;
 } */
+.solo {
+  height: 75vh;
+}
+.opaque {
+  opacity: 0.9;
+}
+.soloAssigns {
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.hide {
+  display: none;
+}
+.showAllSize {
+  height: 35vh;
+}
 </style>
+
+
