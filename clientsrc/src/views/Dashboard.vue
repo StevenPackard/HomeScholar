@@ -79,14 +79,24 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12 bg-info rounded opacity mt-3" v-if="DisplayEvents">
-            <div v-for="eventToDisplay in eventsToDisplay" :key="eventToDisplay.id">
-              {{eventToDisplay.title}}
-              <i
-                type="button"
-                @click="deleteEvent(eventToDisplay.id)"
-                class="fas fa-trash action"
-              ></i>
+          <div class="col-12 bg-primary text-dark rounded opacity shadow mt-3" v-if="DisplayEvents">
+            <div
+              class="d-flex justify-content-between p-1"
+              v-for="eventToDisplay in eventsToDisplay"
+              :key="eventToDisplay.id"
+            >
+              <div>
+                <span class="p-1">{{eventToDisplay.title}}</span>
+              </div>
+              <div>
+                <span class="p-1">{{new Date(eventToDisplay.start).toLocaleString()}}</span>
+                <i
+                  title="delete event"
+                  type="button"
+                  @click="deleteEvent(eventToDisplay.id)"
+                  class="fas fa-trash action p-1 text-danger"
+                ></i>
+              </div>
             </div>
           </div>
           <!-- <assignment /> -->
