@@ -44,7 +44,11 @@
 
           <!-- view events button -->
 
-          <button @click="boo = !boo" class="btn btn-warning btn-outline-dark mt-2 mx-2">View Events</button>
+          <button
+            v-if="eventsToDisplay.length>0"
+            @click="DisplayEvents = !DisplayEvents"
+            class="btn btn-warning btn-outline-dark mt-2 mx-2"
+          >View Events</button>
           <!-- student dropdown -->
           <button
             v-if="this.nArchived.length > 1"
@@ -75,9 +79,15 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12 bg-info rounded opacity mt-3" v-if="boo">
-            hello I am events
-            <i class="fas fa-trash"></i>
+          <div class="col-12 bg-info rounded opacity mt-3" v-if="DisplayEvents">
+            <div v-for="eventToDisplay in eventsToDisplay" :key="eventToDisplay.id">
+              {{eventToDisplay.title}}
+              <i
+                type="button"
+                @click="deleteEvent(eventToDisplay.id)"
+                class="fas fa-trash action"
+              ></i>
+            </div>
           </div>
           <!-- <assignment /> -->
           <div v-if="nArchived.length > 1">
@@ -124,6 +134,7 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
+    this.$store.dispatch("getAllEvents");
   },
 
   data() {
@@ -135,10 +146,13 @@ export default {
         ListPlugin
       ],
       showAll: true,
-      boo: false
+      DisplayEvents: false
     };
   },
   computed: {
+    eventsToDisplay() {
+      return this.$store.state.PostsStore.events;
+    },
     students() {
       return this.$store.state.StudentStore.students;
     },
@@ -156,6 +170,10 @@ export default {
     }
   },
   methods: {
+    async deleteEvent(id) {
+      await this.$store.dispatch("deleteEvent", id);
+      this.$store.dispatch("getAllEvents");
+    },
     setActiveStudent(id) {
       this.$store.state.StudentStore.activeStudent = this.$store.state.StudentStore.students.find(
         s => s.id == id
