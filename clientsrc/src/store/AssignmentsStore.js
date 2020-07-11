@@ -98,8 +98,12 @@ export const AssignmentsStore = {
     },
     async getAllAssignments({ commit, dispatch }) {
       try {
-        let res = await api.get("assignments");
-        commit("setAssignments", res.data);
+        let resAssignments = await api.get("assignments");
+        let resEvents = await api.get("events");
+        let concatEvents = resAssignments.data.concat(resEvents.data);
+        console.log(concatEvents);
+        commit("setAssignments", concatEvents);
+        // commit("setAssignments", resAssignments.data);
       } catch (error) {
         console.error(error);
       }

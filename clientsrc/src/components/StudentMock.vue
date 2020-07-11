@@ -1,8 +1,8 @@
 <template>
   <div
     v-if="!student.archived"
-    :style="{'background-color': student.backgroundColor}"
-    class="student-mock-component col-12 my-3 text-black shadow rounded opaque color w-100"
+    :style="{ 'background-color': student.backgroundColor }"
+    class="student-mock-component col-12 my-3 text-black shadow rounded opaque color"
     :class="{ solo: soloDolo }"
   >
     <div class="row text-center justify-content-center">
@@ -15,14 +15,22 @@
           </h4>
         </router-link>
         <span>Hide Graded</span>
-        <input class="btn btn-warning" type="checkbox" checked @click="filtered = !filtered" />
+        <input
+          class="btn btn-warning"
+          type="checkbox"
+          checked
+          @click="filtered = !filtered"
+        />
       </div>
       <div class="col-7 border-bottom border-dark">
         <h5 v-if="!filtered">Unscheduled Assignments</h5>
         <h5 v-if="filtered">All Assignments</h5>
       </div>
     </div>
-    <div class="row assignment-box justify-content-center mt-2" :class="{ soloAssigns: soloDolo}">
+    <div
+      class="row assignment-box justify-content-center mt-2"
+      :class="{ soloAssigns: soloDolo }"
+    >
       <ol v-if="filtered" class="col-11">
         <AssignmentComponentMock
           v-for="assignment in assignments"
@@ -48,7 +56,7 @@ export default {
   name: "student-mock",
   data() {
     return {
-      filtered: false
+      filtered: false,
       // soloStudent: this.students.length == 1 ? true : false
     };
   },
@@ -57,19 +65,21 @@ export default {
   },
   computed: {
     assignments() {
-      return this.$store.state.AssignmentsStore.assignments.filter(
-        a => a.studentId.id == this.student.id
-      );
+      return this.$store.state.AssignmentsStore.assignments
+        .filter((a) => !("studentId" in a) == false)
+        .filter((a) => a.studentId.id == this.student.id);
     },
     filteredAssignments() {
-      return this.scheduledAssignments.filter(assignment => !assignment.score);
+      return this.scheduledAssignments.filter(
+        (assignment) => !assignment.score
+      );
     },
     scheduledAssignments() {
-      return this.assignments.filter(assignment => assignment.start == null);
+      return this.assignments.filter((assignment) => assignment.start == null);
     },
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
 
     //   return this.$store.state.AssignmentsStore.ActiveAssignmentsbyStudentId[
     //     this.student.id
@@ -79,9 +89,9 @@ export default {
   methods: {},
   components: {
     AddAssignmentModal,
-    AssignmentComponentMock
+    AssignmentComponentMock,
   },
-  props: ["student", "soloDolo"]
+  props: ["student", "soloDolo"],
 };
 </script>
 
