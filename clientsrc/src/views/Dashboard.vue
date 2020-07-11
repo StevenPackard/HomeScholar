@@ -40,21 +40,11 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-<<<<<<< HEAD
           >Add Assignment</button>
-=======
-          >
-            Add Assignment
-          </button>
 
           <!-- view events button -->
 
->>>>>>> 4952e4443b6ea8b6cb2fbfd9f868a943ca79c649
-          <button
-            v-if="eventsToDisplay.length>0"
-            @click="toggleEventShowing = !toggleEventShowing"
-            class="btn btn-warning btn-outline-dark mt-2 mx-2"
-          >View Events</button>
+          <button @click="boo = !boo" class="btn btn-warning btn-outline-dark mt-2 mx-2">View Events</button>
           <!-- student dropdown -->
           <button
             v-if="this.nArchived.length > 1"
@@ -85,25 +75,14 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12 bg-success rounded opacity mt-3" v-if="toggleEventShowing">
-            <div
-              class="d-flex justify-content-between p-2"
-              v-for="eventToDisplay in eventsToDisplay"
-              :key="eventToDisplay.id"
-            >
-              {{eventToDisplay.title}}
-              <i
-                @click="deleteEvent(eventToDisplay.id)"
-                class="fas fa-trash action"
-              ></i>
-            </div>
-
+          <div class="col-12 bg-info rounded opacity mt-3" v-if="boo">
+            hello I am events
+            <i class="fas fa-trash"></i>
           </div>
           <!-- <assignment /> -->
           <div v-if="nArchived.length > 1">
             <div v-if="showAll">
-
-              <student v-for="student in students" :key="student.id" :student="student" />
+              <student v-for="student in nArchived" :key="student.id" :student="student" />
             </div>
             <div v-else>
               <student v-show="activeStudent" :student="activeStudent" :soloDolo="true" />
@@ -145,7 +124,6 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
-    this.$store.dispatch("getAllEvents");
   },
 
   data() {
@@ -157,15 +135,10 @@ export default {
         ListPlugin
       ],
       showAll: true,
-
-      toggleEventShowing: false
-
+      boo: false
     };
   },
   computed: {
-    eventsToDisplay() {
-      return this.$store.state.PostsStore.events;
-    },
     students() {
       return this.$store.state.StudentStore.students;
     },
@@ -183,10 +156,6 @@ export default {
     }
   },
   methods: {
-    async deleteEvent(id) {
-      await this.$store.dispatch("deleteEvent", id);
-      this.$store.dispatch("getAllEvents");
-    },
     setActiveStudent(id) {
       this.$store.state.StudentStore.activeStudent = this.$store.state.StudentStore.students.find(
         s => s.id == id
