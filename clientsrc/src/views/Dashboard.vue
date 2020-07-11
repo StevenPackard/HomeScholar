@@ -31,10 +31,7 @@
           @datesRender="handleDatesRender"
         />
       </div>
-      <div
-        id="draggableContainer"
-        class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y"
-      >
+      <div id="draggableContainer" class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y">
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
@@ -43,15 +40,12 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-          >
-            Add Assignment
-          </button>
+          >Add Assignment</button>
           <button
-            @click="boo = !boo"
+            v-if="eventsToDisplay.length>0"
+            @click="toggleEventShowing = !toggleEventShowing"
             class="btn btn-warning btn-outline-dark mt-2 mx-2"
-          >
-            View Events
-          </button>
+          >View Events</button>
           <!-- student dropdown -->
           <button
             v-if="this.students.length > 1"
@@ -60,9 +54,7 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >
-            Students
-          </button>
+          >Students</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="p-0 m-0"></p>
 
@@ -73,8 +65,7 @@
                 @click="setActiveStudent(student.id), (showAll = false)"
                 type="button"
                 class="nav-link"
-                >{{ student.name }}</a
-              >
+              >{{ student.name }}</a>
             </span>
             <a
               data-toggle="collapse"
@@ -86,25 +77,26 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12 bg-info rounded opacity mt-3" v-if="boo">
-            hello I am events
-            <i class="fas fa-trash    "></i>
+          <div class="col-12 bg-success rounded opacity mt-3" v-if="toggleEventShowing">
+            <div
+              class="d-flex justify-content-between p-2"
+              v-for="eventToDisplay in eventsToDisplay"
+              :key="eventToDisplay.id"
+            >
+              {{eventToDisplay.title}}
+              <i
+                @click="deleteEvent(eventToDisplay.id)"
+                class="fas fa-trash action"
+              ></i>
+            </div>
           </div>
           <!-- <assignment /> -->
           <div v-if="students.length > 1">
             <div v-if="showAll">
-              <student
-                v-for="student in students"
-                :key="student.id"
-                :student="student"
-              />
+              <student v-for="student in students" :key="student.id" :student="student" />
             </div>
             <div v-else>
-              <student
-                v-show="activeStudent"
-                :student="activeStudent"
-                :soloDolo="true"
-              />
+              <student v-show="activeStudent" :student="activeStudent" :soloDolo="true" />
             </div>
           </div>
           <div v-else>
@@ -143,6 +135,7 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
+    this.$store.dispatch("getAllEvents");
   },
 
   data() {
@@ -151,13 +144,16 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin,
+        ListPlugin
       ],
       showAll: true,
-      boo: false,
+      toggleEventShowing: false
     };
   },
   computed: {
+    eventsToDisplay() {
+      return this.$store.state.PostsStore.events;
+    },
     students() {
       return this.$store.state.StudentStore.students;
     },
@@ -167,12 +163,16 @@ export default {
     },
     activeStudent() {
       return this.$store.state.StudentStore.activeStudent;
-    },
+    }
   },
   methods: {
+    async deleteEvent(id) {
+      await this.$store.dispatch("deleteEvent", id);
+      this.$store.dispatch("getAllEvents");
+    },
     setActiveStudent(id) {
       this.$store.state.StudentStore.activeStudent = this.$store.state.StudentStore.students.find(
-        (s) => s.id == id
+        s => s.id == id
       );
     },
     handleReceived(arg) {
@@ -232,7 +232,7 @@ export default {
           allDay:
             "<p id='allday-element'> All Day: " +
             (arg.allDay ? "Yes" : "No") +
-            " </p>",
+            " </p>"
         };
         $("#addAssignmentForm").append(
           newElements.start,
@@ -254,7 +254,7 @@ export default {
         end: endDate,
         allDay: arg.allDay,
         assignmentId: arg.draggedEl.id,
-        fromDashboard: true,
+        fromDashboard: true
       };
 
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
@@ -272,7 +272,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id,
+        assignmentId: arg.event.id
       };
       console.log(arg);
       this.$store.dispatch("updateAssignment", newElements);
@@ -293,14 +293,14 @@ export default {
             "Are you sure you want to remove this event? This will not delete the assignment.",
           icon: "warning",
           buttons: true,
-          dangerMode: true,
-        }).then((willDelete) => {
+          dangerMode: true
+        }).then(willDelete => {
           if (willDelete) {
             event.remove();
             let newTimes = {
               start: "",
               end: "",
-              assignmentId: arg.event.id,
+              assignmentId: arg.event.id
             };
             this.$store.dispatch("updateStudentMock", newTimes);
           }
@@ -336,14 +336,14 @@ export default {
       );
       let dateTime = new Date(timestampWithRemovedEnd);
       return dateTime.toLocaleString("en-US");
-    },
+    }
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student,
-  },
+    student
+  }
 };
 </script>
 
