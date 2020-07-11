@@ -17,6 +17,15 @@ export const PostsStore = {
     },
   },
   actions: {
+    async addEvent({ commit, dispatch }, data) {
+      try {
+        console.log(JSON.stringify(data));
+        await api.post("events", data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     async addPost({ commit, dispatch }, data) {
       try {
         console.log(JSON.stringify(data));
