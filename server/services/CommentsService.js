@@ -11,7 +11,6 @@ class CommentsService {
   }
   async create(rawData) {
     let data = await dbContext.Comments.create(rawData);
-    console.log(data.postId);
     socketService.addComment(data);
     return data;
   }

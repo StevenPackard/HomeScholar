@@ -22,6 +22,7 @@
         </p>
         <button
           v-if="post.isEvent"
+          @click="addEvent"
           class="btn btn-warning btn-outline-dark"
           title="Add this event to your calander"
         >Add to calander</button>
@@ -34,6 +35,9 @@
 export default {
   props: ["post"],
   methods: {
+    addEvent() {
+      this.$store.dispatch("addEvent", this.post);
+    },
     routeToDetails() {
       if (this.$route.params.id != this.post._id) {
         this.$router.push("postDetails/" + this.post._id);
