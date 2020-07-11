@@ -6,8 +6,8 @@ class EventsService {
     let data = await dbContext.Events.create(rawData);
     return data;
   }
-  async find(query = {}) {
-    let res = await dbContext.Events.find(query);
+  async find(userEmail) {
+    let res = await dbContext.Events.find({ creatorEmail: userEmail });
     return res;
   }
 }
