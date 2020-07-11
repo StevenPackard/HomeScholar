@@ -9,15 +9,23 @@ export class EventsController extends BaseController {
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .post("", this.create)
-      .get("", this.find);
+      .get("", this.find)
+      .delete("/:id", this.delete);
     // .put("/:id", this.edit)
     // .delete("/:id", this.delete);
   }
 
   async create(req, res, next) {
     try {
-      req.body.creatorEmail = req.userInfo.email;
-      let data = await eventsService.create(req.body);
+      let rawData = {
+        body: req.body.body,
+        title: req.body.title,
+        start: req.body.start,
+        end: req.body.end,
+        creatorEmail: req.userInfo.email,
+      };
+
+      let data = await eventsService.create(rawData);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -31,26 +39,12 @@ export class EventsController extends BaseController {
       next(error);
     }
   }
-
-  // async edit(req, res, next) {
-  //   try {
-  //     let data = await eventsService.edit(
-  //       req.params.id,
-  //       req.userInfo.email,
-  //       req.body
-  //     );
-  //     return res.send(data);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
-
-  // async delete(req, res, next) {
-  //   try {
-  //     await eventsService.delete(req.params.id, req.userInfo.email);
-  //     return res.send("Successfully deleted");
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+  async delete(req, res, next) {
+    try {
+      await eventsService.delete(req.params.id, req.userInfo.email);
+      return res.send("Successfully deleted");
+    } catch (error) {
+      next(error);
+    }
+  }
 }
