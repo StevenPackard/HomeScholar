@@ -40,7 +40,16 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
+<<<<<<< HEAD
           >Add Assignment</button>
+=======
+          >
+            Add Assignment
+          </button>
+
+          <!-- view events button -->
+
+>>>>>>> 4952e4443b6ea8b6cb2fbfd9f868a943ca79c649
           <button
             v-if="eventsToDisplay.length>0"
             @click="toggleEventShowing = !toggleEventShowing"
