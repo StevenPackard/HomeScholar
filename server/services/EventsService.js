@@ -8,7 +8,7 @@ class EventsService {
   }
   async create(rawData) {
     let isNewEvent = await dbContext.Events.find({ postId: rawData.postId });
-    if (isNewEvent) {
+    if (isNewEvent.length <= 0) {
       let data = await dbContext.Events.create(rawData);
       return data;
     }
