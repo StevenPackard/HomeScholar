@@ -32,6 +32,7 @@
       <div
         id="draggableFakeContainer"
         class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y"
+        data-v-step="8"
       >
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
@@ -40,7 +41,17 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-          >Add Assignment</button>
+            data-v-step="2"
+          >
+            Add Assignment
+          </button>
+          <!-- view events button -->
+          <button
+            class="btn btn-warning btn-outline-dark mt-2 mx-2"
+            data-v-step="3"
+          >
+            View Events
+          </button>
           <!-- student dropdown -->
           <button
             class="dropdown-toggle btn btn-warning btn-outline-dark mt-2 mx-2"
@@ -48,7 +59,10 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >Students</button>
+            data-v-step="4"
+          >
+            Students
+          </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="p-0 m-0"></p>
             <span>
@@ -58,7 +72,8 @@
                 @click="showOne = true"
                 type="button"
                 class="nav-link"
-              >Fake Name 1</a>
+                >Fake Name 1</a
+              >
             </span>
             <span>
               <a
@@ -67,7 +82,8 @@
                 @click="showOne = true"
                 type="button"
                 class="nav-link"
-              >Fake Name 2</a>
+                >Fake Name 2</a
+              >
             </span>
             <a
               data-toggle="collapse"
@@ -83,11 +99,11 @@
           <!-- Fake Student Component 1 -->
           <div
             class="student-mock-component col-12 my-3 shadow rounded color bg-warning"
-            :class="{showAllSize: showOne == false, solo: showOne}"
+            :class="{ showAllSize: showOne == false, solo: showOne }"
           >
             <div class="row text-center justify-content-center">
               <div class="col-12">
-                <h4>
+                <h4 data-v-step="6">
                   Fake Name
                   <i class="fas fa-school mx-4"></i>
                   Grade Level - 1
@@ -100,15 +116,22 @@
                 <h5>All Assignments</h5>
               </div>
             </div>
-            <div class="row assignment-box justify-content-center mt-2 solo-assigns">
+            <div
+              class="row assignment-box justify-content-center mt-2 solo-assigns"
+            >
               <ol class="col-11">
                 <li
                   draggable="true"
                   class="assignment-component-mock p-0 col-12 text-center rounded border border-dark my-1 action p-2 drag-item"
                   :data-event="assignmentString"
                   id="fakeAssign1"
+                  data-v-step="5"
                 >
-                  <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
+                  <div
+                    data-toggle="modal"
+                    data-target="#assignmentDetailsModal"
+                    class
+                  >
                     <div class="row">
                       <div class="col-4">
                         <h5 class>Math</h5>
@@ -128,7 +151,7 @@
           <!-- Fake Student component 2 -->
           <div
             class="student-mock-component col-12 my-3 shadow rounded color bg-secondary"
-            :class="{showAllSize: showOne == false, hide: showOne == true}"
+            :class="{ showAllSize: showOne == false, hide: showOne == true }"
           >
             <div class="row text-center justify-content-center">
               <div class="col-12">
@@ -145,7 +168,9 @@
                 <h5>All Assignments</h5>
               </div>
             </div>
-            <div class="row assignment-box justify-content-center mt-2 solo-assigns">
+            <div
+              class="row assignment-box justify-content-center mt-2 solo-assigns"
+            >
               <ol class="col-11">
                 <li
                   draggable="true"
@@ -153,7 +178,11 @@
                   :data-event="assignmentString"
                   id="fakeAssign2"
                 >
-                  <div data-toggle="modal" data-target="#assignmentDetailsModal" class>
+                  <div
+                    data-toggle="modal"
+                    data-target="#assignmentDetailsModal"
+                    class
+                  >
                     <div class="row">
                       <div class="col-4">
                         <h5 class>Math</h5>
@@ -174,6 +203,7 @@
         </div>
       </div>
     </div>
+    <v-tour name="myTour" :steps="steps"></v-tour>
   </div>
 </template>
 
@@ -194,12 +224,13 @@ import ListPlugin from "@fullcalendar/list";
 import student from "../components/StudentMock";
 
 export default {
-  name: "dashboard",
+  name: "tourpage",
   mounted() {
     let draggableElement1 = document.getElementById("fakeAssign1");
     new Draggable(draggableElement1);
     let draggableElement2 = document.getElementById("fakeAssign2");
     new Draggable(draggableElement2);
+    this.$tours["myTour"].start();
   },
 
   data() {
@@ -208,14 +239,84 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin
+        ListPlugin,
       ],
       assignmentString: JSON.stringify({
         title: "Division",
         duration: "02:00",
-        id: "fakeAssign1"
+        id: "fakeAssign1",
       }),
-      showOne: false
+      showOne: false,
+      steps: [
+        {
+          target: '[data-v-step="0"]', // We're using document.querySelector() under the hood
+          header: {
+            title: "Welcome to HomeScholar!",
+          },
+          content: `Take the tour to see what you can do! `,
+          params: {},
+        },
+        {
+          target: '[data-v-step="1"]',
+          content: "Click on students to add a student that you can manage!",
+          params: {
+            placement: "top",
+          },
+        },
+        {
+          target: '[data-v-step="2"]',
+          content: "Add an assignment for your student to complete",
+          params: {
+            placement: "bottom", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="3"]',
+          content:
+            "View Events other parents have shared. Field trips are fun!",
+          params: {
+            placement: "top", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="4"]',
+          content: "Use this dropdown to choose a single student to show.",
+          params: {
+            placement: "top", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="5"]',
+          content:
+            "Drag and drop assignments onto the calendar to create a lesson plan!",
+          params: {
+            placement: "bottom", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="6"]',
+          content:
+            "Click on your students name to navigate to the details page.",
+          params: {
+            placement: "left", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="7"]',
+          content:
+            "Click your picture to navigate to your profile. You can view your active and archived students there.",
+          params: {
+            placement: "bottom", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+        {
+          target: '[data-v-step="8"]',
+          content: "Enjoy your time with our site. Please dont break it!",
+          params: {
+            placement: "bottom", // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+      ],
     };
   },
   computed: {},
@@ -266,7 +367,7 @@ export default {
           allDay:
             "<p id='allday-element'> All Day: " +
             (arg.allDay ? "Yes" : "No") +
-            " </p>"
+            " </p>",
         };
         $("#addAssignmentForm").append(
           newElements.start,
@@ -288,7 +389,7 @@ export default {
         end: endDate,
         allDay: arg.allDay,
         assignmentId: arg.draggedEl.id,
-        fromDashboard: true
+        fromDashboard: true,
       };
 
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
@@ -304,7 +405,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id
+        assignmentId: arg.event.id,
       };
       console.log(arg);
     },
@@ -328,8 +429,8 @@ export default {
             "Are you sure you want to remove this event? This will not delete the assignment.",
           icon: "warning",
           buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
+          dangerMode: true,
+        }).then((willDelete) => {
           if (willDelete) {
             for (let i = 0; i < events.length; i++) {
               events[i].remove();
@@ -340,7 +441,7 @@ export default {
             let newTimes = {
               start: "",
               end: "",
-              assignmentId: arg.event.id
+              assignmentId: arg.event.id,
             };
           }
         });
@@ -375,14 +476,14 @@ export default {
       );
       let dateTime = new Date(timestampWithRemovedEnd);
       return dateTime.toLocaleString("en-US");
-    }
+    },
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student
-  }
+    student,
+  },
 };
 </script>
 
@@ -472,5 +573,3 @@ export default {
   height: 35vh;
 }
 </style>
-
-

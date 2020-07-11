@@ -1,10 +1,13 @@
 <template>
-  <nav class="navbar text-light shadow navbar-expand-lg navbar-light bg-info fixed-top">
+  <nav
+    class="navbar text-light shadow navbar-expand-lg navbar-light bg-info fixed-top"
+  >
     <router-link
       class="navbar-brand text-light"
       data-toggle="collapse"
       data-target=".navbar-collapse.show"
       :to="{ name: 'home' }"
+      data-v-step="0"
     >
       <b>HomeScholar</b>
     </router-link>
@@ -49,6 +52,7 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            data-v-step="1"
           >
             <b>Students</b>
           </a>
@@ -63,7 +67,8 @@
                 @click="routeToStudent(student.id)"
                 type="button"
                 class="nav-link"
-              >{{ student.name }}</a>
+                >{{ student.name }}</a
+              >
             </span>
             <a
               class="dropdown-item pl-2"
@@ -71,7 +76,8 @@
               type="button"
               data-toggle="modal"
               data-target="#addStudentModal"
-            >Add Student</a>
+              >Add Student</a
+            >
           </div>
         </li>
       </ul>
@@ -89,6 +95,7 @@
         @click="routeToProfile"
         class="profileImgNav d-inline action mr-2"
         :src="user.picture"
+        data-v-step="7"
         alt
       />
 
@@ -105,8 +112,16 @@ routeToProfile
           class="btn btn-success btn-outline-dark d-inline"
           @click="login"
           v-if="!$auth.isAuthenticated"
-        >Login</button>
-        <button class="btn btn-danger btn-outline-dark" @click="showLogoutAlert" v-else>logout</button>
+        >
+          Login
+        </button>
+        <button
+          class="btn btn-danger btn-outline-dark"
+          @click="showLogoutAlert"
+          v-else
+        >
+          logout
+        </button>
       </span>
     </div>
   </nav>
@@ -116,7 +131,7 @@ routeToProfile
 import axios from "axios";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
-  withCredentials: true
+  withCredentials: true,
 });
 export default {
   name: "Navbar",
@@ -130,7 +145,7 @@ export default {
     },
     user() {
       return this.$store.state.user;
-    }
+    },
   },
   methods: {
     async login() {
@@ -149,8 +164,8 @@ export default {
         title: "Are you sure you want to log out?",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willLogOut => {
+        dangerMode: true,
+      }).then((willLogOut) => {
         if (willLogOut) {
           this.logout();
         }
@@ -164,8 +179,8 @@ export default {
     routeToProfile() {
       this.$router.push({ name: "profile", params: { id: this.user.id } });
       console.log(this.$route);
-    }
-  }
+    },
+  },
 };
 </script>
 

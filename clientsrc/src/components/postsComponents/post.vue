@@ -27,7 +27,7 @@
           <i class="fa fa-comment"></i>
         </p>
         <button
-          v-if="post.isEvent"
+          v-if="!checkUserEvents"
           type="button"
           @click="addEvent"
           class="btn btn-warning btn-outline-dark"
@@ -42,10 +42,28 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
+  mounted() {
+    this.$store.dispatch("getAllEvents");
+  },
   props: ["post"],
   computed: {
     userEvents() {
       return this.$store.state.PostsStore.events;
+    },
+    checkUserEvents() {
+      let userEvents = this.userEvents;
+      for (let i = 0; i < this.userEvents.length; i++) {
+        if ("postId" in userEvents[i]) {
+          if (this.userEvents[i].postId == this.post.id) {
+            return true;
+            break;
+          }
+        }
+      }
+      return false;
     },
   },
   methods: {

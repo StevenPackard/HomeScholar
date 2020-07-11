@@ -48,7 +48,7 @@
           >View Events</button>
           <!-- student dropdown -->
           <button
-            v-if="this.students.length > 1"
+            v-if="this.nArchived.length > 1"
             class="dropdown-toggle btn btn-warning btn-outline-dark mt-2 mx-2"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -57,8 +57,7 @@
           >Students</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="p-0 m-0"></p>
-
-            <span v-for="student in students" :key="student.id">
+            <span v-for="student in nArchived" :key="student.id">
               <a
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show"
@@ -89,10 +88,12 @@
                 class="fas fa-trash action"
               ></i>
             </div>
+
           </div>
           <!-- <assignment /> -->
-          <div v-if="students.length > 1">
+          <div v-if="nArchived.length > 1">
             <div v-if="showAll">
+
               <student v-for="student in students" :key="student.id" :student="student" />
             </div>
             <div v-else>
@@ -101,7 +102,7 @@
           </div>
           <div v-else>
             <student
-              v-for="student in students"
+              v-for="student in nArchived"
               :key="student.id"
               :student="student"
               :soloDolo="true"
@@ -147,7 +148,9 @@ export default {
         ListPlugin
       ],
       showAll: true,
+
       toggleEventShowing: false
+
     };
   },
   computed: {
@@ -156,6 +159,11 @@ export default {
     },
     students() {
       return this.$store.state.StudentStore.students;
+    },
+    nArchived() {
+      return this.$store.state.StudentStore.students.filter(
+        s => s.archived == false
+      );
     },
 
     assignments() {
