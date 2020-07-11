@@ -2,11 +2,7 @@
   <div class="post col-12 col-md-9 pb-3 pt-4">
     <div class="shadow text-dark bg-light rounded p-1">
       <div class="p-2 p-relative bg-success p-4 rounded">
-        <img
-          class="profile-img"
-          :src="post.creator.picture"
-          alt="img not avalable"
-        />
+        <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />
         <i
           @click="setActivePost"
           data-toggle="modal"
@@ -16,9 +12,7 @@
         ></i>
       </div>
       <p class="p-3">{{ post.creatorEmail }}</p>
-      <h2 @click="routeToDetails" class="text-center p-2 action">
-        {{ post.title }}
-      </h2>
+      <h2 @click="routeToDetails" class="text-center p-2 action">{{ post.title }}</h2>
       <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>
       <p class="p-2 text-center">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
@@ -32,9 +26,20 @@
           @click="addEvent"
           class="btn btn-warning btn-outline-dark"
           title="Add this event to your calander"
-        >
-          Add to calander
-        </button>
+        >Add to calander</button>
+        <div v-if="true">
+          <p class="p-1 mt-2">
+            <span>{{"Start:"+new Date(post.start).toLocaleString()}}</span>
+            <br />
+            <span>{{"End:"+new Date(post.end).toLocaleString()}}</span>
+          </p>
+          <!-- <p
+            class="p-1 mt-1 m-0"
+          >{{"Start: "+ post.start.slice(5,7)+"/" + post.start.slice(8,10) +" @ " +post.start.slice(11,13) +":"+ post.start.slice(14,16)}}</p>
+          <p
+            class="p-1 m-0"
+          >{{"End: "+post.end.slice(5,7)+"/" + post.end.slice(8,10) +" @ " +post.end.slice(11,13) +":"+ post.end.slice(14,16)}}</p>-->
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +69,7 @@ export default {
         }
       }
       return false;
-    },
+    }
   },
   methods: {
     addEvent() {
@@ -79,8 +84,8 @@ export default {
     setActivePost() {
       console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    },
-  },
+    }
+  }
 };
 </script>
 
