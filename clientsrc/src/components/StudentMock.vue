@@ -102,13 +102,6 @@ export default {
 .assignment-box {
   height: 25vh;
   overflow-y: auto;
-  overflow-x: hidden;
-}
-:root {
-  --Bcolor: red;
-}
-.color {
-  background-color: var(--Bcolor);
 }
 .solo {
   height: 75vh;
@@ -119,6 +112,5 @@ export default {
 .soloAssigns {
   height: 60vh;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 </style>

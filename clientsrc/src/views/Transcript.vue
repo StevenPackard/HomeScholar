@@ -65,7 +65,7 @@ export default {
       form: false,
       school: "HomeScholar",
       Dform: false,
-      birth: "01 / 01 / 1999",
+      birth: "enter date here",
       Nform: false
     };
   },
