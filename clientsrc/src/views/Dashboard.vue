@@ -46,7 +46,9 @@
           >
             Add Assignment
           </button>
+
           <!-- view events button -->
+
           <button
             @click="boo = !boo"
             class="btn btn-warning btn-outline-dark mt-2 mx-2"
@@ -87,7 +89,10 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12" v-if="boo">hello I am events</div>
+          <div class="col-12 bg-info rounded opacity mt-3" v-if="boo">
+            hello I am events
+            <i class="fas fa-trash    "></i>
+          </div>
           <!-- <assignment /> -->
           <div v-if="students.length > 1">
             <div v-if="showAll">
