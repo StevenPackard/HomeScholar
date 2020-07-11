@@ -43,6 +43,11 @@
 <script>
 export default {
   props: ["post"],
+  computed: {
+    userEvents() {
+      return this.$store.state.PostsStore.events;
+    },
+  },
   methods: {
     addEvent() {
       this.$store.dispatch("addEvent", this.post);
