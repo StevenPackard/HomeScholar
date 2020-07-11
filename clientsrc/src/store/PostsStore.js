@@ -21,13 +21,6 @@ export const PostsStore = {
     },
   },
   actions: {
-    async deleteEvent({ commit, dispatch }, id) {
-      try {
-        await api.delete("events/" + id);
-      } catch (error) {
-        console.error(error);
-      }
-    },
     async addPost({ commit, dispatch }, data) {
       try {
         console.log(JSON.stringify(data));
