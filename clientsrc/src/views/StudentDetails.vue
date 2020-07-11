@@ -6,7 +6,7 @@
         <div class="row text-center mt-4 opacity justify-content-center">
           <div
             class="col-md-8 col-12 rounded-top opacity border-dark border-top border-left border-right justify-content-center"
-            :style="{'background-color': this.student.backgroundColor}"
+            :style="{ 'background-color': this.student.backgroundColor }"
           >
             <h4 class="d-inline">
               {{ student.name }}
@@ -34,11 +34,15 @@
               data-toggle="modal"
               data-target="#addAssignmentModal"
               class="btn btn-info btn-outline-dark mt-3 shadow"
-            >Add Assignment</button>
+            >
+              Add Assignment
+            </button>
             <button
               @click="showDeleteStudentAlert"
               class="btn btn-danger btn-outline-dark mt-3 ml-2 shadow"
-            >Delete Student</button>
+            >
+              Delete Student
+            </button>
           </div>
         </div>
         <router-link :to="{ name: 'transcript' }" class="nav-link text-shadow">
@@ -93,10 +97,10 @@ export default {
       return this.$store.state.StudentStore.activeStudent;
     },
     assignments() {
-      return this.$store.state.AssignmentsStore.assignments.filter(
-        a => a.studentId.id == this.student.id
-      );
-    }
+      return this.$store.state.AssignmentsStore.assignments
+        .filter((a) => !("studentId" in a) == false)
+        .filter((a) => a.studentId.id == this.student.id);
+    },
   },
   methods: {
     showDeleteStudentAlert() {
@@ -105,8 +109,8 @@ export default {
         text: "Once deleted, you will not be able to recover this Student!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -118,11 +122,11 @@ export default {
 
     deleteStudent() {
       this.$store.dispatch("deleteStudent", this.$route.params.id);
-    }
+    },
   },
   components: {
-    AssignmentComponentMock
-  }
+    AssignmentComponentMock,
+  },
 };
 </script>
 
