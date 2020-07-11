@@ -18,6 +18,7 @@ export class EventsController extends BaseController {
   async create(req, res, next) {
     try {
       let rawData = {
+        postId: req.body._id,
         body: req.body.body,
         title: req.body.title,
         start: req.body.start,
