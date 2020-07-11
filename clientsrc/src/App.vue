@@ -4,11 +4,23 @@
     <router-view class="grow" />
     <footer class="text-center bg-info">
       <h5 class="text-light">
-        Made with Love by Justin
-        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Troy
-        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Chris
-        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> Steven
-        <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+        Made with Love by
+        <a target="_blank" href="https://github.com/JustinLGates">
+          Justin
+          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+        </a>
+        <a target="_blank" href="https://github.com/TroyFuhriman">
+          Troy
+          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+        </a>
+        <a target="_blank" href="https://github.com/christopherfelt">
+          Chris
+          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+        </a>
+        <a target="_blank" href="https://github.com/StevenPackard">
+          Steven
+          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+        </a>
       </h5>
     </footer>
     <assignmentModal />

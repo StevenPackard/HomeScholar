@@ -1,6 +1,5 @@
 <template>
   <div class="student-details container-fluid push-down-less bg-image">
-    <img src alt srcset />
     <div class="row justify-content-center">
       <div class="col-12 mt-2">
         <div class="row text-center mt-4 opacity justify-content-center">
@@ -64,7 +63,7 @@
         <div
           class="row mx-md-2 bg-light justify-content-center border-left opacity border-right border-bottom border-dark rounded-bottom min shadow"
         >
-          <ol class="col-12 pl-4">
+          <ol class="col-12 ml-3 pl-4">
             <assignmentComponentMock
               v-for="assignment in assignments"
               :key="assignment.id"
@@ -164,7 +163,6 @@ export default {
 }
 .bg-image {
   background-image: url(../assets/pencilCup.jpg);
-  height: fit-content;
   background-repeat: repeat;
   background-size: cover;
 }
@@ -176,5 +174,8 @@ a {
 }
 a:hover {
   color: #ffce67;
+}
+.size {
+  max-width: 5 em;
 }
 </style>

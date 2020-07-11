@@ -36,6 +36,7 @@
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
           <button
+            v-if="students"
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"

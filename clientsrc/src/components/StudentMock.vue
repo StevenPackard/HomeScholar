@@ -2,7 +2,7 @@
   <div
     v-if="!student.archived"
     :style="{'background-color': student.backgroundColor}"
-    class="student-mock-component col-12 my-3 text-black shadow rounded opaque color"
+    class="student-mock-component col-12 my-3 text-black shadow rounded opaque color w-100"
     :class="{ solo: soloDolo }"
   >
     <div class="row text-center justify-content-center">
@@ -92,13 +92,6 @@ export default {
 .assignment-box {
   height: 25vh;
   overflow-y: auto;
-  overflow-x: hidden;
-}
-:root {
-  --Bcolor: red;
-}
-.color {
-  background-color: var(--Bcolor);
 }
 .solo {
   height: 75vh;
@@ -109,6 +102,5 @@ export default {
 .soloAssigns {
   height: 60vh;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 </style>
