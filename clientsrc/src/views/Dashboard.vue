@@ -67,7 +67,9 @@
               @click="showAll = true"
               type="button"
               class="nav-link"
-            >Show All</a>
+            >
+              <b>Show All</b>
+            </a>
           </div>
           <!-- <assignment /> -->
           <div v-if="students.length > 1">
