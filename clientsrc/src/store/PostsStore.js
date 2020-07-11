@@ -6,6 +6,7 @@ export const PostsStore = {
   state: {
     posts: [],
     activePost: {},
+    events: [],
   },
 
   mutations: {
@@ -14,6 +15,9 @@ export const PostsStore = {
     },
     setPosts(state, data) {
       state.posts = data;
+    },
+    setActiveEvents(state, events) {
+      state.events = events;
     },
   },
   actions: {
@@ -67,6 +71,14 @@ export const PostsStore = {
       try {
         let res = await api.get("Posts");
         commit("setPosts", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getAllEvents({ commit, dispatch }) {
+      try {
+        let res = await api.get("events");
+        commit("setActiveEvents", res.data);
       } catch (error) {
         console.error(error);
       }
