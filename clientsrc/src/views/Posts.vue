@@ -22,7 +22,7 @@
             data-toggle="modal"
             data-target="#addPost"
             class="btn btn-outline-dark btn-info"
-          >Share</button>
+          >New Post</button>
         </div>
       </div>
     </div>

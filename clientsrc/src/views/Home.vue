@@ -20,7 +20,11 @@
               href="#"
               role="button"
             >Take a tour</a>
-            <button @click="login" class="btn-lg btn-warning btn-outline-dark shadow">Sign up</button>
+            <button
+              v-if="!$auth.isAuthenticated"
+              @click="login"
+              class="btn-lg btn-warning btn-outline-dark shadow"
+            >Sign up</button>
           </p>
         </div>
       </div>
@@ -117,15 +121,6 @@
       <div class="col-md-6 col-12 text-center mt-2">
         <h3 class="text-dark">Take control of your childrens education.</h3>
         <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
-      </div>
-      <div class="col-md-7 col-12 text-center">
-        <router-link :to="{ name: 'tour' }">
-          <a
-            class="btn btn-warning btn-outline-dark btn-lg shadow"
-            href="#"
-            role="button"
-          >Take a tour</a>
-        </router-link>
       </div>
     </div>
   </div>

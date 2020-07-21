@@ -5,21 +5,28 @@
     <footer class="text-center bg-info">
       <h5 class="text-light">
         Made with Love by
-        <a target="_blank" href="https://github.com/JustinLGates">
+        <a
+          class="hover-style"
+          target="_blank"
+          href="https://github.com/JustinLGates"
+        >
           Justin
-          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+          <!-- <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> -->
         </a>
-        <a target="_blank" href="https://github.com/TroyFuhriman">
+        <span>&</span>
+        <a class="hover-style" target="_blank" href="https://github.com/TroyFuhriman">
           Troy
-          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+          <!-- <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> -->
         </a>
-        <a target="_blank" href="https://github.com/christopherfelt">
+        <span>&</span>
+        <a class="hover-style" target="_blank" href="https://github.com/christopherfelt">
           Chris
-          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+          <!-- <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> -->
         </a>
-        <a target="_blank" href="https://github.com/StevenPackard">
+        <span>&</span>
+        <a class="hover-style" target="_blank" href="https://github.com/StevenPackard">
           Steven
-          <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i>
+          <!-- <i class="fa fa-book fa-sm text-dark" aria-hidden="true"></i> -->
         </a>
       </h5>
     </footer>
@@ -86,5 +93,8 @@ export default {
 }
 .bg-grey {
   background-color: #e9ebed;
+}
+.hover-style:hover {
+  text-decoration: none;
 }
 </style>
