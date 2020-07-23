@@ -36,7 +36,7 @@
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
           <button
-            v-if="students"
+            v-if="students.length > 0"
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
@@ -153,10 +153,10 @@ export default {
         DayGridPlugin,
         TimeGridPlugin,
         InteractionPlugin,
-        ListPlugin
+        ListPlugin,
       ],
       showAll: true,
-      DisplayEvents: false
+      DisplayEvents: false,
     };
   },
   computed: {
@@ -168,7 +168,7 @@ export default {
     },
     nArchived() {
       return this.$store.state.StudentStore.students.filter(
-        s => s.archived == false
+        (s) => s.archived == false
       );
     },
 
@@ -177,7 +177,7 @@ export default {
     },
     activeStudent() {
       return this.$store.state.StudentStore.activeStudent;
-    }
+    },
   },
   methods: {
     async deleteEvent(id) {
@@ -186,7 +186,7 @@ export default {
     },
     setActiveStudent(id) {
       this.$store.state.StudentStore.activeStudent = this.$store.state.StudentStore.students.find(
-        s => s.id == id
+        (s) => s.id == id
       );
     },
     handleReceived(arg) {
@@ -235,28 +235,36 @@ export default {
     handleSelect(arg) {
       console.log(arg);
       // console.log("this is the type", arg.view.type);
+      if (this.students.length > 0) {
+        if (arg.view.type != "dayGridMonth") {
+          let startTimestamp = this.fixTimestamp(arg.startStr);
+          let endTimestamp = this.fixTimestamp(arg.endStr);
 
-      if (arg.view.type != "dayGridMonth") {
-        let startTimestamp = this.fixTimestamp(arg.startStr);
-        let endTimestamp = this.fixTimestamp(arg.endStr);
-
-        let newElements = {
-          start: "<p id='start-element'> Start: " + startTimestamp + " </p>",
-          end: "<p id='end-element'> End: " + endTimestamp + " </p>",
-          allDay:
-            "<p id='allday-element'> All Day: " +
-            (arg.allDay ? "Yes" : "No") +
-            " </p>"
-        };
-        $("#addAssignmentForm").append(
-          newElements.start,
-          newElements.end,
-          newElements.allDay
-        );
-        $("#addAssignmentModal").attr("data-start", arg.start);
-        $("#addAssignmentModal").attr("data-end", arg.end);
-        $("#addAssignmentModal").attr("data-allDay", arg.allday);
-        $("#addAssignmentModal").modal("toggle");
+          let newElements = {
+            start: "<p id='start-element'> Start: " + startTimestamp + " </p>",
+            end: "<p id='end-element'> End: " + endTimestamp + " </p>",
+            allDay:
+              "<p id='allday-element'> All Day: " +
+              (arg.allDay ? "Yes" : "No") +
+              " </p>",
+          };
+          $("#addAssignmentForm").append(
+            newElements.start,
+            newElements.end,
+            newElements.allDay
+          );
+          $("#addAssignmentModal").attr("data-start", arg.start);
+          $("#addAssignmentModal").attr("data-end", arg.end);
+          $("#addAssignmentModal").attr("data-allDay", arg.allday);
+          $("#addAssignmentModal").modal("toggle");
+        }
+      } else {
+        swal({
+          title:
+            "You need to have a student before you can make an assignment!",
+          icon: "warning",
+          dangerMode: true,
+        });
       }
     },
     async handleDrop(arg) {
@@ -268,7 +276,7 @@ export default {
         end: endDate,
         allDay: arg.allDay,
         assignmentId: arg.draggedEl.id,
-        fromDashboard: true
+        fromDashboard: true,
       };
 
       let event = await this.$refs.Fullcalendar.getApi().getEventById(
@@ -286,7 +294,7 @@ export default {
       let newElements = {
         start: arg.event.start,
         end: arg.event.end,
-        assignmentId: arg.event.id
+        assignmentId: arg.event.id,
       };
       console.log(arg);
       this.$store.dispatch("updateAssignment", newElements);
@@ -307,14 +315,14 @@ export default {
             "Are you sure you want to remove this event? This will not delete the assignment.",
           icon: "warning",
           buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
+          dangerMode: true,
+        }).then((willDelete) => {
           if (willDelete) {
             event.remove();
             let newTimes = {
               start: "",
               end: "",
-              assignmentId: arg.event.id
+              assignmentId: arg.event.id,
             };
             this.$store.dispatch("updateStudentMock", newTimes);
           }
@@ -350,14 +358,14 @@ export default {
       );
       let dateTime = new Date(timestampWithRemovedEnd);
       return dateTime.toLocaleString("en-US");
-    }
+    },
   },
   components: {
     timeline,
     assignment,
     Fullcalendar,
-    student
-  }
+    student,
+  },
 };
 </script>
 
