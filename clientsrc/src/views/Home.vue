@@ -19,6 +19,11 @@
               class="btn btn-warning btn-outline-dark btn-lg shadow"
               href="#"
               role="button"
+              @click="
+                  $router.push({
+                    name: 'tour'
+                  })
+                "
             >Take a tour</a>
             <button
               v-if="!$auth.isAuthenticated"
@@ -135,7 +140,7 @@ export default {
   computed: {
     profile() {
       return this.$store.state.user;
-    }
+    },
   },
   methods: {
     async login() {
@@ -145,9 +150,9 @@ export default {
       this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
-    }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 
