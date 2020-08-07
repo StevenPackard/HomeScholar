@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row justify-content-around bg-light m-auto">
-      <div class="col-6 p-2 d-flex align-items-center">
+      <div class="col-md-6 col-12 p-2 d-flex align-items-center">
         <div class="px-5">
           <h2 class="p-1">
             <b>Make learning fun for everyone!</b>
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div class="col-4 p-2">
+      <div class="col-md-4 col-12 p-2">
         <img
           src="https://cf.ltkcdn.net/home-school/images/orig/261690-1600x1030-best-free-online-homeschool-programs.jpg"
           class="w-100 p-3 m-2 shadow"
