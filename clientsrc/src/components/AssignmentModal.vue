@@ -13,13 +13,19 @@
       <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment</h5>
+            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment or Event</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span @click="removeDatePars" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form id="addAssignmentForm">
+            <span>Assignment</span>
+            <label class="switch">
+              <input @click="eventForm = !eventForm" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span>Event</span>
+            <form v-if="!eventForm" id="addAssignmentForm">
               <select v-model="assignmentForm.name" class="form-control form-control-sm">
                 <option v-for="student in students" :key="student.id">{{ student.name }}</option>
               </select>
@@ -45,14 +51,43 @@
                 />
               </div>
             </form>
+            <form v-if="eventForm">
+              <div class="form-group">
+                <label for="postTitle" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="editEventTitle" v-model="event.title" />
+              </div>
+              <div class="form-group">
+                <label for="postBody" class="col-form-label">Body</label>
+                <textarea class="form-control" id="editEventBody" v-model="event.body"></textarea>
+              </div>
+              <div>
+                <label for="checkbox">Start time</label>
+                <input type="datetime-local" class="form-control" v-model="event.start" />
+                <label for="checkbox">End time</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  v-model="event.end"
+                  :min="event.start"
+                />
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button
+              v-if="!eventForm"
               type="button"
               @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
             >Add Assignment</button>
+            <button
+              v-if="eventForm"
+              type="button"
+              @click="addNewEvent"
+              data-dismiss="modal"
+              class="btn btn-primary"
+            >Add Event</button>
           </div>
         </div>
       </div>
@@ -435,14 +470,16 @@ export default {
     return {
       assignmentForm: {
         studentId: "",
-        backgroundColor: ""
+        backgroundColor: "",
       },
       addStudent: {
-        backgroundColor: "#f3969a"
+        backgroundColor: "#f3969a",
       },
       postForm: {
-        isEvent: false
-      }
+        isEvent: false,
+      },
+      eventForm: false,
+      event: {},
     };
   },
   computed: {
@@ -460,7 +497,7 @@ export default {
     },
     post() {
       return this.$store.state.PostsStore.activePost;
-    }
+    },
   },
   methods: {
     archiveStudent() {
@@ -494,8 +531,8 @@ export default {
         text: "Once deleted, you will not be able to recover this assignment!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -510,8 +547,8 @@ export default {
         text: "Are you sure you want to delete this post?",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -526,8 +563,8 @@ export default {
         text: "Are you sure you want to delete this comment?",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -545,7 +582,7 @@ export default {
     submitNewStudent() {
       this.$store.dispatch("addStudent", { ...this.addStudent });
       this.addStudent = {
-        backgroundColor: "#f3969a"
+        backgroundColor: "#f3969a",
       };
       $("#addStudentModal").modal("hide");
     },
@@ -560,9 +597,13 @@ export default {
         assignmentForm.removeAttribute("data-allday");
       }
     },
+    addNewEvent() {
+      this.$store.dispatch("addEvent", { ...this.event });
+      this.event = {};
+    },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(
-        s => s.name == this.assignmentForm.name
+        (s) => s.name == this.assignmentForm.name
       );
       this.assignmentForm.studentId = foundStudent.id;
       this.assignmentForm.backgroundColor = foundStudent.backgroundColor;
@@ -596,11 +637,11 @@ export default {
       this.$store.commit("setStudentAssignments", this.student.id);
       this.$store.dispatch("editAssignColor", {
         color: this.student.backgroundColor,
-        studentId: this.student.id
+        studentId: this.student.id,
       });
-    }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 <style>
@@ -621,5 +662,67 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   border: none;
   border-radius: 50%;
   padding: 0;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 1px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>

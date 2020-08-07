@@ -40,7 +40,7 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-          >Add Assignment</button>
+          >Add Assignment/Event</button>
 
           <!-- view events button -->
 
