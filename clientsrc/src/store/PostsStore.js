@@ -72,14 +72,18 @@ export const PostsStore = {
       }
     },
     async getAllPosts({ commit, dispatch }) {
-      console.log("getting posts");
-
       try {
         let res = await api.get("Posts");
         commit("setPosts", res.data);
       } catch (error) {
         console.error(error);
       }
+    },
+    async getFilteredPosts({ commit, dispatch }, data) {
+      try {
+        let res = await api.post("posts/filter", data);
+        commit("setPosts", res.data);
+      } catch (error) {}
     },
     async getAllEvents({ commit, dispatch }) {
       try {

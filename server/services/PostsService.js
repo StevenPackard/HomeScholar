@@ -2,6 +2,12 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 import socketService from "../services/SocketService";
 class PostsService {
+  async getFiltered(query) {
+    const data = await dbContext.Posts.find({
+      title: { $regex: ".*" + query.body + ".*" },
+    }).populate("creator", "name picture");
+    return data;
+  }
   async getAll() {
     return await dbContext.Posts.find().populate("creator", "name picture");
   }

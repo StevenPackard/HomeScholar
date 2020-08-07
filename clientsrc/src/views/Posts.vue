@@ -2,21 +2,15 @@
   <div class="container-fluid bg-image">
     <div class="row push-down-less mb-2">
       <div class="col-12 col-md-10 col-lg-8 m-auto text-center">
-        <div class="row pt-3 justify-content-around sticky">
-          <input
-            v-model="postQuery"
-            class="form-control col-md-9 col-11"
-            type="text"
-            placeholder="email@email.com"
-          />
-          <button
-            @click="searchPosts, (toggleSearch = !toggleSearch)"
-            class="btn btn-warning col-md-2 col-8 mt-3 mt-md-0 btn-outline-dark"
-          >search posts</button>
-        </div>
+        <div class="row pt-3 justify-content-around sticky"></div>
       </div>
       <div class="col-12">
         <div class="pt-3 text-center w-100">
+          <button
+            data-toggle="modal"
+            data-target="#filterPosts"
+            class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
+          >Filter posts</button>
           <button
             type="button"
             data-toggle="modal"
@@ -49,7 +43,7 @@ export default {
       postQuery: "",
       toggleSearch: false,
       postsByquery: [],
-      postLength: 10
+      postLength: 10,
     };
   },
   mounted() {
@@ -68,15 +62,15 @@ export default {
         .slice(0, this.postLength);
     },
     searchPosts() {
-      let matches = this.posts.filter(p => p.creator.email == this.postQuery);
+      this.$store.dispatch("getAllPosts");
       return matches;
-    }
+    },
   },
 
   methods: {},
   components: {
-    Post
-  }
+    Post,
+  },
 };
 </script>
 <style>
