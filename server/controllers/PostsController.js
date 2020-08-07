@@ -5,18 +5,27 @@ import { postsService } from "../services/PostsService";
 import { commentsService } from "../services/CommentsService";
 import socketService from "../services/SocketService";
 
-//PUBLIC
 export class PostsController extends BaseController {
+  //PUBLIC
   constructor() {
     super("api/posts");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .get("", this.getAll)
+      .post("/filter", this.getFilterd)
       .get("/:id/comments", this.getCommentsByPostId)
       .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete);
+  }
+  async getFilterd(req, res, next) {
+    try {
+      let data = await postsService.getFiltered(req.body);
+      return res.send(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async getAll(req, res, next) {

@@ -3,6 +3,7 @@ let Schema = mongoose.Schema;
 
 const Post = new Schema(
   {
+    virtual: { type: Boolean, default: false },
     title: { type: String, required: true },
     body: { type: String, required: true },
     creatorEmail: { type: String, required: true },

@@ -31,6 +31,7 @@
       </h5>
     </footer>
     <assignmentModal />
+    <searchModal />
   </div>
 </template>
 
@@ -38,6 +39,7 @@
 import Navbar from "./components/Navbar";
 import { onAuth } from "@bcwdev/auth0-vue";
 import AssignmentModal from "@/components/AssignmentModal";
+import searchModal from "./components/Modals/searchmodal";
 export default {
   name: "App",
   async beforeCreate() {
@@ -51,8 +53,9 @@ export default {
   },
   components: {
     Navbar,
-    AssignmentModal
-  }
+    AssignmentModal,
+    searchModal,
+  },
 };
 </script>
 <style lang="scss">
