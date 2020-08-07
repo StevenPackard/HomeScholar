@@ -81,8 +81,16 @@ export const PostsStore = {
     },
     async getFilteredPosts({ commit, dispatch }, data) {
       try {
+        let posts = [];
         let res = await api.post("posts/filter", data);
-        commit("setPosts", res.data);
+        posts = res.data;
+        if (data.vitrual === false) {
+          posts = res.data.filter((elem) => !elem.virtual);
+        }
+        if (data.inPerson === false) {
+          posts = res.data.filter((elem) => elem.virtual);
+        }
+        commit("setPosts", posts);
       } catch (error) {}
     },
     async getAllEvents({ commit, dispatch }) {
