@@ -3,10 +3,25 @@ import { BadRequest } from "../utils/Errors";
 import socketService from "../services/SocketService";
 class PostsService {
   async getFiltered(query) {
-    const data = await dbContext.Posts.find({
-      title: { $regex: ".*" + query.body + ".*" },
-    }).populate("creator", "name picture");
-    return data;
+    if (query.searchTitle == true && query.searchBody == false) {
+      let data = await dbContext.Posts.find({
+        title: { $regex: ".*" + query.body + ".*" },
+      }).populate("creator", "name picture");
+      return data;
+    } else if (query.searchBody == true && query.searchTitle == false) {
+      let data = await dbContext.Posts.find({
+        body: { $regex: ".*" + query.body + ".*" },
+      }).populate("creator", "name picture");
+      return data;
+    } else {
+      let data = await dbContext.Posts.find({
+        $or: [
+          { title: { $regex: ".*" + query.body + ".*" } },
+          { body: { $regex: ".*" + query.body + ".*" } },
+        ],
+      }).populate("creator", "name picture");
+      return data;
+    }
   }
   async getAll() {
     return await dbContext.Posts.find().populate("creator", "name picture");

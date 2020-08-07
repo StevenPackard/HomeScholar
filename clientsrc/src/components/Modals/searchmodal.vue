@@ -28,12 +28,12 @@
             </div>
             <div class="form-group d-flex justify-content center">
               <div class="p-2 px-4">
-                <label for="subject" class="col-form-label">title</label>
+                <label for="subject" class="col-form-label">Search title</label>
                 <input type="checkbox" v-model="query.searchTitle" />
               </div>
 
               <div class="p-2 px-4">
-                <label for="subject" class="col-form-label">body</label>
+                <label for="subject" class="col-form-label">Search body</label>
                 <input type="checkbox" v-model="query.searchBody" />
               </div>
             </div>
