@@ -682,15 +682,20 @@ export default {
         return;
       }
     },
-    addPost() {
+    async addPost() {
       let start = new Date(this.postForm.start);
+
       let end = new Date(this.postForm.end);
 
-      start.setMinutes(start.getMinutes() + start.getTimezoneOffset());
+      start.setMinutes(start.getMinutes() - start.getTimezoneOffset());
 
-      end.setMinutes(end.getMinutes() + end.getTimezoneOffset());
-      this.$store.dispatch("addPost", this.postForm);
+      end.setMinutes(end.getMinutes() - end.getTimezoneOffset());
+
+      await this.$store.dispatch("addPost", this.postForm);
+      await this.$store.dispatch("addEvent", this.postForm);
+      this.$store.dispatch("getAllEvents");
     },
+
     editComment() {
       this.$store.dispatch("editComment", this.comment);
     },
