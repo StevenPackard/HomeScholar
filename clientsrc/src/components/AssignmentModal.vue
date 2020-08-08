@@ -13,13 +13,19 @@
       <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment</h5>
+            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment or Event</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span @click="removeDatePars" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form id="addAssignmentForm">
+            <span>Assignment</span>
+            <label class="switch">
+              <input @click="eventForm = !eventForm" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span>Event</span>
+            <form v-show="!eventForm" id="addAssignmentForm">
               <select v-model="assignmentForm.name" class="form-control form-control-sm">
                 <option v-for="student in students" :key="student.id">{{ student.name }}</option>
               </select>
@@ -45,14 +51,44 @@
                 />
               </div>
             </form>
+            <form @submit.prevent="addNewEvent" v-show="eventForm" id="addEventForm">
+              <div class="form-group">
+                <label for="postTitle" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="editEventTitle" :value="event.title" />
+              </div>
+              <div class="form-group">
+                <label for="postBody" class="col-form-label">Body</label>
+                <textarea class="form-control" id="editEventBody" :value="event.body"></textarea>
+              </div>
+              <div>
+                <label for="checkbox">Start time</label>
+                <input id="eventStart" name="eventStart" type="datetime-local" class="form-control" />
+                <label for="checkbox">End time</label>
+                <input
+                  id="eventEnd"
+                  name="eventEnd"
+                  type="datetime-local"
+                  class="form-control"
+                  :min="event.start"
+                />
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button
+              v-if="!eventForm"
               type="button"
               @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
             >Add Assignment</button>
+            <button
+              v-if="eventForm"
+              type="submit"
+              @click="addNewEvent"
+              data-dismiss="modal"
+              class="btn btn-primary"
+            >Add Event</button>
           </div>
         </div>
       </div>
@@ -445,6 +481,8 @@ export default {
       postForm: {
         isEvent: false,
       },
+      eventForm: false,
+      event: {},
     };
   },
   computed: {
@@ -568,6 +606,9 @@ export default {
         assignmentForm.removeAttribute("data-allday");
       }
     },
+    addNewEvent() {
+      console.log(event);
+    },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(
         (s) => s.name == this.assignmentForm.name
@@ -629,5 +670,67 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   border: none;
   border-radius: 50%;
   padding: 0;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 1px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>

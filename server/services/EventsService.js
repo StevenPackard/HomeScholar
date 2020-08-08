@@ -7,12 +7,17 @@ class EventsService {
     return data;
   }
   async create(rawData) {
-    let isNewEvent = await dbContext.Events.find({ postId: rawData.postId });
-    if (isNewEvent.length <= 0) {
+    if (rawData.postId) {
+      let isNewEvent = await dbContext.Events.find({ postId: rawData.postId });
+      if (isNewEvent.length <= 0) {
+        let data = await dbContext.Events.create(rawData);
+        return data;
+      }
+      return null;
+    } else {
       let data = await dbContext.Events.create(rawData);
       return data;
     }
-    return null;
   }
   async find(userEmail) {
     let res = await dbContext.Events.find({ creatorEmail: userEmail });
