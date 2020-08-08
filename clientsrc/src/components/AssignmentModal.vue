@@ -13,8 +13,15 @@
       <div class="modal-dialog modal-lg modal-dialog-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addAssignmentModalLabel">Add Assignment or Event</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addAssignmentModalLabel">
+              Add Assignment or Event
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span @click="removeDatePars" aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -26,15 +33,27 @@
             </label>
             <span>Event</span>
             <form v-show="!eventForm" id="addAssignmentForm">
-              <select v-model="assignmentForm.name" class="form-control form-control-sm">
-                <option v-for="student in students" :key="student.id">{{ student.name }}</option>
+              <select
+                v-model="assignmentForm.name"
+                class="form-control form-control-sm"
+              >
+                <option v-for="student in students" :key="student.id">{{
+                  student.name
+                }}</option>
               </select>
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="title" v-model="assignmentForm.title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="assignmentForm.title"
+                />
               </div>
               <div class="form-group">
-                <label for="Description" class="col-form-label">Description</label>
+                <label for="Description" class="col-form-label"
+                  >Description</label
+                >
                 <textarea
                   class="form-control"
                   id="Description"
@@ -51,22 +70,37 @@
                 />
               </div>
             </form>
-            <form @submit.prevent="addNewEvent" v-show="eventForm" id="addEventForm">
+            <form v-show="eventForm" id="addEventForm">
               <div class="form-group">
                 <label for="postTitle" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="editEventTitle" :value="event.title" />
+                <input
+                  type="text"
+                  ref="eventTitle"
+                  class="form-control"
+                  id="editEventTitle"
+                />
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
-                <textarea class="form-control" id="editEventBody" :value="event.body"></textarea>
+                <textarea
+                  ref="eventBody"
+                  class="form-control"
+                  id="editEventBody"
+                  rows="4"
+                ></textarea>
               </div>
               <div>
                 <label for="checkbox">Start time</label>
-                <input id="eventStart" name="eventStart" type="datetime-local" class="form-control" />
+                <input
+                  id="eventStart"
+                  ref="eventStart"
+                  type="datetime-local"
+                  class="form-control"
+                />
                 <label for="checkbox">End time</label>
                 <input
                   id="eventEnd"
-                  name="eventEnd"
+                  ref="eventEnd"
                   type="datetime-local"
                   class="form-control"
                   :min="event.start"
@@ -81,14 +115,18 @@
               @click="addNewAssignment"
               data-dismiss="modal"
               class="btn btn-primary"
-            >Add Assignment</button>
+            >
+              Add Assignment
+            </button>
             <button
               v-if="eventForm"
-              type="submit"
               @click="addNewEvent"
+              type="button"
               data-dismiss="modal"
               class="btn btn-primary"
-            >Add Event</button>
+            >
+              Add Event
+            </button>
           </div>
         </div>
       </div>
@@ -119,11 +157,20 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="studentName" v-model="addStudent.name" />
+                <label for="studentName" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  v-model="addStudent.name"
+                />
               </div>
               <div class="form-group">
-                <label for="studentDescription" class="col-form-label">Curriculum</label>
+                <label for="studentDescription" class="col-form-label"
+                  >Curriculum</label
+                >
                 <textarea
                   class="form-control"
                   id="studentDescription"
@@ -140,13 +187,26 @@
                 />
               </div>
               <div class="form-group">
-                <label for="studentSubjects" class="col-form-label">Color</label>
-                <input type="color" id="color" v-model="addStudent.backgroundColor" class />
+                <label for="studentSubjects" class="col-form-label"
+                  >Color</label
+                >
+                <input
+                  type="color"
+                  id="color"
+                  v-model="addStudent.backgroundColor"
+                  class
+                />
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click="submitNewStudent">Add Student</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="submitNewStudent"
+            >
+              Add Student
+            </button>
           </div>
         </div>
       </div>
@@ -162,11 +222,21 @@
       aria-labelledby="addStudentModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-xl modal-dialog-center text-center" role="document">
+      <div
+        class="modal-dialog modal-xl modal-dialog-center text-center"
+        role="document"
+      >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addStudentModalLabel">Assignment Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="addStudentModalLabel">
+              Assignment Details
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -223,13 +293,17 @@
               class="btn btn-primary mx-2"
               data-dismiss="modal"
               @click="editAssignment"
-            >Save</button>
+            >
+              Save
+            </button>
             <button
               type="button"
               class="btn btn-secondary mx-2"
               data-dismiss="modal"
               @click="showDeleteAssignmentAlert"
-            >Delete</button>
+            >
+              Delete
+            </button>
           </div>
           <div class="form-group p-3">
             <label for="studentGrade" class="col-form-label">Note</label>
@@ -259,18 +333,32 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editStudentModalLabel">Edit Student</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label">Student Name</label>
-                <input type="text" class="form-control" id="editstudentName" v-model="student.name" />
+                <label for="studentName" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editstudentName"
+                  v-model="student.name"
+                />
               </div>
               <div class="form-group">
-                <label for="studentDescription" class="col-form-label">Curriculum</label>
+                <label for="studentDescription" class="col-form-label"
+                  >Curriculum</label
+                >
                 <textarea
                   class="form-control"
                   id="editStudentDescription"
@@ -287,8 +375,15 @@
                 />
               </div>
               <div class="form-group">
-                <label for="studentSubjects" class="col-form-label">Color</label>
-                <input type="color" id="color" v-model="student.backgroundColor" class />
+                <label for="studentSubjects" class="col-form-label"
+                  >Color</label
+                >
+                <input
+                  type="color"
+                  id="color"
+                  v-model="student.backgroundColor"
+                  class
+                />
               </div>
             </form>
           </div>
@@ -298,21 +393,27 @@
               class="btn btn-primary"
               data-dismiss="modal"
               @click="editStudent"
-            >Edit Student</button>
+            >
+              Edit Student
+            </button>
             <button
               type="button"
               v-if="!student.archived"
               class="btn btn-danger"
               data-dismiss="modal"
               @click="archiveStudent"
-            >Archive Student</button>
+            >
+              Archive Student
+            </button>
             <button
               v-if="student.archived"
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
               @click="archiveStudent"
-            >Unarchive Student</button>
+            >
+              Unarchive Student
+            </button>
           </div>
         </div>
       </div>
@@ -332,7 +433,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editPostLabel">Edit Post</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -340,11 +446,20 @@
             <form>
               <div class="form-group">
                 <label for="postTitle" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="editPostTitle" v-model="post.title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editPostTitle"
+                  v-model="post.title"
+                />
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
-                <textarea class="form-control" id="editpostBody" v-model="post.body"></textarea>
+                <textarea
+                  class="form-control"
+                  id="editpostBody"
+                  v-model="post.body"
+                ></textarea>
               </div>
             </form>
           </div>
@@ -354,13 +469,17 @@
               class="btn btn-primary"
               data-dismiss="modal"
               @click="editPost"
-            >Save</button>
+            >
+              Save
+            </button>
             <button
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
               @click="showDeletePostAlert"
-            >Delete</button>
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -380,7 +499,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editPostLabel">New Post</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -388,17 +512,35 @@
             <form>
               <div class="form-group">
                 <label for="postTitle" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="editPostTitle" v-model="postForm.title" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editPostTitle"
+                  v-model="postForm.title"
+                />
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
-                <textarea class="form-control" id="editpostBody" v-model="postForm.body"></textarea>
+                <textarea
+                  class="form-control"
+                  id="editpostBody"
+                  v-model="postForm.body"
+                ></textarea>
               </div>
               <label for="checkbox">Event</label>
-              <input type="checkbox" id="checkbox" :max="postForm.end" v-model="postForm.isEvent" />
+              <input
+                type="checkbox"
+                id="checkbox"
+                :max="postForm.end"
+                v-model="postForm.isEvent"
+              />
               <div v-if="postForm.isEvent">
                 <label for="checkbox">Start time</label>
-                <input type="datetime-local" class="form-control" v-model="postForm.start" />
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  v-model="postForm.start"
+                />
                 <label for="checkbox">End time</label>
                 <input
                   type="datetime-local"
@@ -406,13 +548,20 @@
                   v-model="postForm.end"
                   :min="postForm.start"
                 />
-                {{this.postForm.start}}
-                {{this.postForm.end}}
+                {{ this.postForm.start }}
+                {{ this.postForm.end }}
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="addPost">Post</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              @click="addPost"
+            >
+              Post
+            </button>
             <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" @click="close">Cancel</button> -->
           </div>
         </div>
@@ -433,7 +582,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editCommentLabel">Edit Comment</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -441,7 +595,12 @@
             <form>
               <div class="form-group">
                 <label for="studentName" class="col-form-label">Body</label>
-                <input type="text" class="form-control" id="editstudentName" v-model="comment.body" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editstudentName"
+                  v-model="comment.body"
+                />
               </div>
             </form>
           </div>
@@ -451,13 +610,17 @@
               class="btn btn-primary"
               data-dismiss="modal"
               @click="editComment"
-            >Save</button>
+            >
+              Save
+            </button>
             <button
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
               @click="showDeleteCommentAlert"
-            >Delete</button>
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -607,7 +770,13 @@ export default {
       }
     },
     addNewEvent() {
-      console.log(event);
+      const data = {
+        title: this.$refs.eventTitle.value,
+        body: this.$refs.eventBody.value,
+        start: this.$refs.eventStart.value,
+        end: this.$refs.eventEnd.value,
+      };
+      this.$store.dispatch("addEvent", data);
     },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(
