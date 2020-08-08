@@ -41,7 +41,7 @@ export const PostsStore = {
         console.log("adding event");
         await api.post("events", data);
         console.log("event added....");
-        dispatch("getAllEvents");
+        dispatch("getAllAssignments");
       } catch (error) {
         console.error(error);
       }
