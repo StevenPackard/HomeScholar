@@ -406,6 +406,8 @@
                   v-model="postForm.end"
                   :min="postForm.start"
                 />
+                {{this.postForm.start}}
+                {{this.postForm.end}}
               </div>
             </form>
           </div>
@@ -518,6 +520,12 @@ export default {
       }
     },
     addPost() {
+      let start = new Date(this.postForm.start);
+      let end = new Date(this.postForm.end);
+
+      start.setMinutes(start.getMinutes() + start.getTimezoneOffset());
+
+      end.setMinutes(end.getMinutes() + end.getTimezoneOffset());
       this.$store.dispatch("addPost", this.postForm);
     },
     editComment() {
