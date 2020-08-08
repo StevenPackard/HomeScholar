@@ -5,18 +5,26 @@
         <div class="row pt-3 justify-content-around sticky"></div>
       </div>
       <div class="col-12">
-        <div class="pt-3 text-center w-100">
-          <button
-            data-toggle="modal"
-            data-target="#filterPosts"
-            class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-          >Filter posts</button>
+        <div class="d-flex justify-content-center ">
+          <span class="filterdiv">
+            <button
+              data-toggle="modal"
+              data-target="#filterPosts"
+              class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
+            >
+              Filter posts
+            </button>
+          </span>
+        </div>
+        <div class="pt-5 text-center w-100">
           <button
             type="button"
             data-toggle="modal"
             data-target="#addPost"
             class="btn btn-outline-dark btn-info"
-          >New Post</button>
+          >
+            New Post
+          </button>
         </div>
       </div>
     </div>
@@ -27,7 +35,9 @@
           v-if="posts.length >= postLength"
           @click="postLength += 10"
           class="btn btn-success"
-        >Show More</button>
+        >
+          Show More
+        </button>
       </div>
     </div>
     <div v-if="toggleSearch" class="row justify-content-center">
@@ -74,6 +84,10 @@ export default {
 };
 </script>
 <style>
+.filterdiv {
+  position: absolute;
+  top: -15px;
+}
 .post-form {
   border-radius: 6px;
 }
