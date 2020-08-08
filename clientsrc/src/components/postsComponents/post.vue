@@ -2,7 +2,11 @@
   <div class="post col-12 col-md-9 pb-3 pt-4">
     <div class="shadow text-dark bg-light rounded p-1">
       <div class="p-2 p-relative bg-success p-4 rounded">
-        <img class="profile-img" :src="post.creator.picture" alt="img not avalable" />
+        <img
+          class="profile-img"
+          :src="post.creator.picture"
+          alt="img not avalable"
+        />
         <i
           @click="setActivePost"
           data-toggle="modal"
@@ -12,7 +16,9 @@
         ></i>
       </div>
       <p class="p-3">{{ post.creatorEmail }}</p>
-      <h2 @click="routeToDetails" class="text-center p-2 action">{{ post.title }}</h2>
+      <h2 @click="routeToDetails" class="text-center p-2 action">
+        {{ post.title }}
+      </h2>
       <p class="text-center">{{ new Date(post.createdAt).toLocaleString() }}</p>
       <p class="p-2 text-center">{{ post.body }}</p>
       <div v-if="!this.$route.params.id" class="text-center">
@@ -21,17 +27,19 @@
           <i class="fa fa-comment"></i>
         </p>
         <button
-          v-if="!checkUserEvents"
+          v-if="!checkUserEvents && !this.$auth.user.email == post.creatorEmail"
           type="button"
           @click="addEvent"
           class="btn btn-warning btn-outline-dark"
           title="Add this event to your calander"
-        >Add to calander</button>
+        >
+          Add to calendar
+        </button>
         <div v-if="true">
           <p class="p-1 mt-2">
-            <span>{{"Start: "+ this.convertToLocalTime(post.start)}}</span>
+            <span>{{ "Start: " + this.convertToLocalTime(post.start) }}</span>
             <br />
-            <span>{{"End: "+this.convertToLocalTime(post.end)}}</span>
+            <span>{{ "End: " + this.convertToLocalTime(post.end) }}</span>
           </p>
           <!-- <p
             class="p-1 mt-1 m-0"
@@ -76,10 +84,10 @@ export default {
     addEvent() {
       this.$store.dispatch("addEvent", this.post);
       // console.log("add event thing");
+      this.$store.dispatch("getAllEvents");
     },
     convertToLocalTime(time) {
       let m = moment(time);
-      console.log(m);
       return m.format("dddd, MMMM Do , h:mm a");
     },
     routeToDetails() {
