@@ -370,6 +370,8 @@
                   v-model="postForm.end"
                   :min="postForm.start"
                 />
+                {{this.postForm.start}}
+                {{this.postForm.end}}
               </div>
             </form>
           </div>
@@ -435,14 +437,14 @@ export default {
     return {
       assignmentForm: {
         studentId: "",
-        backgroundColor: ""
+        backgroundColor: "",
       },
       addStudent: {
-        backgroundColor: "#f3969a"
+        backgroundColor: "#f3969a",
       },
       postForm: {
-        isEvent: false
-      }
+        isEvent: false,
+      },
     };
   },
   computed: {
@@ -460,7 +462,7 @@ export default {
     },
     post() {
       return this.$store.state.PostsStore.activePost;
-    }
+    },
   },
   methods: {
     archiveStudent() {
@@ -480,6 +482,12 @@ export default {
       }
     },
     addPost() {
+      let start = new Date(this.postForm.start);
+      let end = new Date(this.postForm.end);
+
+      start.setMinutes(start.getMinutes() + start.getTimezoneOffset());
+
+      end.setMinutes(end.getMinutes() + end.getTimezoneOffset());
       this.$store.dispatch("addPost", this.postForm);
     },
     editComment() {
@@ -494,8 +502,8 @@ export default {
         text: "Once deleted, you will not be able to recover this assignment!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -510,8 +518,8 @@ export default {
         text: "Are you sure you want to delete this post?",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -526,8 +534,8 @@ export default {
         text: "Are you sure you want to delete this comment?",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           // swal("List deleted!", {
           //   icon: "success",
@@ -545,7 +553,7 @@ export default {
     submitNewStudent() {
       this.$store.dispatch("addStudent", { ...this.addStudent });
       this.addStudent = {
-        backgroundColor: "#f3969a"
+        backgroundColor: "#f3969a",
       };
       $("#addStudentModal").modal("hide");
     },
@@ -562,7 +570,7 @@ export default {
     },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(
-        s => s.name == this.assignmentForm.name
+        (s) => s.name == this.assignmentForm.name
       );
       this.assignmentForm.studentId = foundStudent.id;
       this.assignmentForm.backgroundColor = foundStudent.backgroundColor;
@@ -596,11 +604,11 @@ export default {
       this.$store.commit("setStudentAssignments", this.student.id);
       this.$store.dispatch("editAssignColor", {
         color: this.student.backgroundColor,
-        studentId: this.student.id
+        studentId: this.student.id,
       });
-    }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 <style>
