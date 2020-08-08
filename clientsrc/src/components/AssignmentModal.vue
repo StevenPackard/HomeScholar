@@ -25,7 +25,7 @@
               <span class="slider round"></span>
             </label>
             <span>Event</span>
-            <form v-if="!eventForm" id="addAssignmentForm">
+            <form v-show="!eventForm" id="addAssignmentForm">
               <select v-model="assignmentForm.name" class="form-control form-control-sm">
                 <option v-for="student in students" :key="student.id">{{ student.name }}</option>
               </select>
@@ -51,23 +51,24 @@
                 />
               </div>
             </form>
-            <form v-if="eventForm">
+            <form @submit.prevent="addNewEvent" v-show="eventForm" id="addEventForm">
               <div class="form-group">
                 <label for="postTitle" class="col-form-label">Title</label>
-                <input type="text" class="form-control" id="editEventTitle" v-model="event.title" />
+                <input type="text" class="form-control" id="editEventTitle" :value="event.title" />
               </div>
               <div class="form-group">
                 <label for="postBody" class="col-form-label">Body</label>
-                <textarea class="form-control" id="editEventBody" v-model="event.body"></textarea>
+                <textarea class="form-control" id="editEventBody" :value="event.body"></textarea>
               </div>
               <div>
                 <label for="checkbox">Start time</label>
-                <input type="datetime-local" class="form-control" v-model="event.start" />
+                <input id="eventStart" name="eventStart" type="datetime-local" class="form-control" />
                 <label for="checkbox">End time</label>
                 <input
+                  id="eventEnd"
+                  name="eventEnd"
                   type="datetime-local"
                   class="form-control"
-                  v-model="event.end"
                   :min="event.start"
                 />
               </div>
@@ -83,7 +84,7 @@
             >Add Assignment</button>
             <button
               v-if="eventForm"
-              type="button"
+              type="submit"
               @click="addNewEvent"
               data-dismiss="modal"
               class="btn btn-primary"
@@ -598,8 +599,7 @@ export default {
       }
     },
     addNewEvent() {
-      this.$store.dispatch("addEvent", { ...this.event });
-      this.event = {};
+      console.log(event);
     },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(

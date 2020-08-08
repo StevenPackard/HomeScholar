@@ -253,6 +253,11 @@ export default {
             newElements.end,
             newElements.allDay
           );
+          document.getElementById("eventStart").value = arg.startStr.slice(
+            0,
+            16
+          );
+          document.getElementById("eventEnd").value = arg.endStr.slice(0, 16);
           $("#addAssignmentModal").attr("data-start", arg.start);
           $("#addAssignmentModal").attr("data-end", arg.end);
           $("#addAssignmentModal").attr("data-allDay", arg.allday);
