@@ -9,6 +9,11 @@ const Event = new Schema(
     body: { type: String, required: true },
     start: { type: Date },
     end: { type: Date },
+    type: {
+      type: String,
+      enum: ["remote", "inPerson", "unspecified"],
+      default: "unspecified",
+    },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
