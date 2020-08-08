@@ -2,9 +2,11 @@
   <div class="dashboard container-fluid bg-png bg-light">
     <div class="row push-down">
       <!-- <timeline /> -->
-      <div class="col-md-8 order-md-1 order-2 col-12 max-height">
+      <div
+        class="col-md-8 order-md-1 order-2 col-12 max-height fullcalendar-container"
+      >
         <Fullcalendar
-          class="rounded shadow"
+          class="rounded shadow "
           id="myCal"
           ref="Fullcalendar"
           height="parent"
@@ -31,7 +33,10 @@
           @datesRender="handleDatesRender"
         />
       </div>
-      <div id="draggableContainer" class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y">
+      <div
+        id="draggableContainer"
+        class="col-md-4 col-12 order-md-2 order-1 max-height overflow-y"
+      >
         <!-- NOTE Below is the trash icon.  This is an alternative to dragging to side to remove event -->
         <!-- <i id="event-trash" class="fas fa-trash-alt fa-3x float-left"></i> -->
         <div class="row mr-1 justify-content-center">
@@ -40,15 +45,19 @@
             data-toggle="modal"
             data-target="#addAssignmentModal"
             class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
-          >Add Assignment/Event</button>
+          >
+            Add Assignment/Event
+          </button>
 
           <!-- view events button -->
 
           <button
-            v-if="eventsToDisplay.length>0"
+            v-if="eventsToDisplay.length > 0"
             @click="DisplayEvents = !DisplayEvents"
             class="btn btn-warning btn-outline-dark mt-2 mx-2"
-          >View Events</button>
+          >
+            View Events
+          </button>
           <!-- student dropdown -->
           <button
             v-if="this.nArchived.length > 1"
@@ -57,7 +66,9 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >Students</button>
+          >
+            Students
+          </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="p-0 m-0"></p>
             <span v-for="student in nArchived" :key="student.id">
@@ -67,7 +78,8 @@
                 @click="setActiveStudent(student.id), (showAll = false)"
                 type="button"
                 class="nav-link"
-              >{{ student.name }}</a>
+                >{{ student.name }}</a
+              >
             </span>
             <a
               data-toggle="collapse"
@@ -79,17 +91,22 @@
               <b>Show All</b>
             </a>
           </div>
-          <div class="col-12 bg-primary text-dark rounded opacity shadow mt-3" v-if="DisplayEvents">
+          <div
+            class="col-12 bg-primary text-dark rounded opacity shadow mt-3"
+            v-if="DisplayEvents"
+          >
             <div
               class="d-flex justify-content-between p-1"
               v-for="eventToDisplay in eventsToDisplay"
               :key="eventToDisplay.id"
             >
               <div>
-                <span class="p-1">{{eventToDisplay.title}}</span>
+                <span class="p-1">{{ eventToDisplay.title }}</span>
               </div>
               <div>
-                <span class="p-1">{{new Date(eventToDisplay.start).toLocaleString().slice(0,9)}}</span>
+                <span class="p-1">{{
+                  new Date(eventToDisplay.start).toLocaleString().slice(0, 9)
+                }}</span>
                 <i
                   title="delete event"
                   type="button"
@@ -102,10 +119,18 @@
           <!-- <assignment /> -->
           <div v-if="nArchived.length > 1">
             <div v-if="showAll">
-              <student v-for="student in nArchived" :key="student.id" :student="student" />
+              <student
+                v-for="student in nArchived"
+                :key="student.id"
+                :student="student"
+              />
             </div>
             <div v-else>
-              <student v-show="activeStudent" :student="activeStudent" :soloDolo="true" />
+              <student
+                v-show="activeStudent"
+                :student="activeStudent"
+                :soloDolo="true"
+              />
             </div>
           </div>
           <div v-else>
@@ -433,6 +458,35 @@ export default {
 .fc-button-primary:disabled {
   background-color: #888;
 }
+
+.fc-scroller::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fc-scroller::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+
+.fc-scroller::-webkit-scrollbar-thumb {
+  background-color: lightgrey;
+  width: 6px;
+  border-radius: 5px;
+}
+
+#draggableContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+#draggableContainer::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+
+#draggableContainer::-webkit-scrollbar-thumb {
+  background-color: lightgrey;
+  width: 6px;
+  border-radius: 5px;
+}
+
 /* .fc-toolbar h2 {
   color: whitesmoke;
   text-shadow: 0.5px 0.5px black;
