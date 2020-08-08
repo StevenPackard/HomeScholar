@@ -29,9 +29,9 @@
         >Add to calander</button>
         <div v-if="true">
           <p class="p-1 mt-2">
-            <span>{{"Start:"+new Date(post.start).toLocaleString()}}</span>
+            <span>{{"Start: "+ this.convertToLocalTime(post.start)}}</span>
             <br />
-            <span>{{"End:"+new Date(post.end).toLocaleString()}}</span>
+            <span>{{"End: "+this.convertToLocalTime(post.end)}}</span>
           </p>
           <!-- <p
             class="p-1 mt-1 m-0"
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   data() {
     return {};
@@ -69,12 +70,17 @@ export default {
         }
       }
       return false;
-    }
+    },
   },
   methods: {
     addEvent() {
       this.$store.dispatch("addEvent", this.post);
       // console.log("add event thing");
+    },
+    convertToLocalTime(time) {
+      let m = moment(time);
+      console.log(m);
+      return m.format("dddd, MMMM Do , h:mm a");
     },
     routeToDetails() {
       if (this.$route.params.id != this.post._id) {
@@ -84,8 +90,8 @@ export default {
     setActivePost() {
       console.log("setActivePosts");
       this.$store.dispatch("setActivePost", this.post.id);
-    }
-  }
+    },
+  },
 };
 </script>
 
