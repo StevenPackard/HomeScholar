@@ -687,9 +687,9 @@ export default {
 
       let end = new Date(this.postForm.end);
 
-      start.setMinutes(start.getMinutes() - start.getTimezoneOffset());
+      start.setMinutes(start.getMinutes() + start.getTimezoneOffset());
 
-      end.setMinutes(end.getMinutes() - end.getTimezoneOffset());
+      end.setMinutes(end.getMinutes() + end.getTimezoneOffset());
 
       await this.$store.dispatch("addPost", this.postForm);
       await this.$store.dispatch("addEvent", this.postForm);
