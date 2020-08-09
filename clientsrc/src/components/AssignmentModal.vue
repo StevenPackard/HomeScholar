@@ -596,12 +596,21 @@
           <div class="modal-footer">
             <button
               type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              @click="clearPostForm"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
               class="btn btn-primary"
               data-dismiss="modal"
               @click="addPost"
             >
               Post
             </button>
+
             <!-- <button type="button" class="btn btn-danger" data-dismiss="modal" @click="close">Cancel</button> -->
           </div>
         </div>
@@ -737,6 +746,16 @@ export default {
         await this.$store.dispatch("addEvent", this.postForm);
       }
       this.$store.dispatch("getAllEvents");
+      this.postForm = {
+        isEvent: false,
+        type: "inPerson",
+      };
+    },
+    clearPostForm() {
+      this.postForm = {
+        isEvent: false,
+        type: "inPerson",
+      };
     },
 
     editComment() {
