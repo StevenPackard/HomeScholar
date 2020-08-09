@@ -110,7 +110,7 @@
           </div>
           <div class="modal-footer">
             <button
-              v-if="!eventForm"
+              v-show="!eventForm"
               type="button"
               @click="addNewAssignment"
               data-dismiss="modal"
@@ -119,7 +119,7 @@
               Add Assignment
             </button>
             <button
-              v-if="eventForm"
+              v-show="eventForm"
               @click="addNewEvent"
               type="button"
               data-dismiss="modal"
@@ -282,6 +282,7 @@
                   class="form-control"
                   id="assignmentScore"
                   type="number"
+                  max="100"
                   v-model="assignment.score"
                 />
               </div>
@@ -925,6 +926,12 @@ export default {
         start: this.$refs.eventStart.value,
         end: this.$refs.eventEnd.value,
       };
+      let start = new Date(data.start);
+      let end = new Date(data.end);
+      let utcStart = start.toUTCString();
+      let utcEnd = end.toUTCString();
+      data.start = utcStart;
+      data.end = utcEnd;
       this.$store.dispatch("addEvent", data);
     },
     addNewAssignment() {

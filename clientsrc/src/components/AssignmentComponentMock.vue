@@ -16,7 +16,15 @@
           <h5 class>{{ assignment.title.slice(0, 10) }}</h5>
         </div>
         <div class="col-4">
-          <h5 class>{{ assignment.score || assignment.passed }}</h5>
+          <h5 v-if="assignment.score >= 0 && assignment.score !== ''" class>
+            {{ assignment.score }}
+          </h5>
+          <h5 v-if="assignment.score === null" class="text-secondary">
+            0
+          </h5>
+          <h5 v-if="assignment.score === undefined" class>
+            {{ assignment.passed }}
+          </h5>
         </div>
       </div>
     </div>
