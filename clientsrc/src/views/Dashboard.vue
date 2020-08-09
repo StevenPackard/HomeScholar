@@ -339,43 +339,56 @@ export default {
       let event = this.$refs.Fullcalendar.getApi().getEventById(arg.event.id);
       console.log(trashElRect);
       if (trashEventX > trashElRect.x) {
-        swal({
-          title: "Remove Event",
-          text:
-            "Are you sure you want to remove this event? This will not delete the assignment.",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        }).then((willDelete) => {
-          if (willDelete) {
-            event.remove();
-            let newTimes = {
-              start: "",
-              end: "",
-              assignmentId: arg.event.id,
-            };
-            this.$store.dispatch("updateStudentMock", newTimes);
-          }
-        });
+        if (arg.event.backgroundColor != "") {
+          swal({
+            title: "Remove Event",
+            text:
+              "Are you sure you want to remove this event? This will not delete the assignment.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              event.remove();
+              let newTimes = {
+                start: "",
+                end: "",
+                assignmentId: arg.event.id,
+              };
+              this.$store.dispatch("updateStudentMock", newTimes);
+            }
+          });
+        } else {
+          swal({
+            title: "Remove Event",
+            text:
+              "Are you sure you want to remove this event? This will delete the event from your calendar.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              event.remove();
+              let newTimes = {
+                start: "",
+                end: "",
+                assignmentId: arg.event.id,
+              };
+              this.$store.dispatch("deleteEvent", arg.event.id);
+            }
+          });
+        }
       }
-      // NOTE This goes with the trash icon for event removal
-      // let trashEl = document.getElementById("event-trash");
-      // let trashElRect = trashEl.getBoundingClientRect();
-      // console.log("trashEvent coors", trashEventX, trashEventY);
-      // console.log("trash coors", trashElRect.x, trashElRect.y);
-
-      // let diffX = Math.abs(trashEventX - trashElRect.x);
-      // let diffY = Math.abs(trashEventY - trashElRect.y);
-      // console.log("diffx: ", diffX);
-      // console.log("diffY: ", diffY);
-      // if (diffX < 50 && diffY < 40) {
-      //   console.log("good to delete");
-      // }
     },
 
     setActiveAssignmentDetails(arg) {
       this.$store.commit("setActiveAssignmentDetails", arg.event.id);
-      $("#assignmentDetailsModal").modal("toggle");
+
+      if (arg.event.backgroundColor != "") {
+        $("#assignmentDetailsModal").modal("toggle");
+      } else {
+        $("#eventDetailsModal").modal("toggle");
+      }
     },
     goToDate(arg) {
       this.$refs.Fullcalendar.getApi().changeView("timeGridDay", arg.date);
