@@ -814,14 +814,15 @@ export default {
       }
     },
     async addPost() {
-      let start = new Date(this.postForm.start);
-      let end = new Date(this.postForm.end);
-
-      let utcStart = start.toUTCString();
-      let utcEnd = end.toUTCString();
-      this.postForm.start = utcStart;
-      this.postForm.end = utcEnd;
-      debugger;
+      if (this.postForm.start != undefined) {
+        let start = new Date(this.postForm.start);
+        let end = new Date(this.postForm.end);
+        let utcStart = start.toUTCString();
+        let utcEnd = end.toUTCString();
+        this.postForm.start = utcStart;
+        this.postForm.end = utcEnd;
+      }
+      // debugger;
       await this.$store.dispatch("addPost", this.postForm);
       if (this.postForm.isEvent) {
         await this.$store.dispatch("addEvent", this.postForm);
