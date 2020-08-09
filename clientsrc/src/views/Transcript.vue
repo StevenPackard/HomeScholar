@@ -89,8 +89,9 @@ export default {
     };
   },
   mounted() {
+    console.log("mounting transcript");
     this.$store.dispatch("getStudentById", this.$route.params.id);
-    this.$store.dispatch("getAllAssignments");
+    //get students assignments
   },
   methods: {
     print() {
@@ -102,14 +103,13 @@ export default {
       return this.$store.state.StudentStore.activeStudent;
     },
     assignments() {
-      return this.$store.state.AssignmentsStore.assignments
-        .filter((a) => !("studentId" in a) == false)
-        .filter((a) => a.studentId.id == this.student.id)
-        .sort((a, b) => {
-          if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
-            return 1;
-          } else return -1;
-        });
+      // let arr = this.$store.state.AssignmentsStore.assignments.sort((a, b) => {
+      //   if (a.subject.toLowerCase() > b.subject.toLowerCase()) {
+      //     return 1;
+      //   } else return -1;
+      // });
+
+      return;
     },
   },
   components: {

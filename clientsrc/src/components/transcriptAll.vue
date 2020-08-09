@@ -41,9 +41,15 @@
 
 <script>
 export default {
-  props: ["assignments"],
+  mounted() {
+    this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+  },
 
-  computed: {},
+  computed: {
+    assignments() {
+      return this.$store.state.AssignmentsStore.assignments;
+    },
+  },
 };
 </script>
 

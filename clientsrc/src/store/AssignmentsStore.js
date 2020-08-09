@@ -5,7 +5,7 @@ import { api } from "./AxiosStore";
 export const AssignmentsStore = {
   state: {
     assignments: [],
-    // activeAssignments: [],
+    activeAssignments: [],
     activeAssignmentDetails: {},
     ActiveAssignmentsbyStudentId: [],
     studentAssignments: [],
@@ -19,8 +19,6 @@ export const AssignmentsStore = {
       state.assignments = assignments;
     },
     setActiveAssignments(state, assignments) {
-      console.log(assignments);
-
       state.activeAssignments = assignments;
     },
     setDashboardAssignments(state, assignments) {
@@ -32,12 +30,8 @@ export const AssignmentsStore = {
     },
     setUpdateAssignment(state, assignment) {
       let newState = state.assignments.filter((a) => a.id != assignment.id);
-      console.log(newState, "first line");
 
       newState.push(assignment);
-      console.log(newState, "secondLine");
-      console.log(assignment, "assignment");
-
       state.assignments = newState;
     },
     setStudentAssignments(state, studentId) {
@@ -108,16 +102,16 @@ export const AssignmentsStore = {
         console.error(error);
       }
     },
+
     async getAssignmentsByStudentId({ commit, dispatch }, id) {
       try {
         let res = await api.get("students/" + id + "/assignments");
-        console.log(res.data);
-
-        commit("setActiveAssignments", res.data);
+        commit("setAssignments", res.data);
       } catch (error) {
         console.error(error);
       }
     },
+
     async getAssignmentsForDashboard({ commit, dispatch }, id) {
       try {
         let res = await api.get("students/" + id + "/assignments");
