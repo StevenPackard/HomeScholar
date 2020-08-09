@@ -1,46 +1,47 @@
 <template>
   <div class="container-fluid bg-image">
-    <div class="row push-down-less mb-2">
-      <div class="col-12 col-md-10 col-lg-8 m-auto text-center">
-        <div class="row pt-3 justify-content-around sticky"></div>
-      </div>
-      <div class="col-12">
-        <div class="d-flex justify-content-center ">
-          <span class="filterdiv">
+    <div class="row push-down mb-2">
+      <div class="push-down-less">
+        <div
+          class="col-12 col-sm-10 col-md-8 col-lg-6 fixed-top mt-5 mx-auto bg-light rounded shadow p-2  "
+        >
+          <div class="d-flex justify-content-center   ">
             <button
               data-toggle="modal"
               data-target="#filterPosts"
-              class="btn btn-warning btn-outline-dark mt-2 sticky-top mx-2"
+              class="btn btn-info btn-outline-dark mt-2 mx-2"
             >
               Filter posts
             </button>
-          </span>
+          </div>
+          <div class="pt-2 text-center w-100">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#addPost"
+              class="btn btn-outline-dark btn-warning"
+            >
+              New Post
+            </button>
+          </div>
         </div>
-        <div class="pt-5 text-center w-100">
+      </div>
+
+      <div v-if="!toggleSearch" class="row justify-content-center">
+        <post v-for="post in posts" :key="post.id" :post="post" />
+        <div class="col-12 text-center mb-3">
           <button
-            type="button"
-            data-toggle="modal"
-            data-target="#addPost"
-            class="btn btn-outline-dark btn-info"
+            v-if="posts.length >= postLength"
+            @click="postLength += 10"
+            class="btn btn-success"
           >
-            New Post
+            Show More
           </button>
         </div>
       </div>
     </div>
-    <div v-if="!toggleSearch" class="row justify-content-center">
-      <post v-for="post in posts" :key="post.id" :post="post" />
-      <div class="col-12 text-center mb-3">
-        <button
-          v-if="posts.length >= postLength"
-          @click="postLength += 10"
-          class="btn btn-success"
-        >
-          Show More
-        </button>
-      </div>
-    </div>
-    <div v-if="toggleSearch" class="row justify-content-center">
+    <div v-if="toggleSearch" class="row justify-content-center ">
+      <span></span>
       <post v-for="post in searchPosts" :key="post.id" :post="post" />
     </div>
   </div>
@@ -86,7 +87,7 @@ export default {
 <style>
 .filterdiv {
   position: absolute;
-  top: -15px;
+  top: 1px;
 }
 .post-form {
   border-radius: 6px;
