@@ -35,7 +35,7 @@
         >
           Add to calendar
         </button>
-        <div v-if="true">
+        <div v-if="post.isEvent">
           <p class="p-1 mt-2">
             <span>{{ "Start: " + this.convertToLocalTime(post.start) }}</span>
             <br />

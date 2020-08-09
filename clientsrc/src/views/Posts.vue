@@ -30,17 +30,18 @@
           </div>
         </div>
       </div>
-
-      <div v-if="!toggleSearch" class="row justify-content-center">
-        <post v-for="post in posts" :key="post.id" :post="post" />
-        <div class="col-12 text-center mb-3">
-          <button
-            v-if="posts.length >= postLength"
-            @click="postLength += 10"
-            class="btn btn-success"
-          >
-            Show More
-          </button>
+      <div class="col-12">
+        <div v-if="!toggleSearch" class="row justify-content-center">
+          <post v-for="post in posts" :key="post.id" :post="post" />
+          <div class="col-12 text-center mb-3">
+            <button
+              v-if="posts.length >= postLength"
+              @click="postLength += 10"
+              class="btn btn-success"
+            >
+              Show More
+            </button>
+          </div>
         </div>
       </div>
     </div>
