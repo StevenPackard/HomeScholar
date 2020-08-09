@@ -326,7 +326,7 @@ export default {
         end: arg.event.end,
         assignmentId: arg.event.id,
       };
-      console.log(arg);
+      console.log(arg, "this is the update");
       this.$store.dispatch("updateAssignment", newElements);
     },
     async handleEventDragStop(arg) {

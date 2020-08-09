@@ -50,6 +50,12 @@ export class AssignmentsController extends BaseController {
 
   async edit(req, res, next) {
     try {
+      if (req.body.score > 100) {
+        req.body.score = 100;
+      }
+      if (req.body.score < 0) {
+        req.body.score = 0;
+      }
       let data = await assignmentsService.edit(
         req.params.id,
         req.userInfo.email,
