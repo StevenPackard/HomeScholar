@@ -670,8 +670,6 @@
                     Unspecified
                   </label>
                 </div>
-                {{ this.postForm.start }}
-                {{ this.postForm.end }}
               </div>
             </form>
           </div>

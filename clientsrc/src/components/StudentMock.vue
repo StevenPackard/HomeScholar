@@ -61,7 +61,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getAssignmentsForDashboard", this.student.id);
+    // this.$store.dispatch("getAssignmentsForDashboard", this.student.id);
   },
   computed: {
     assignments() {

@@ -63,6 +63,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getAllPosts");
+    this.$store.dispatch("getAllEvents");
   },
   computed: {
     posts() {
