@@ -35,19 +35,17 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    this.$store.dispatch("getAllAssignments");
-  },
+  mounted() {},
   computed: {
     students() {
       return this.$store.state.StudentStore.students;
-    }
+    },
   },
   methods: {},
   components: {
     assignmentModal,
-    assignmentBreakdown
-  }
+    assignmentBreakdown,
+  },
 };
 </script>
 
