@@ -1,6 +1,6 @@
 # HomeScholar
 
-https://homescholar.herokuapp.com/#/posts
+https://homescholar.herokuapp.com
 
 ## About
 
