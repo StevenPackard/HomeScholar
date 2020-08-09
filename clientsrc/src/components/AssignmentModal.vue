@@ -823,6 +823,7 @@ export default {
       let utcEnd = end.toUTCString();
       this.postForm.start = utcStart;
       this.postForm.end = utcEnd;
+      debugger;
       await this.$store.dispatch("addPost", this.postForm);
       if (this.postForm.isEvent) {
         await this.$store.dispatch("addEvent", this.postForm);

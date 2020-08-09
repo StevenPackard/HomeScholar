@@ -1,28 +1,32 @@
 <template>
-  <div class="container-fluid bg-image">
+  <div class="container-fluid bg-image z-2">
     <div class="row push-down mb-2">
-      <div class="push-down-less">
-        <div
-          class="col-12 col-sm-10 col-md-8 col-lg-6 fixed-top mt-5 mx-auto bg-light rounded shadow p-2  "
-        >
-          <div class="d-flex justify-content-center   ">
-            <button
-              data-toggle="modal"
-              data-target="#filterPosts"
-              class="btn btn-info btn-outline-dark mt-2 mx-2"
+      <div class="push-down-posts">
+        <div class="col-12 pt-3 mt-5 ">
+          <div class="row">
+            <div
+              class="col-12 col-sm-10 col-md-8 col-lg-6 fixed-top mt-5 mx-auto bg-light rounded-bottom shadow p-3 top-10 "
             >
-              Filter posts
-            </button>
-          </div>
-          <div class="pt-2 text-center w-100">
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#addPost"
-              class="btn btn-outline-dark btn-warning"
-            >
-              New Post
-            </button>
+              <div class="d-flex justify-content-center   ">
+                <button
+                  data-toggle="modal"
+                  data-target="#filterPosts"
+                  class="btn btn-info btn-outline-dark mt-2 mx-2"
+                >
+                  Filter posts
+                </button>
+              </div>
+              <div class="pt-2 text-center w-100">
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#addPost"
+                  class="btn btn-outline-dark btn-warning"
+                >
+                  New Post
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -85,9 +89,17 @@ export default {
 };
 </script>
 <style>
-.filterdiv {
-  position: absolute;
-  top: 1px;
+.top-10 {
+  top: 5px;
+}
+.z-2 {
+  z-index: 1;
+}
+.p-relative {
+  position: relative;
+}
+.push-down-posts {
+  margin-top: 40px;
 }
 .post-form {
   border-radius: 6px;
