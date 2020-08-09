@@ -11,10 +11,16 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <div class="row" v-for="(value, name, index) in transcriptData" :key="index">
+        <div
+          class="row"
+          v-for="(value, name, index) in transcriptData"
+          :key="index"
+        >
           <div class="col-12">
             <div class="row">
-              <div class="col-6 border">{{ name[0].toUpperCase() + name.slice(1) }}</div>
+              <div class="col-6 border">
+                {{ name[0].toUpperCase() + name.slice(1) }}
+              </div>
               <div class="col-6 border">{{ Math.ceil(value) }}</div>
             </div>
           </div>
@@ -22,7 +28,7 @@
       </div>
       <div class="col-4">
         <div class="row" v-for="(value, name, index) in hours" :key="index">
-          <div v-if="value !=0" class="col-12 border">{{ value }}</div>
+          <div class="col-12 border">{{ value || "0" }}</div>
         </div>
       </div>
     </div>
@@ -30,15 +36,22 @@
 </template>
 
 <script>
+import { duration } from "moment";
 export default {
-  mounted() {},
-  props: ["assignments"],
+  mounted() {
+    this.$store.dispatch("getAssignmentsByStudentId", this.$route.params.id);
+  },
+
   computed: {
+    assignments() {
+      return this.$store.state.AssignmentsStore.assignments;
+    },
     // transcriptData() {
     //   return this.$store.getters.transcriptSummary;
     // }
+
     transcriptData() {
-      let assignment = this.assignments.filter(e => e.score >= 0);
+      let assignment = this.assignments.filter((e) => e.score >= 0);
       let subjectObj = {};
       for (let i = 0; i < assignment.length; i++) {
         let keys = Object.keys(subjectObj);
@@ -50,7 +63,7 @@ export default {
           }
         }
       }
-      console.log(subjectObj);
+
       let keys = Object.keys(subjectObj);
       let avgObj = {};
       for (let i = 0; i < keys.length; i++) {
@@ -60,37 +73,23 @@ export default {
       }
       return avgObj;
     },
+
     hours() {
-      let subjectObjHours = {};
-
-      for (let i = 0; i < this.assignments.length; i++) {
-        let keys = Object.keys(subjectObjHours);
-        for (let j = 0; j <= keys.length; j++) {
-          if (keys.includes(this.assignments[i].subject)) {
-            subjectObjHours[this.assignments[i].subject].push(
-              new Date(this.assignments[i].end).getHours() -
-                new Date(this.assignments[i].start).getHours()
-            ); //assignments[i].hours
-          } else {
-            subjectObjHours[this.assignments[i].subject] = [
-              new Date(this.assignments[i].end).getHours() -
-                new Date(this.assignments[i].start).getHours()
-            ];
-          }
-        }
+      let assignments = this.assignments;
+      let dictionary = {};
+      for (let i = 0; i < assignments.length; i++) {
+        let assignment = assignments[i];
+        let starting = new Date(assignment.start);
+        let startTime = Number(starting.getHours());
+        let ending = new Date(assignment.end);
+        let endTime = Number(ending.getHours());
+        assignment.duration = endTime - startTime;
+        dictionary[assignment.subject] = dictionary[assignment.subject] || 0;
+        dictionary[assignment.subject] += assignment.duration;
       }
-
-      let keysHour = Object.keys(subjectObjHours);
-      let avgObjHours = {};
-      for (let i = 0; i < keysHour.length; i++) {
-        avgObjHours[keysHour[i]] = subjectObjHours[keysHour[i]].reduce(
-          (a, b) => a + b,
-          0
-        );
-      }
-      return avgObjHours;
-    }
-  }
+      return dictionary;
+    },
+  },
 };
 </script>
 
