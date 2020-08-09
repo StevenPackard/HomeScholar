@@ -320,6 +320,88 @@
 
     <!--!SECTION -->
 
+    <!-- SECTION Event Details -->
+    <div
+      class="modal fade"
+      id="eventDetailsModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby=""
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-center text-center"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="">
+              Event Details
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="studentName" class="col-form-label">
+                  <small>Title:</small>
+                </label>
+                <div>
+                  <p>{{ assignment.title }}</p>
+                </div>
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  id="assignmentTitle"
+                  placeholder
+                  v-model="assignment.title"
+                /> -->
+              </div>
+              <div class="form-group">
+                <label for="studentDescription" class="col-form-label">
+                  <small>Desctription:</small>
+                </label>
+                <div>
+                  <p>{{ assignment.body }}</p>
+                </div>
+                <!-- <textarea
+                  class="form-control"
+                  id="assignmentDescription"
+                  v-model="assignment.description"
+                ></textarea> -->
+              </div>
+            </form>
+          </div>
+          <div class="d-flex justify-content-center p-4">
+            <!-- <button
+              type="button"
+              class="btn btn-primary mx-2"
+              data-dismiss="modal"
+              
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary mx-2"
+              data-dismiss="modal"
+              
+            >
+              Delete
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !SECTION -->
+
     <!-- SECTION EDIT STUDENT MODAL -->
     <div
       class="modal fade"
