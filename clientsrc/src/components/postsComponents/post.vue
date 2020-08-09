@@ -40,7 +40,14 @@
             <span>{{ "Start: " + this.convertToLocalTime(post.start) }}</span>
             <br />
             <span>{{ "End: " + this.convertToLocalTime(post.end) }}</span>
+            <br />
           </p>
+          <div v-if="post.type == 'inPerson'">
+            <i class="fas fa-head-side-mask"></i>
+          </div>
+          <div v-if="post.type == 'remote'">
+            <i class="fas fa-laptop"></i>
+          </div>
           <!-- <p
             class="p-1 mt-1 m-0"
           >{{"Start: "+ post.start.slice(5,7)+"/" + post.start.slice(8,10) +" @ " +post.start.slice(11,13) +":"+ post.start.slice(14,16)}}</p>

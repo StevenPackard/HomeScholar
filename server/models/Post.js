@@ -10,6 +10,11 @@ const Post = new Schema(
     isEvent: { type: Boolean, default: false },
     start: { type: Date, default: null },
     end: { type: Date, default: null },
+    type: {
+      type: String,
+      enum: ["remote", "inPerson", "unspecified"],
+      default: "unspecified",
+    },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
