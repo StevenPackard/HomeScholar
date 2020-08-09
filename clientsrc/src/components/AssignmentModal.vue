@@ -548,6 +548,46 @@
                   v-model="postForm.end"
                   :min="postForm.start"
                 />
+                <div class="form-check mt-1">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="remote"
+                    id="remote"
+                    value="remote"
+                    v-model="postForm.type"
+                    checked
+                  />
+                  <label class="form-check-label" for="remote">
+                    Remote
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inPerson"
+                    id="inPerson"
+                    value="inPerson"
+                    v-model="postForm.type"
+                  />
+                  <label class="form-check-label" for="inPerson">
+                    In Person
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="unspecified"
+                    id="unspecified"
+                    value="unspecified"
+                    v-model="postForm.type"
+                  />
+                  <label class="form-check-label" for="unspecified">
+                    Unspecified
+                  </label>
+                </div>
                 {{ this.postForm.start }}
                 {{ this.postForm.end }}
               </div>
@@ -643,6 +683,7 @@ export default {
       },
       postForm: {
         isEvent: false,
+        type: "inPerson",
       },
       eventForm: false,
       event: {},
@@ -692,7 +733,9 @@ export default {
       end.setMinutes(end.getMinutes() + end.getTimezoneOffset());
 
       await this.$store.dispatch("addPost", this.postForm);
-      await this.$store.dispatch("addEvent", this.postForm);
+      if (this.postForm.isEvent) {
+        await this.$store.dispatch("addEvent", this.postForm);
+      }
       this.$store.dispatch("getAllEvents");
     },
 
