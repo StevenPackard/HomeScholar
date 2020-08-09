@@ -27,7 +27,7 @@
           <i class="fa fa-comment"></i>
         </p>
         <button
-          v-if="!checkUserEvents && !this.$auth.user.email == post.creatorEmail"
+          v-if="!checkUserEvents && this.$auth.user.email != post.creatorEmail"
           type="button"
           @click="addEvent"
           class="btn btn-warning btn-outline-dark"

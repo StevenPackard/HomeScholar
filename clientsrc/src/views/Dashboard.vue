@@ -169,7 +169,7 @@ export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getAllAssignments");
-    this.$store.dispatch("getAllEvents");
+    // this.$store.dispatch("getAllEvents");
   },
 
   data() {
