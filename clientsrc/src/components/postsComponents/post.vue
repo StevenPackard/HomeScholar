@@ -66,9 +66,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    this.$store.dispatch("getAllEvents");
-  },
+  mounted() {},
   props: ["post"],
   computed: {
     userEvents() {

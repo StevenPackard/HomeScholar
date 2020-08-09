@@ -17,16 +17,17 @@ export class EventsController extends BaseController {
 
   async create(req, res, next) {
     try {
-      let rawData = {
-        postId: req.body._id,
-        body: req.body.body,
-        title: req.body.title,
-        start: req.body.start,
-        end: req.body.end,
-        creatorEmail: req.userInfo.email,
-      };
-
-      let data = await eventsService.create(rawData);
+      // let rawData = {
+      //   postId: req.body._id,
+      //   body: req.body.body,
+      //   title: req.body.title,
+      //   start: req.body.start,
+      //   end: req.body.end,
+      //   creatorEmail: req.userInfo.email,
+      // };
+      req.body.creatorEmail = req.userInfo.email;
+      req.body.postId = req.body._id;
+      let data = await eventsService.create(req.body);
       return res.send(data);
     } catch (error) {
       next(error);
