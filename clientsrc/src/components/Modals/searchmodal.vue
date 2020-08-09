@@ -11,7 +11,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="filterOptions">Filter Options</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -48,7 +53,13 @@
               </div>
             </div>
             <div>
-              <button class="btn btn-success" @click="querySearch">Apply</button>
+              <button
+                data-dismiss="modal"
+                class=" btn btn-success"
+                @click="querySearch"
+              >
+                Apply
+              </button>
             </div>
           </form>
         </div>
@@ -79,5 +90,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
