@@ -105,7 +105,8 @@ export default {
     showDeleteStudentAlert() {
       swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this Student!",
+        text:
+          "Once deleted, you will not be able to recover this Student! You can archive this student to keep using the transcript",
         icon: "warning",
         buttons: true,
         dangerMode: true,
