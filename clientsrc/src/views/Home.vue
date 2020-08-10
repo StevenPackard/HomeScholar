@@ -20,16 +20,19 @@
               href="#"
               role="button"
               @click="
-                  $router.push({
-                    name: 'tour'
-                  })
-                "
-            >Take a tour</a>
+                $router.push({
+                  name: 'tour',
+                })
+              "
+              >Take a tour</a
+            >
             <button
               v-if="!$auth.isAuthenticated"
               @click="login"
               class="btn-lg btn-warning btn-outline-dark shadow"
-            >Sign up</button>
+            >
+              Sign up
+            </button>
           </p>
         </div>
       </div>
@@ -41,13 +44,13 @@
       <div class="col-md-6 col-12 p-2 d-flex align-items-center">
         <div class="px-5">
           <h2 class="p-1">
-            <b>Make learning fun for everyone!</b>
+            <b>Dont let COVID-19 stop school!</b>
           </h2>
           <hr class="m-0 m-0 bg-warning" />
           <h3 class="p-1">
-            Take your children's learning to the next level from home.
-            HomeScholar allows you to to create lesson plans easily and stick
-            to a schedule that works for you.
+            Your childrens safety is a top priority. With so many school
+            closures and uncertainty surrouding COVID-19 we want to support you
+            in making sure the learning doesnt stop.
           </h3>
         </div>
       </div>
@@ -61,7 +64,9 @@
       </div>
     </div>
     <!-- Reviews Row -->
-    <div class="row justify-content-around mt-3 mt-lg-0 bg-light align-items-center">
+    <div
+      class="row justify-content-around mt-3 mt-lg-0 bg-light align-items-center"
+    >
       <div class="col-12 col-md-4 col-lg-3 justify-content-center text-center">
         <div class="card shadow bg-warning">
           <div class="card-body">
@@ -71,17 +76,21 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Amazing product!</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Helped me during a tough transition!
+            </h6>
             <p class="card-text">
-              "I am beyond impressed with HomeScholar. Even my children noticed
-              the improvement in their schedule when I started using it. They
-              started asking me why I was so organized and it really is all
-              thanks to HomeScholar."
+              "Due to the covid shutdowns I have had to start homeschooling my 3
+              kids. HomeScholar has really helped me stay oraganized in this
+              crazy time. Thank you for helping me keep on top of my kids
+              education."
             </p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center text-center">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0 justify-content-center text-center"
+      >
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -91,7 +100,9 @@
               <i class="fa fa-star" aria-hidden="true"></i>
               <i class="fa fa-star" aria-hidden="true"></i>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Its the best thing ever!</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Its the best thing ever!
+            </h6>
             <p class="card-text">
               "HomeScholar really is the best thing for me as a parent. I really
               feel empowered in my children's education now I can spend more
@@ -101,7 +112,9 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center text-center">
+      <div
+        class="col-12 col-md-4 col-lg-3 mt-3 mt-md-3 mb-3 justify-content-center text-center"
+      >
         <div class="card shadow bg-warning">
           <div class="card-body">
             <h5 class="card-title">
@@ -114,9 +127,8 @@
             <h6 class="card-subtitle mb-2 text-muted">My kids are smarter!</h6>
             <p class="card-text">
               "Ever since I started using HomeScholar my kids are so much
-              smarter. It really is amazing, pretty soon they will be teaching
-              me and I bet they will use HomeScholar to make their lesson plans.
-              Thank you for creating such a great product!"
+              smarter. I can also stay connected with other parents that are
+              homeschooling. Its great to be able to stay connected from home!"
             </p>
           </div>
         </div>
@@ -124,8 +136,14 @@
     </div>
     <div class="row bg-success justify-content-center pb-2">
       <div class="col-md-6 col-12 text-center mt-2">
-        <h3 class="text-dark">Take control of your childrens education.</h3>
-        <h3 class="text-dark">Ditch the hassle and start using HomeScholar today!</h3>
+        <h3 class="text-dark">
+          Check out these non profits to help contribute to beating COVID-19
+        </h3>
+        <a
+          href="https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=7779"
+          class="btn btn-outline-dark col-3"
+          >Click Here!</a
+        >
       </div>
     </div>
   </div>
