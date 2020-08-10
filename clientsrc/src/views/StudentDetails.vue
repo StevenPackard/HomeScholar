@@ -85,7 +85,7 @@ import AssignmentComponentMock from "@/components/AssignmentComponentMock";
 export default {
   name: "student-details",
   mounted() {
-    this.$store.dispatch("getStudentById", this.$route.params.id);
+    // this.$store.dispatch("getStudentById", this.$route.params.id);
     this.$store.dispatch("getAllAssignments");
   },
   data() {

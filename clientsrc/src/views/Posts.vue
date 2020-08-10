@@ -5,7 +5,7 @@
         <div class="col-12 pt-3 mt-5 ">
           <div class="row">
             <div
-              class="col-12 col-sm-10 col-md-8 col-lg-6 fixed-top mt-5 mx-auto bg-light rounded-bottom shadow p-3 top-10 "
+              class="col-12 col-sm-10 col-md-4 col-lg-3 fixed-top mt-5 mx-auto p-3 top-10 "
             >
               <div class="d-flex justify-content-center   ">
                 <button
@@ -123,5 +123,8 @@ export default {
   background: url(../assets/crayon.jpg);
   height: fit-content;
   background-repeat: repeat;
+}
+.opacity {
+  opacity: 0.8;
 }
 </style>
