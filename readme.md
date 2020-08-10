@@ -4,7 +4,7 @@ https://homescholar.herokuapp.com
 
 ## About
 
-The Covid-19 pandemic has put the parents and their children in a precarious position. This is especially true when it comes to education. Parents are nervous about exposing their children to possible infection. But, at the same time, they are concerned about hindering their children's learning. This problem is made worse by local schools failing to meet the virtual needs of their students. More and more parents are facing the struggle of keeping their children safe while continuing their education.
+The Covid-19 pandemic has put the parents and their children in a precarious position. This is especially true when it comes to education. Parents are nervous about exposing their children to possible infection. At the same time, they are concerned about hindering their children's learning. This is problemstic with local schools failing to meet the virtual needs of their students. Parents are facing the struggle of keeping their children safe while continuing their education.
 
 This is why we created HomeScholar.
 
@@ -44,7 +44,7 @@ MongoDB
 
 HomeScholar is a web application requiring only an internet browser to operate the application (Google Chrome is recommended).
 
-Upon rending the landing page, users are greeted and introduced to the primary mission of HomeScholar which is to “Optimize the education of your children at home.”
+Upon rendering the landing page, users are greeted and introduced to the primary mission of HomeScholar which is to “Optimize the education of your children at home.”
 
 New users are encouraged to take a tour upon first entering the web application. The tour gives a demonstration of the website. The new user is given the opportunity to interact with the main functionality of the site without having to create any initial content.
 
@@ -52,9 +52,9 @@ Users can then create an account either by clicking on the “Sign up” or “L
 
 ### Calendar Page
 
-After a user has created an account, they are given access to their personal calendar page and the social page for the site. In the calendar page, users have the option to create student profiles, add new assignments or schedule existing assignments. Student profile creation is available on the navbar by clicking on the arrow. A popup appears giving the user the option to “Add Student”. Clicking on the “Add Student” option triggers a modal to appear. The modal requests some information about the student including name, curriculum for that student, grade level and a background color of the student’s profile. Clicking add student creates the profile which then appears on the calendar page. When a user has more than one student, an option is given to filter to an individual student.
+After a user has created an account, they are given access to their personal calendar page and the social page for the site. In the calendar page, users have the option to create student profiles, add new assignments or schedule existing assignments. Student profile creation is available on the navbar by clicking on the arrow. A popup appears giving the user the option to “Add Student”. Clicking on the “Add Student” option triggers a modal to appear. The modal requests some information about the student including name, curriculum for that student, grade level and a background color of the student’s profile. Clicking add student creates the profile and then appears on the calendar page. When a user has more than one student, an option is given to filter to an individual student.
 
-To add an assignment to, the user has two options. First, the user can click on the “Add Assignment/Event” button above the student profile. This button triggers a modal that requests information about the assignment including who the assignment will be assigned to, the title of the assignment, the description and the subject. Clicking the “Add Assignment” button creates the assignment which appears on the student profile. The second option is to select a certain timeframe within the calendar tool. Once the time frame is selected, the same modal is triggered with the chosen timeframe appearing at the bottom. Assignments created from the calendar do not appear in the student profile. Only assignments that need to be scheduled will appear in the student profile.
+To add an assignment to a student, the user has two options. First, the user can click on the “Add Assignment/Event” button above the student profile. This button triggers a modal that requests information about the assignment including who the assignment will be assigned to, the title of the assignment, the description and the subject. Clicking the “Add Assignment” button creates the assignment which appears on the student profile. The second option is to select a certain timeframe within the calendar tool. Once the time frame is selected, the same modal is triggered with the chosen timeframe appearing at the bottom. Assignments created from the calendar do not appear in the student profile. Only assignments that need to be scheduled will appear in the student profile.
 
 There are multiple methods for editing and deleting assignments. First, an assignment can be removed from the calendar by dragging the assignment off of the calendar. An alert to confirm removal from the calendar will appear. The now unscheduled assignment will appear in the profile. To add an unscheduled assignment, the user can drag the assignment into the calendar. To move the assignment event, the user can click on it and move it to the desired time. The default time length for an unscheduled event is two hours. To adjust the time length, the user can move the mouse cursor to the edge and change the height of the event.
 
