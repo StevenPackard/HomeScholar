@@ -140,8 +140,9 @@
           Check out these non profits to help contribute to beating COVID-19
         </h3>
         <a
+          target="_blank"
           href="https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=7779"
-          class="btn btn-outline-dark col-3"
+          class="btn btn-outline-dark col-2 p-2 mt-3 mb-3 shadow btn-info"
           >Click Here!</a
         >
       </div>
