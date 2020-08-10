@@ -192,7 +192,7 @@
                 >
                 <input
                   type="color"
-                  id="color"
+                  id="addcolor"
                   v-model="addStudent.backgroundColor"
                   class
                 />
@@ -598,7 +598,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="editPostTitle"
+                  id="addPostTitle"
                   v-model="postForm.title"
                 />
               </div>
@@ -606,7 +606,7 @@
                 <label for="postBody" class="col-form-label">Body</label>
                 <textarea
                   class="form-control"
-                  id="editpostBody"
+                  id="addpostBody"
                   v-model="postForm.body"
                 ></textarea>
               </div>
@@ -724,11 +724,11 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="studentName" class="col-form-label">Body</label>
+                <label for="Body" class="col-form-label">Body</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="editstudentName"
+                  id="commentBody"
                   v-model="comment.body"
                 />
               </div>
@@ -932,7 +932,9 @@ export default {
       let utcEnd = end.toUTCString();
       data.start = utcStart;
       data.end = utcEnd;
-      this.$store.dispatch("addEvent", data);
+      this.$store.dispatch("addEvent", { ...data });
+      this.$refs.eventTitle.value = "";
+      this.$refs.eventBody.value = "";
     },
     addNewAssignment() {
       let foundStudent = this.$store.state.StudentStore.students.find(

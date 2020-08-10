@@ -174,7 +174,6 @@ export default {
 
     routeToStudent(id) {
       this.$router.push("/student/" + id);
-      this.$store.dispatch("getStudentById", id);
     },
     routeToProfile() {
       this.$router.push({ name: "profile", params: { id: this.user.id } });

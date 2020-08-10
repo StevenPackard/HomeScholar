@@ -79,13 +79,15 @@ export default {
       let dictionary = {};
       for (let i = 0; i < assignments.length; i++) {
         let assignment = assignments[i];
-        let starting = new Date(assignment.start);
-        let startTime = Number(starting.getHours());
-        let ending = new Date(assignment.end);
-        let endTime = Number(ending.getHours());
-        assignment.duration = endTime - startTime;
-        dictionary[assignment.subject] = dictionary[assignment.subject] || 0;
-        dictionary[assignment.subject] += assignment.duration;
+        if (assignment.score) {
+          let starting = new Date(assignment.start);
+          let startTime = Number(starting.getHours());
+          let ending = new Date(assignment.end);
+          let endTime = Number(ending.getHours());
+          assignment.duration = endTime - startTime;
+          dictionary[assignment.subject] = dictionary[assignment.subject] || 0;
+          dictionary[assignment.subject] += assignment.duration;
+        }
       }
       return dictionary;
     },

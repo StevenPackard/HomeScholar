@@ -14,7 +14,7 @@
             Grade Level - {{ student.gradeLevel }}
           </h4>
         </router-link>
-        <span>Hide Graded</span>
+        <span>Hide Graded/Scheduled</span>
         <input
           class="btn btn-warning"
           type="checkbox"

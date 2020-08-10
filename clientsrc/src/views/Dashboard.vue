@@ -476,9 +476,9 @@ export default {
   width: 8px;
 }
 
-.fc-scroller::-webkit-scrollbar-track {
-  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-}
+/* .fc-scroller::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+} */
 
 .fc-scroller::-webkit-scrollbar-thumb {
   background-color: lightgrey;
@@ -490,9 +490,9 @@ export default {
   width: 8px;
 }
 
-#draggableContainer::-webkit-scrollbar-track {
-  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-}
+/* #draggableContainer::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+} */
 
 #draggableContainer::-webkit-scrollbar-thumb {
   background-color: lightgrey;
