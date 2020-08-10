@@ -4,7 +4,7 @@ https://homescholar.herokuapp.com
 
 ## About
 
-The Covid-19 pandemic has put the parents and their children in a precarious position. This is especially true when it comes to education. Parents are nervous about exposing their children to possible infection. At the same time, they are concerned about hindering their children's learning. This is problemstic with local schools failing to meet the virtual needs of their students. Parents are facing the struggle of keeping their children safe while continuing their education.
+The Covid-19 pandemic has put the parents and their children in a precarious position. This is especially true when it comes to education. Parents are nervous about exposing their children to possible infection. At the same time, they are concerned about hindering their children's learning. This is problematic with local schools failing to meet the virtual needs of their students. Parents are facing the struggle of keeping their children safe while continuing their education.
 
 This is why we created HomeScholar.
 
