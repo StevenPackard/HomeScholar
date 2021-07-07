@@ -11,9 +11,13 @@ export const StudentStore = {
   },
   mutations: {
     setStudents(state, students) {
+      students.forEach((e) => {
+        e.name = e.name[0].toUpperCase() + e.name.slice(1);
+      });
       state.students = students;
     },
     setActiveStudent(state, student) {
+      student.name = student.name[0].toUpperCase() + student.name.slice(1);
       state.activeStudent = student;
     },
   },
@@ -43,6 +47,7 @@ export const StudentStore = {
       }
     },
     async addStudent({ commit, dispatch }, studentData) {
+      studentData.name;
       try {
         let res = await api.post("students", studentData);
         console.log(res.data);

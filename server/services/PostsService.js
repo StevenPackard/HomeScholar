@@ -26,7 +26,6 @@ class PostsService {
   async getAll() {
     return await dbContext.Posts.find().populate("creator", "name picture");
   }
-
   async getById(id) {
     let data = await dbContext.Posts.findOne({
       _id: id,
